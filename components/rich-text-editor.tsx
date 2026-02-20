@@ -255,7 +255,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-blue-600 underline cursor-pointer',
+          class: 'text-brand-600 underline cursor-pointer',
         },
       }),
     ],

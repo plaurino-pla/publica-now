@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-brand-50">
       {/* Header */}
       <PageSection background="white">
         <Container className="text-center">
@@ -32,9 +32,9 @@ export default function PricingPage() {
       <PageSection>
         <Container>
           <div className="max-w-4xl mx-auto">
-            <Card className="text-center border-2 border-blue-200 shadow-xl">
+            <Card className="text-center border-2 border-brand-200 shadow-xl">
               <CardHeader className="pb-8">
-                <CardTitle className="text-4xl text-blue-600 mb-2">Creator Plan</CardTitle>
+                <CardTitle className="text-4xl text-brand-600 mb-2">Creator Plan</CardTitle>
                 <CardDescription className="text-xl">Everything you need to monetize your content</CardDescription>
               </CardHeader>
               <CardContent className="space-y-8">
@@ -49,12 +49,12 @@ export default function PricingPage() {
                   ))}
                 </div>
                 <div className="pt-6 border-t border-gray-200">
-                  <div className="bg-blue-50 rounded-lg p-6 mb-6">
+                  <div className="bg-brand-50 rounded-lg p-6 mb-6">
                     <div className="flex items-start gap-3">
-                      <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <Info className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
                       <div className="text-left">
-                        <h4 className="font-semibold text-blue-900 mb-2">Transaction Fee: 15%</h4>
-                        <p className="text-blue-800 text-sm">When you accept subscriptions or payments, we take a 15% transaction fee. This includes all payment gateway fees, so you don't pay anything extra.</p>
+                        <h4 className="font-semibold text-brand-900 mb-2">Transaction Fee: 15%</h4>
+                        <p className="text-brand-800 text-sm">When you accept subscriptions or payments, we take a 15% transaction fee. This includes all payment gateway fees, so you don't pay anything extra.</p>
                       </div>
                     </div>
                   </div>
@@ -81,7 +81,7 @@ export default function PricingPage() {
               { icon: '🎯', title: 'Marketing Tools', desc: 'Email campaigns, social sharing, and audience building tools. Grow your following and increase sales.' },
               { icon: '🛠️', title: 'Customer Support', desc: "Help desk, documentation, and expert support. We're here to help you succeed every step of the way." },
             ].map((f) => (
-              <Card key={f.title} className="text-center"><CardHeader><div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span className="text-2xl">{f.icon}</span></div><CardTitle className="text-xl">{f.title}</CardTitle></CardHeader><CardContent><p className="text-gray-600">{f.desc}</p></CardContent></Card>
+              <Card key={f.title} className="text-center"><CardHeader><div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-4"><span className="text-2xl">{f.icon}</span></div><CardTitle className="text-xl">{f.title}</CardTitle></CardHeader><CardContent><p className="text-gray-600">{f.desc}</p></CardContent></Card>
             ))}
           </div>
         </Container>
@@ -124,7 +124,7 @@ export default function PricingPage() {
       <PageSection background="brand">
         <Container className="text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Earning More?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Join thousands of creators who are already saving money and earning more with publica.now. Start publishing today - it's completely free.</p>
+          <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">Join thousands of creators who are already saving money and earning more with publica.now. Start publishing today - it's completely free.</p>
           <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-4"><Link href="/auth/signup" aria-label="Start Publishing Free">Start Publishing Free</Link></Button>
         </Container>
       </PageSection>

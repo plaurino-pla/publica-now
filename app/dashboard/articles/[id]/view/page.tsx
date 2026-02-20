@@ -66,7 +66,7 @@ function getStatusColor(status: string) {
   switch (status) {
     case 'published': return 'bg-green-100 text-green-800'
     case 'draft': return 'bg-gray-100 text-gray-800'
-    case 'ready': return 'bg-blue-100 text-blue-800'
+    case 'ready': return 'bg-brand-100 text-brand-800'
     case 'publishing': return 'bg-yellow-100 text-yellow-800'
     case 'failed': return 'bg-red-100 text-red-800'
     default: return 'bg-gray-100 text-gray-800'
@@ -76,7 +76,7 @@ function getStatusColor(status: string) {
 function getVisibilityColor(visibility: string) {
   switch (visibility) {
     case 'free': return 'bg-green-100 text-green-800'
-    case 'subscribers': return 'bg-blue-100 text-blue-800'
+    case 'subscribers': return 'bg-brand-100 text-brand-800'
     case 'paid': return 'bg-purple-100 text-purple-800'
     default: return 'bg-gray-100 text-gray-800'
   }
@@ -225,7 +225,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                         />
                       </div>
                       <p className="text-sm text-gray-500 mt-2 text-center">
-                        Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                        Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                       </p>
                     </div>
                   ) : (
@@ -237,7 +237,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                         className="w-full"
                       />
                       <p className="text-sm text-gray-500 mt-2 text-center">
-                        Basic audio player - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Upgrade to Publica.la</a> for enhanced features
+                        Basic audio player - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Upgrade to Publica.la</a> for enhanced features
                       </p>
                     </div>
                   )}
@@ -293,7 +293,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                     />
                   </div>
                   <p className="text-sm text-gray-500 mt-2 text-center">
-                    Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                    Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                   </p>
                 </div>
               </div>

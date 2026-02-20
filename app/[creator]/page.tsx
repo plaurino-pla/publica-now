@@ -302,7 +302,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
             <Link
               key={type.value}
               href={`/${creator.slug}?filter=${type.value}`}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                 filter === type.value
                   ? 'text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -475,7 +475,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     {article.contentType === 'text' && (
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-blue-50 text-blue-700 rounded-md text-xs font-medium">
+                          <div className="flex items-center gap-2 px-2 py-1 bg-brand-50 text-brand-700 rounded-md text-xs font-medium">
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
@@ -569,25 +569,25 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     {/* Engagement and Actions */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-sm text-gray-600">
-                        <button aria-label="Like" className="flex items-center gap-1 hover:text-red-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+                        <button aria-label="Like" className="flex items-center gap-1 hover:text-red-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <Heart className="w-4 h-4" />
                           <span>3</span>
                         </button>
-                        <button aria-label="Comment" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+                        <button aria-label="Comment" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <MessageCircle className="w-4 h-4" />
                           <span>1</span>
                         </button>
-                        <button aria-label="Repost" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+                        <button aria-label="Repost" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <RotateCcw className="w-4 h-4" />
                           <span>1</span>
                         </button>
-                        <button aria-label="Share" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+                        <button aria-label="Share" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <Upload className="w-4 h-4" />
                         </button>
-                        <button aria-label="Save" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+                        <button aria-label="Save" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <Bookmark className="w-4 h-4" />
                         </button>
-                        <button aria-label="More options" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+                        <button aria-label="More options" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <MoreHorizontal className="w-4 h-4" />
                         </button>
                       </div>

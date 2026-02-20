@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 
 export default function InternalVisionPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-brand-50">
       <PageSection background="white">
         <Container className="max-w-6xl">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Product Vision – Publica.now (Internal)</h1>
               <p className="text-xl text-gray-600">Internal Strategic Roadmap & Development Guide</p>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+              <div className="w-24 h-1 bg-brand-600 mx-auto mt-6 rounded-full"></div>
             </div>
             <div className="prose prose-lg max-w-none">
               <section className="mb-12">
@@ -33,7 +33,7 @@ export default function InternalVisionPage() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">The Vision</h2>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
                       1
                     </div>
                     <div>
@@ -42,7 +42,7 @@ export default function InternalVisionPage() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
                       2
                     </div>
                     <div>
@@ -51,7 +51,7 @@ export default function InternalVisionPage() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
                       3
                     </div>
                     <div>
@@ -60,7 +60,7 @@ export default function InternalVisionPage() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
                       4
                     </div>
                     <div>
@@ -69,7 +69,7 @@ export default function InternalVisionPage() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-1">
                       5
                     </div>
                     <div>
@@ -82,11 +82,11 @@ export default function InternalVisionPage() {
 
               <section className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Mission Statement</h2>
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-xl text-center">
+                <div className="bg-gradient-to-r from-brand-600 to-purple-600 text-white p-8 rounded-xl text-center">
                   <blockquote className="text-2xl font-light italic mb-4">
                     "To empower creators with instant publishing and professional monetization, built on Publica.la's world-class infrastructure."
                   </blockquote>
-                  <p className="text-blue-100">
+                  <p className="text-brand-100">
                     — publica.now
                   </p>
                 </div>
@@ -134,7 +134,7 @@ export default function InternalVisionPage() {
                     </div>
                   </div>
 
-                  <div className="border-l-4 border-blue-600 pl-6">
+                  <div className="border-l-4 border-brand-600 pl-6">
                     <div className="mb-4">
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">Phase 3 – Scale & Intelligence</h3>
                       <p className="text-gray-600 font-medium">Objective: Offer professional-grade growth tools for serious creators.</p>
@@ -146,8 +146,8 @@ export default function InternalVisionPage() {
                       <li>• Mobile app: creators publish and track revenue on the go</li>
                       <li>• AI-powered recommendations for pricing, content strategy, and audience growth</li>
                     </ul>
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <p className="text-blue-800 font-semibold">
+                    <div className="bg-brand-50 p-4 rounded-lg">
+                      <p className="text-brand-800 font-semibold">
                         <strong>Outcome:</strong> Publica.now is positioned as the go-to platform for independent monetization, with scalability and sophistication rivaling any competitor.
                       </p>
                     </div>
@@ -192,9 +192,9 @@ export default function InternalVisionPage() {
                     <h3 className="text-lg font-semibold text-yellow-900 mb-3">Adoption friction</h3>
                     <p className="text-yellow-800">Keep MVP onboarding &lt;10 minutes from sign-up to publish.</p>
                   </div>
-                  <div className="p-6 border border-blue-200 rounded-xl bg-blue-50">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-3">Scaling challenges</h3>
-                    <p className="text-blue-800">Use Publica.la infra but monitor performance under higher short-form publishing load.</p>
+                  <div className="p-6 border border-brand-200 rounded-xl bg-brand-50">
+                    <h3 className="text-lg font-semibold text-brand-900 mb-3">Scaling challenges</h3>
+                    <p className="text-brand-800">Use Publica.la infra but monitor performance under higher short-form publishing load.</p>
                   </div>
                 </div>
               </section>
@@ -306,7 +306,7 @@ export default function InternalVisionPage() {
                     </div>
                   </div>
 
-                  <div className="border-l-4 border-blue-600 pl-6">
+                  <div className="border-l-4 border-brand-600 pl-6">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Phase 3 – Scale & Intelligence</h3>
                     <p className="text-gray-600 font-medium mb-4">Goal: Professional creator tools, integrations, and AI insights.</p>
                     
@@ -406,7 +406,7 @@ export default function InternalVisionPage() {
             </div>
             <div className="mt-8 text-center">
               <a href="/product-vision" className="inline-block">
-                <button className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2">
+                <button className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-brand-600 text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2">
                   View Public Vision
                 </button>
               </a>

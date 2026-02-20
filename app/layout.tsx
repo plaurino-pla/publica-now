@@ -88,7 +88,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={inter.className}>
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[10000] focus:bg-white focus:text-blue-700 focus:ring-2 focus:ring-blue-600 focus:outline-none px-4 py-2 rounded">
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[10000] focus:bg-white focus:text-brand-700 focus:ring-2 focus:ring-brand-600 focus:outline-none px-4 py-2 rounded">
           Skip to main content
         </a>
         <AuthProvider>

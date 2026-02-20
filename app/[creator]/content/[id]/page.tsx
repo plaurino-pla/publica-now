@@ -297,7 +297,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                       />
                     </div>
                     <p className="text-xs text-gray-500 mt-2 text-center">
-                      Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                      Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                     </p>
                   </div>
                 ) : (
@@ -329,7 +329,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                         />
                       </div>
                       <p className="text-xs text-gray-500 mt-2 text-center">
-                        Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                        Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                       </p>
                     </div>
                   ) : article.audioUrl ? (
@@ -386,7 +386,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                         />
                       </div>
                       <p className="text-xs text-gray-500 mt-2 text-center">
-                        Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Cloudflare Stream</a>
+                        Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Cloudflare Stream</a>
                       </p>
                     </div>
                   ) : (
@@ -433,7 +433,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                               />
                             </div>
                             <p className="text-xs text-gray-500 mt-2 text-center">
-                              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                             </p>
                           </div>
                         ) : (
@@ -465,7 +465,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                                 />
                               </div>
                               <p className="text-xs text-gray-500 mt-2 text-center">
-                                Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                                Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                               </p>
                             </div>
                           ) : article.audioUrl ? (
@@ -522,7 +522,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                                 />
                               </div>
                               <p className="text-xs text-gray-500 mt-2 text-center">
-                                Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Cloudflare Stream</a>
+                                Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Cloudflare Stream</a>
                               </p>
                             </div>
                           ) : (
@@ -608,7 +608,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                               />
                             </div>
                             <p className="text-xs text-gray-500 mt-2 text-center">
-                              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                             </p>
                           </div>
                         ) : (
@@ -640,7 +640,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                                 />
                               </div>
                               <p className="text-xs text-gray-500 mt-2 text-center">
-                                Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                                Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                               </p>
                             </div>
                           ) : article.audioUrl ? (
@@ -697,7 +697,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                                 />
                               </div>
                               <p className="text-xs text-gray-500 mt-2 text-center">
-                                Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Cloudflare Stream</a>
+                                Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Cloudflare Stream</a>
                               </p>
                             </div>
                           ) : (
@@ -739,7 +739,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                               />
                             </div>
                             <p className="text-xs text-gray-500 mt-2 text-center">
-                              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                             </p>
                           </div>
                         ) : (
@@ -771,7 +771,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                                 />
                               </div>
                               <p className="text-xs text-gray-500 mt-2 text-center">
-                                Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+                                Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
                               </p>
                             </div>
                           ) : article.audioUrl ? (
@@ -828,7 +828,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
                                 />
                               </div>
                               <p className="text-xs text-gray-500 mt-2 text-center">
-                                Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Cloudflare Stream</a>
+                                Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Cloudflare Stream</a>
                               </p>
                             </div>
                           ) : (
@@ -891,7 +891,7 @@ export default async function ContentPage({ params }: ContentPageProps) {
           {/* Footer */}
           <div className="text-center mt-16 pt-8 border-t border-gray-200">
             <p className="text-gray-600">
-              Published on <span className="font-medium text-blue-600">publica.now</span>
+              Published on <span className="font-medium text-brand-600">publica.now</span>
             </p>
             <p className="text-sm text-gray-500 mt-2">
               Professional publishing infrastructure for independent creators

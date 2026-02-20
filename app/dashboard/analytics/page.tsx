@@ -52,7 +52,7 @@ export default function AnalyticsPage() {
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">Loading analytics...</p>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function AnalyticsPage() {
             <div className="flex justify-center gap-3">
               <button 
                 onClick={() => window.location.reload()} 
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-4 py-2 bg-brand-600 text-white rounded-md hover:bg-brand-700"
               >
                 Try Again
               </button>
@@ -174,7 +174,7 @@ export default function AnalyticsPage() {
                 {analytics.monthlyData.map((month, index) => (
                   <div key={month.month} className="flex-1 flex flex-col items-center">
                     <div 
-                      className="w-full bg-blue-500 rounded-t"
+                      className="w-full bg-brand-500 rounded-t"
                       style={{ 
                         height: `${Math.max(month.articles * 20, 20)}px`,
                         minHeight: '20px'

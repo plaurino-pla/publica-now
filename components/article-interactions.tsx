@@ -280,8 +280,8 @@ export default function ArticleInteractions({
         disabled={isLoading}
         className={`flex items-center gap-2 ${
           saved 
-            ? 'bg-blue-500 hover:bg-blue-600 text-white' 
-            : 'hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200'
+            ? 'bg-brand-500 hover:bg-brand-600 text-white' 
+            : 'hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200'
         }`}
       >
         <Bookmark className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />

@@ -379,19 +379,19 @@ export default function AudioPostPage() {
               )}
 
               {/* File size information */}
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="mt-4 p-3 bg-brand-50 border border-brand-200 rounded-lg">
                 <div className="flex items-start gap-2">
-                  <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-blue-600 text-xs">ℹ</span>
+                  <div className="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-brand-600 text-xs">ℹ</span>
                   </div>
-                  <div className="text-sm text-blue-800">
+                  <div className="text-sm text-brand-800">
                     <p className="font-medium mb-1">Audio file requirements:</p>
                     <ul className="space-y-1 text-xs">
                       <li>• Maximum file size: <strong>150MB</strong></li>
                       <li>• Supported formats: MP3, WAV, AAC, OGG, M4A</li>
                       <li>• For large files, consider compressing or using lower quality settings</li>
                     </ul>
-                    <p className="text-xs text-blue-700 mt-2">
+                    <p className="text-xs text-brand-700 mt-2">
                       <strong>Note:</strong> If you encounter upload errors with large files, the new 150MB limit may still be propagating. Try again in a few minutes.
                     </p>
                   </div>

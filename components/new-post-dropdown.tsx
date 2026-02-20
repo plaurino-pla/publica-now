@@ -33,7 +33,7 @@ export function NewPostDropdown({ size = 'lg', variant = 'default' }: NewPostDro
   ]
 
   const buttonClasses = variant === 'blue' 
-    ? 'bg-blue-600 hover:bg-blue-700 text-white'
+    ? 'bg-brand-600 hover:bg-brand-700 text-white'
     : 'bg-black hover:bg-gray-800 text-white'
 
   return (

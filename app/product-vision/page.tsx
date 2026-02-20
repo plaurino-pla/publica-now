@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ProductVisionPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-brand-50">
       <PageSection background="white">
         <Container className="max-w-4xl">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
@@ -20,7 +20,7 @@ export default function ProductVisionPage() {
               <p className="text-xl text-gray-600">
                 Vision & Strategic Roadmap
               </p>
-              <div className="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+              <div className="w-24 h-1 bg-brand-600 mx-auto mt-6 rounded-full"></div>
             </div>
 
             <div className="prose prose-lg max-w-none">
@@ -41,12 +41,12 @@ export default function ProductVisionPage() {
 
               <section className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Vision Statement</h2>
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-xl text-center">
+                <div className="bg-gradient-to-r from-brand-600 to-purple-600 text-white p-8 rounded-xl text-center">
                   <blockquote className="text-2xl font-light italic mb-4">
                     "To give every creator the power to publish, sell, and grow their audience instantly — with no fees, 
                     no gatekeepers, and no compromise."
                   </blockquote>
-                  <p className="text-blue-100">
+                  <p className="text-brand-100">
                     — publica.now
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export default function ProductVisionPage() {
                     </div>
                   </div>
 
-                  <div className="border-l-4 border-blue-600 pl-6">
+                  <div className="border-l-4 border-brand-600 pl-6">
                     <div className="mb-4">
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">Phase 3 – Scale & Intelligence</h3>
                       <p className="text-gray-600 font-medium">Give creators professional-grade tools without complexity</p>
@@ -107,8 +107,8 @@ export default function ProductVisionPage() {
                       <li>• Mobile app for publishing on the go and managing revenue</li>
                       <li>• Deeper analytics (LTV, churn, cohort analysis)</li>
                     </ul>
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <p className="text-blue-800 font-semibold">
+                    <div className="bg-brand-50 p-4 rounded-lg">
+                      <p className="text-brand-800 font-semibold">
                         <strong>Outcome:</strong> Publica.now becomes the all-in-one backbone of the creator business — scalable, intelligent, and growth-focused.
                       </p>
                     </div>
@@ -170,7 +170,7 @@ export default function ProductVisionPage() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                    <div className="w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                       2
                     </div>
                     <div>
@@ -209,7 +209,7 @@ export default function ProductVisionPage() {
                   <div className="space-x-4">
                     <a 
                       href="/dashboard/new" 
-                      className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                      className="inline-block bg-brand-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand-700 transition-colors"
                     >
                       Start Publishing Now
                     </a>

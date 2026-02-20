@@ -84,7 +84,7 @@ export async function SiteHeader() {
                 <Button asChild variant="ghost" size="sm">
                   <Link href="/auth/signin">Sign in</Link>
                 </Button>
-                <Button asChild size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                <Button asChild size="sm" className="bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700">
                   <Link href="/auth/signup">Get started</Link>
                 </Button>
               </div>

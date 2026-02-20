@@ -21,8 +21,8 @@ export function DashboardSidebar() {
           href={item.href}
           aria-current={pathname.startsWith(item.href) ? 'page' : undefined}
           className={cn(
-            'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
-            pathname.startsWith(item.href) ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+            'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600',
+            pathname.startsWith(item.href) ? 'bg-brand-50 text-brand-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
           )}
         >
           <item.icon className="w-4 h-4" />

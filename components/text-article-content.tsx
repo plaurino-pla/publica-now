@@ -60,7 +60,7 @@ export default function TextArticleContent({
               />
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
-              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
             </p>
           </div>
         ) : locked ? (
@@ -69,7 +69,7 @@ export default function TextArticleContent({
             <div className="flex items-center justify-center gap-3">
               <Button 
                 size="sm" 
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-brand-600 hover:bg-brand-700"
                 onClick={async () => {
                   if (!session?.user) {
                     window.location.href = '/auth/signin'
@@ -108,7 +108,7 @@ export default function TextArticleContent({
               {(renderContent ? renderContent(article.bodyMarkdown || '') : (article.bodyMarkdown || '')).substring(0, 150)}...
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
-              Basic preview - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Upgrade to Publica.la</a> for enhanced reading
+              Basic preview - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Upgrade to Publica.la</a> for enhanced reading
             </p>
           </div>
         )}
@@ -145,7 +145,7 @@ export default function TextArticleContent({
               />
             </div>
             <p className="text-sm text-gray-500 mt-2 text-center">
-              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Publica.la</a>
+              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
             </p>
           </div>
         ) : locked ? (
@@ -160,7 +160,7 @@ export default function TextArticleContent({
             <div className="flex items-center justify-center gap-3">
               <Button 
                 size="lg" 
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-brand-600 hover:bg-brand-700"
                 onClick={async () => {
                   if (!session?.user) {
                     window.location.href = '/auth/signin'
@@ -201,7 +201,7 @@ export default function TextArticleContent({
               />
             </div>
             <p className="text-sm text-gray-500 mt-4 text-center">
-              Basic text display - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Upgrade to Publica.la</a> for enhanced reading experience
+              Basic text display - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Upgrade to Publica.la</a> for enhanced reading experience
             </p>
           </div>
         )}

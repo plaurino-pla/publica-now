@@ -160,7 +160,7 @@ function DashboardContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-brand-50">
       <PageHeader 
         title="Dashboard" 
         subtitle={`Welcome back, ${dashboardData.user.name || 'User'}!`} 
@@ -195,8 +195,8 @@ function DashboardContent() {
                     <p className="mt-2 text-2xl lg:text-3xl font-bold text-gray-900">{dashboardData.stats.totalPosts}</p>
                     <p className="text-xs text-gray-500 mt-1">Published content</p>
                   </div>
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
-                    <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
+                    <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-brand-600" />
                   </div>
                 </div>
               </div>
@@ -227,8 +227,8 @@ function DashboardContent() {
                     <p className="mt-2 text-2xl lg:text-3xl font-bold text-gray-900">{dashboardData.stats.totalReadingList}</p>
                     <p className="text-xs text-gray-500 mt-1">Saved for later</p>
                   </div>
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
-                    <Bookmark className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
+                    <Bookmark className="w-5 h-5 lg:w-6 lg:h-6 text-brand-600" />
                   </div>
                 </div>
               </div>
@@ -262,35 +262,35 @@ function DashboardContent() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {dashboardData.user.isCreator ? (
                       <Link href="/dashboard/articles" className="group">
-                        <div className="border border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-blue-50 group-hover:to-white">
+                        <div className="border border-gray-200 rounded-lg p-5 hover:border-brand-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-blue-200 transition-colors">
-                                <FileText className="w-6 h-6 text-blue-600" />
+                              <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-200 transition-colors">
+                                <FileText className="w-6 h-6 text-brand-600" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-blue-900 transition-colors">Manage Posts</h3>
+                                <h3 className="font-semibold text-gray-900 group-hover:text-brand-900 transition-colors">Manage Posts</h3>
                                 <p className="text-gray-600 text-sm mt-1">Edit, publish, or delete your content</p>
                               </div>
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0" />
+                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-brand-600 transition-colors flex-shrink-0" />
                           </div>
                         </div>
                       </Link>
                     ) : (
                       <Link href="/creators" className="group">
-                        <div className="border border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-blue-50 group-hover:to-white">
+                        <div className="border border-gray-200 rounded-lg p-5 hover:border-brand-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-blue-200 transition-colors">
-                                <Search className="w-6 h-6 text-blue-600" />
+                              <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-200 transition-colors">
+                                <Search className="w-6 h-6 text-brand-600" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-blue-900 transition-colors">Discover Creators</h3>
+                                <h3 className="font-semibold text-gray-900 group-hover:text-brand-900 transition-colors">Discover Creators</h3>
                                 <p className="text-gray-600 text-sm mt-1">Find and subscribe to new creators</p>
                               </div>
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0" />
+                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-brand-600 transition-colors flex-shrink-0" />
                           </div>
                         </div>
                       </Link>
@@ -332,7 +332,7 @@ function DashboardContent() {
                       <h3 className="text-lg font-medium text-gray-900 mb-2">No activity yet</h3>
                       <p className="text-gray-600 mb-6 text-sm">Start exploring content to see your activity here</p>
                       <Link href="/creators">
-                        <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                        <Button size="lg" className="bg-brand-600 hover:bg-brand-700">
                           <Search className="w-4 h-4 mr-2" />
                           Discover Creators
                         </Button>
@@ -352,7 +352,7 @@ function DashboardContent() {
                             </div>
                           </div>
                           <Link href={`/${article.creator.slug}/content/${article.slug}`}>
-                            <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+                            <Button variant="ghost" size="sm" className="text-brand-600 hover:text-brand-700 hover:bg-brand-50">
                               View
                             </Button>
                           </Link>
@@ -368,24 +368,24 @@ function DashboardContent() {
             <div className="xl:col-span-1 space-y-6">
               {/* Creator Tools */}
               {dashboardData.user.isCreator && (
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                <div className="bg-gradient-to-br from-brand-50 to-indigo-50 rounded-xl p-6 border border-brand-200">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Plus className="w-5 h-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center">
+                      <Plus className="w-5 h-5 text-brand-600" />
                     </div>
-                    <h3 className="font-semibold text-blue-900">Creator Tools</h3>
+                    <h3 className="font-semibold text-brand-900">Creator Tools</h3>
                   </div>
-                  <p className="text-blue-800 text-sm mb-6 leading-relaxed">
+                  <p className="text-brand-800 text-sm mb-6 leading-relaxed">
                     Manage your content and grow your audience with powerful tools.
                   </p>
                   <div className="space-y-3">
-                    <Button asChild size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
+                    <Button asChild size="sm" className="w-full bg-brand-600 hover:bg-brand-700">
                       <Link href="/dashboard/articles">
                         <FileText className="w-4 h-4 mr-2" />
                         Manage Posts
                       </Link>
                     </Button>
-                    <Button asChild size="sm" variant="outline" className="w-full border-blue-300 text-blue-700 hover:bg-blue-50">
+                    <Button asChild size="sm" variant="outline" className="w-full border-brand-300 text-brand-700 hover:bg-brand-50">
                       <Link href="/dashboard/analytics">
                         <BarChart3 className="w-4 h-4 mr-2" />
                         View Analytics
@@ -417,7 +417,7 @@ function DashboardContent() {
                     ))}
                     {dashboardData.subscriptions.length > 3 && (
                       <Link href="/dashboard/subscriptions">
-                        <Button variant="ghost" size="sm" className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+                        <Button variant="ghost" size="sm" className="w-full text-brand-600 hover:text-brand-700 hover:bg-brand-50">
                           View all subscriptions
                         </Button>
                       </Link>

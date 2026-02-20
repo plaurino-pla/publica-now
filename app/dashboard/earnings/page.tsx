@@ -48,7 +48,7 @@ export default function EarningsPage() {
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">Loading earnings...</p>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function EarningsPage() {
             <div className="flex justify-center gap-3">
               <button 
                 onClick={() => window.location.reload()} 
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-4 py-2 bg-brand-600 text-white rounded-md hover:bg-brand-700"
               >
                 Try Again
               </button>
@@ -224,10 +224,10 @@ export default function EarningsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <h4 className="font-medium text-blue-900 mb-2">Available Balance</h4>
-                <p className="text-2xl font-bold text-blue-900">${earnings.pendingPayout.toFixed(2)}</p>
-                <p className="text-sm text-blue-700 mt-1">Ready for withdrawal</p>
+              <div className="p-4 bg-brand-50 rounded-lg">
+                <h4 className="font-medium text-brand-900 mb-2">Available Balance</h4>
+                <p className="text-2xl font-bold text-brand-900">${earnings.pendingPayout.toFixed(2)}</p>
+                <p className="text-sm text-brand-700 mt-1">Ready for withdrawal</p>
               </div>
               <div className="p-4 bg-green-50 rounded-lg">
                 <h4 className="font-medium text-green-900 mb-2">Minimum Payout</h4>
@@ -240,7 +240,7 @@ export default function EarningsPage() {
                 disabled={earnings.pendingPayout < 50}
                 className={`px-6 py-3 rounded-lg font-medium ${
                   earnings.pendingPayout >= 50
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    ? 'bg-brand-600 text-white hover:bg-brand-700'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >

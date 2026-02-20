@@ -75,12 +75,12 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
         
         <div className="space-y-4">
           {/* Pricing Card */}
-          <Card className="border-2 border-blue-200 bg-blue-50">
+          <Card className="border-2 border-brand-200 bg-brand-50">
             <CardHeader className="text-center pb-2">
-              <CardTitle className="text-2xl text-blue-900">
+              <CardTitle className="text-2xl text-brand-900">
                 {formatPrice(subscriptionPrice)}/month
               </CardTitle>
-              <CardDescription className="text-blue-700">
+              <CardDescription className="text-brand-700">
                 Cancel anytime • No hidden fees
               </CardDescription>
             </CardHeader>

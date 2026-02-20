@@ -16,7 +16,7 @@ function getStatusColor(status: string) {
   switch (status) {
     case 'published': return 'bg-green-100 text-green-800'
     case 'draft': return 'bg-gray-100 text-gray-800'
-    case 'ready': return 'bg-blue-100 text-blue-800'
+    case 'ready': return 'bg-brand-100 text-brand-800'
     case 'publishing': return 'bg-yellow-100 text-yellow-800'
     case 'failed': return 'bg-red-100 text-red-800'
     default: return 'bg-gray-100 text-gray-800'
@@ -26,7 +26,7 @@ function getStatusColor(status: string) {
 function getVisibilityColor(visibility: string) {
   switch (visibility) {
     case 'free': return 'bg-green-100 text-green-800'
-    case 'subscribers': return 'bg-blue-100 text-blue-800'
+    case 'subscribers': return 'bg-brand-100 text-brand-800'
     case 'paid': return 'bg-purple-100 text-purple-800'
     default: return 'bg-gray-100 text-gray-800'
   }

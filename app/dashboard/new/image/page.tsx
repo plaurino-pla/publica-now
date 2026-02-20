@@ -208,7 +208,7 @@ export default function ImagePostForm() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your images..."
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 rows={4}
                 required
               />
@@ -293,7 +293,7 @@ export default function ImagePostForm() {
               <select
                 value={visibility}
                 onChange={(e) => setVisibility(e.target.value as any)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="free">Free</option>
                 <option value="paid">Paid</option>
@@ -341,7 +341,7 @@ export default function ImagePostForm() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-blue-600 hover:bg-blue-700"
+            className="bg-brand-600 hover:bg-brand-700"
           >
             {isSubmitting ? 'Creating...' : 'Create Image Post'}
           </Button>

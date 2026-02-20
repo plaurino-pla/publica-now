@@ -159,7 +159,7 @@ export default function CreatorsPage() {
     return (
       <PageSection background="muted">
         <Container className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading creators...</p>
         </Container>
       </PageSection>
@@ -306,7 +306,7 @@ export default function CreatorsPage() {
                             {description}
                           </p>
                           {creator.isNewCreator && (
-                            <p className="text-xs text-blue-600 mt-1">
+                            <p className="text-xs text-brand-600 mt-1">
                               ✨ Just getting started - be the first to discover them!
                             </p>
                           )}
@@ -318,7 +318,7 @@ export default function CreatorsPage() {
                       {/* Content Type Stats */}
                       <div className="flex items-center gap-3 sm:gap-4 mb-4 text-xs text-gray-500">
                         {creator.isNewCreator ? (
-                          <div className="flex items-center gap-1 text-blue-600">
+                          <div className="flex items-center gap-1 text-brand-600">
                             <Sparkles className="w-3 h-3" />
                             <span>New Creator</span>
                           </div>
@@ -395,7 +395,7 @@ export default function CreatorsPage() {
             Join thousands of creators who are building their audience and monetizing their content on publica.now
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto h-12 sm:h-14"><Link href="/auth/signup">Start Creating Today</Link></Button>
+            <Button asChild size="lg" className="bg-brand-600 hover:bg-brand-700 w-full sm:w-auto h-12 sm:h-14"><Link href="/auth/signup">Start Creating Today</Link></Button>
             <Button asChild size="lg" variant="outline" className="w-full sm:w-auto h-12 sm:h-14"><Link href="/how-it-works">Learn How It Works</Link></Button>
           </div>
         </Container>

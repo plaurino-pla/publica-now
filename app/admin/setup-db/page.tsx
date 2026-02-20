@@ -60,14 +60,14 @@ export default function SetupDatabasePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 text-xs font-medium">i</span>
+                  <div className="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center">
+                    <span className="text-brand-600 text-xs font-medium">i</span>
                   </div>
-                  <h4 className="font-medium text-blue-900">What will be created?</h4>
+                  <h4 className="font-medium text-brand-900">What will be created?</h4>
                 </div>
-                <ul className="text-sm text-blue-800 space-y-1">
+                <ul className="text-sm text-brand-800 space-y-1">
                   <li>• <strong>likes</strong> table - for article likes</li>
                   <li>• <strong>readingListItems</strong> table - for saved articles</li>
                   <li>• <strong>subscriptions</strong> table - for creator subscriptions</li>

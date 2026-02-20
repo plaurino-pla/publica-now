@@ -16,7 +16,7 @@ export default function Chip({ children, leadingIcon, variant = 'neutral', class
   }
   const variants: Record<NonNullable<ChipProps['variant']>, string> = {
     neutral: 'bg-gray-100 text-gray-800',
-    brand: 'bg-blue-600 text-white',
+    brand: 'bg-brand-600 text-white',
     outline: 'border border-gray-300 text-gray-800',
   }
   return (

@@ -228,7 +228,7 @@ export function MobileNav({ session }: MobileNavProps) {
                         </Button>
                       </Link>
                       <Link href="/auth/signup" onClick={closeMenu}>
-                        <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 h-14 text-base" size="lg">
+                        <Button className="w-full bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 h-14 text-base" size="lg">
                           Get started
                         </Button>
                       </Link>

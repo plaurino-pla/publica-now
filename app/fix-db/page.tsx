@@ -111,8 +111,8 @@ export default function FixDbPage() {
                 </div>
               )}
 
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-md">
-                <p className="text-blue-800 text-sm">
+              <div className="p-4 bg-brand-50 border border-brand-200 rounded-md">
+                <p className="text-brand-800 text-sm">
                   <strong>Next steps:</strong> Try liking or saving an article now. The functionality should work!
                 </p>
               </div>

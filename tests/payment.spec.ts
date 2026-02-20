@@ -130,7 +130,7 @@ test.describe('Payment System Tests', () => {
     
     // Button should have proper styling - check for primary button classes
     const buttonClasses = await subscribeButton.getAttribute('class');
-    expect(buttonClasses).toContain('bg-blue-600');
+    expect(buttonClasses).toContain('bg-brand-600');
     expect(buttonClasses).toContain('text-white');
     expect(buttonClasses).toContain('rounded-md');
   });

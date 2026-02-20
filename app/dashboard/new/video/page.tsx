@@ -211,7 +211,7 @@ export default function VideoPostForm() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your video content..."
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
                 rows={4}
                 required
               />
@@ -267,12 +267,12 @@ export default function VideoPostForm() {
               }}
               className={`p-6 border-2 rounded-lg transition-all ${
                 videoSource === 'upload'
-                  ? 'border-blue-500 bg-blue-50'
+                  ? 'border-brand-500 bg-brand-50'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               <div className="flex flex-col items-center text-center">
-                <Upload className={`w-8 h-8 mb-3 ${videoSource === 'upload' ? 'text-blue-500' : 'text-gray-400'}`} />
+                <Upload className={`w-8 h-8 mb-3 ${videoSource === 'upload' ? 'text-brand-500' : 'text-gray-400'}`} />
                 <h4 className="font-medium text-gray-900 mb-2">Upload Video</h4>
                 <p className="text-sm text-gray-600">Upload your own MP4 file (max 200MB)</p>
               </div>
@@ -348,8 +348,8 @@ export default function VideoPostForm() {
             <div className="space-y-6">
               {/* Always show this prominently */}
               <div className="text-center">
-                <div className="border-2 border-dashed border-blue-300 rounded-lg p-8 bg-blue-50">
-                  <Upload className="mx-auto h-16 w-16 text-blue-500 mb-4" />
+                <div className="border-2 border-dashed border-brand-300 rounded-lg p-8 bg-brand-50">
+                  <Upload className="mx-auto h-16 w-16 text-brand-500 mb-4" />
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Your Video</h3>
                   
                   {/* Step 1: Get Upload URL if needed */}
@@ -361,7 +361,7 @@ export default function VideoPostForm() {
                         size="lg"
                         onClick={startDirectUpload} 
                         disabled={isUploading}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                        className="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3"
                       >
                         <Upload className="w-5 h-5 mr-2" />
                         {isUploading ? 'Preparing...' : 'Prepare Upload'}
@@ -392,8 +392,8 @@ export default function VideoPostForm() {
                             file:mr-4 file:py-3 file:px-6
                             file:rounded-lg file:border-0
                             file:text-lg file:font-semibold
-                            file:bg-blue-600 file:text-white
-                            hover:file:bg-blue-700"
+                            file:bg-brand-600 file:text-white
+                            hover:file:bg-brand-700"
                         />
                       </div>
                       <p className="text-sm text-gray-600">Select an MP4 or WebM file (max 200MB)</p>
@@ -412,7 +412,7 @@ export default function VideoPostForm() {
                   {/* Step 3: Upload Progress */}
                   {isUploading && (
                     <div className="space-y-4">
-                      <p className="text-blue-600 font-medium">Uploading your video...</p>
+                      <p className="text-brand-600 font-medium">Uploading your video...</p>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span>Progress</span>
@@ -420,7 +420,7 @@ export default function VideoPostForm() {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-3">
                           <div 
-                            className="bg-blue-600 h-3 rounded-full transition-all duration-300" 
+                            className="bg-brand-600 h-3 rounded-full transition-all duration-300" 
                             style={{ width: `${uploadProgress}%` }}
                           ></div>
                         </div>
@@ -473,7 +473,7 @@ export default function VideoPostForm() {
               <select
                 value={visibility}
                 onChange={(e) => setVisibility(e.target.value as any)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="free">Free - Anyone can watch</option>
                 <option value="subscribers">Subscribers Only</option>
@@ -509,7 +509,7 @@ export default function VideoPostForm() {
                 ? 'text-green-800' 
                 : message.includes('❌')
                 ? 'text-red-800'
-                : 'text-blue-800'
+                : 'text-brand-800'
             }`}>
               {message.includes('🎉') && <CheckCircle className="w-5 h-5" />}
               {message.includes('❌') && <AlertCircle className="w-5 h-5" />}
@@ -544,7 +544,7 @@ export default function VideoPostForm() {
                 disabled={!canSubmit()}
                 className={`${
                   canSubmit() 
-                    ? 'bg-blue-600 hover:bg-blue-700' 
+                    ? 'bg-brand-600 hover:bg-brand-700' 
                     : 'bg-gray-400 cursor-not-allowed'
                 } flex items-center gap-2`}
               >

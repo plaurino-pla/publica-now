@@ -23,13 +23,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-purple-50">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Sell your content{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">
                 your way
               </span>
             </h1>
@@ -40,7 +40,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                className="bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
                 asChild
               >
                 <Link href="/auth/signup">
@@ -51,7 +51,7 @@ export default function HomePage() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-2 border-gray-300 px-8 py-4 text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
+                className="border-2 border-gray-300 px-8 py-4 text-lg font-semibold hover:border-brand-600 hover:text-brand-600 transition-all duration-200"
                 asChild
               >
                 <Link href="#how-it-works">
@@ -68,7 +68,7 @@ export default function HomePage() {
                 <span>No monthly fees</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-blue-500" />
+                <Shield className="w-5 h-5 text-brand-500" />
                 <span>Secure payments</span>
               </div>
               <div className="flex items-center gap-2">
@@ -95,8 +95,8 @@ export default function HomePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Text */}
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group">
-              <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 hover:from-brand-100 hover:to-brand-200 transition-all duration-300 group">
+              <div className="w-16 h-16 bg-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <FileText className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Text Articles</h3>
@@ -148,11 +148,11 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Step 1 */}
             <div className="text-center">
-              <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
+              <div className="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
                 1
               </div>
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Upload className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-brand-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Upload className="w-8 h-8 text-brand-600" />
               </div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Create your content</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -204,11 +204,11 @@ export default function HomePage() {
             Start publishing today. No hidden fees, no surprises.
           </p>
           
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 border border-blue-100">
+          <div className="bg-gradient-to-br from-brand-50 to-purple-50 rounded-3xl p-8 md:p-12 border border-brand-100">
             <div className="mb-8">
               <h3 className="text-3xl font-bold text-gray-900 mb-2">Creator Plan</h3>
               <div className="flex items-baseline justify-center gap-2">
-                <span className="text-6xl font-bold text-blue-600">$0</span>
+                <span className="text-6xl font-bold text-brand-600">$0</span>
                 <span className="text-2xl text-gray-600">/month</span>
               </div>
               <p className="text-gray-600 mt-2">15% transaction fee on sales</p>
@@ -243,7 +243,7 @@ export default function HomePage() {
             
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              className="bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
               asChild
             >
               <Link href="/auth/signup">
@@ -269,8 +269,8 @@ export default function HomePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-brand-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 text-brand-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Instant Publishing</h3>
               <p className="text-gray-600">
@@ -357,7 +357,7 @@ export default function HomePage() {
           
           <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
             <div className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-blue-500" />
+              <Users className="w-5 h-5 text-brand-500" />
               <span>10,000+ creators</span>
             </div>
             <div className="flex items-center gap-2">
@@ -373,12 +373,12 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-20 bg-gradient-to-r from-brand-600 to-purple-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Ready to start earning?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">
             Join thousands of creators who are already monetizing their content. 
             Start publishing today - it's completely free.
           </p>
@@ -386,7 +386,7 @@ export default function HomePage() {
             <Button 
               size="lg" 
               variant="secondary"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              className="bg-white text-brand-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
               asChild
             >
               <Link href="/auth/signup">
@@ -397,7 +397,7 @@ export default function HomePage() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold transition-all duration-200"
+              className="border-2 border-white text-white hover:bg-white hover:text-brand-600 px-8 py-4 text-lg font-semibold transition-all duration-200"
               asChild
             >
               <Link href="/auth/signin">

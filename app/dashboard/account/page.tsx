@@ -419,7 +419,7 @@ export default function AccountPage() {
                 {/* Description */}
                 <div>
                   <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-                    Bio Description <span className="text-blue-500">★</span>
+                    Bio Description <span className="text-brand-500">★</span>
                   </label>
                   <Textarea
                     id="description"
@@ -431,14 +431,14 @@ export default function AccountPage() {
                     className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    <span className="text-blue-600 font-medium">Recommended:</span> A compelling bio helps readers understand your expertise and what to expect from your content.
+                    <span className="text-brand-600 font-medium">Recommended:</span> A compelling bio helps readers understand your expertise and what to expect from your content.
                   </p>
                 </div>
 
                 {/* Main Color */}
                 <div>
                   <label htmlFor="mainColor" className="block text-sm font-medium text-gray-700 mb-2">
-                    Brand Color <span className="text-blue-500">★</span>
+                    Brand Color <span className="text-brand-500">★</span>
                   </label>
                   <div className="flex items-center gap-3">
                     <input
@@ -458,14 +458,14 @@ export default function AccountPage() {
                     />
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
-                    <span className="text-blue-600 font-medium">Recommended:</span> Choose a color that represents your brand and will be used across your profile and content.
+                    <span className="text-brand-600 font-medium">Recommended:</span> Choose a color that represents your brand and will be used across your profile and content.
                   </p>
                 </div>
 
                 {/* Profile Picture */}
                 <div>
                   <label htmlFor="profilePicture" className="block text-sm font-medium text-gray-700 mb-2">
-                    Profile Picture <span className="text-blue-500">★</span>
+                    Profile Picture <span className="text-brand-500">★</span>
                   </label>
                   <div className="flex items-center gap-4">
                     <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-gray-300 flex items-center justify-center overflow-hidden">
@@ -488,7 +488,7 @@ export default function AccountPage() {
                         className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
                       />
                       <p className="text-xs text-gray-500 mt-1">
-                        <span className="text-blue-600 font-medium">Recommended:</span> Use a high-quality, professional image (square format, at least 400x400px).
+                        <span className="text-brand-600 font-medium">Recommended:</span> Use a high-quality, professional image (square format, at least 400x400px).
                       </p>
                     </div>
                   </div>
@@ -497,7 +497,7 @@ export default function AccountPage() {
                 {/* Header Image */}
                 <div>
                   <label htmlFor="headerImage" className="block text-sm font-medium text-gray-700 mb-2">
-                    Header Image <span className="text-blue-500">★</span>
+                    Header Image <span className="text-brand-500">★</span>
                   </label>
                   <div className="space-y-3">
                     <div className="w-full h-32 rounded-lg bg-gray-100 border-2 border-gray-300 flex items-center justify-center overflow-hidden">
@@ -522,32 +522,32 @@ export default function AccountPage() {
                       className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
                     />
                     <p className="text-xs text-gray-500">
-                      <span className="text-blue-600 font-medium">Recommended:</span> Use a wide banner image (1200x400px) that showcases your brand or content theme.
+                      <span className="text-brand-600 font-medium">Recommended:</span> Use a wide banner image (1200x400px) that showcases your brand or content theme.
                     </p>
                   </div>
                 </div>
 
                 {/* Profile Completion Indicator */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                      <span className="text-blue-600 text-xs font-medium">i</span>
+                    <div className="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center">
+                      <span className="text-brand-600 text-xs font-medium">i</span>
                     </div>
-                    <h4 className="font-medium text-blue-900">Profile Completion</h4>
+                    <h4 className="font-medium text-brand-900">Profile Completion</h4>
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-blue-800">Required fields</span>
-                      <span className="text-blue-600 font-medium">1/1</span>
+                      <span className="text-brand-800">Required fields</span>
+                      <span className="text-brand-600 font-medium">1/1</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-blue-800">Recommended fields</span>
-                      <span className="text-blue-600 font-medium">4/4</span>
+                      <span className="text-brand-800">Recommended fields</span>
+                      <span className="text-brand-600 font-medium">4/4</span>
                     </div>
-                    <div className="w-full bg-blue-200 rounded-full h-2">
-                      <div className="bg-blue-600 h-2 rounded-full" style={{ width: '100%' }}></div>
+                    <div className="w-full bg-brand-200 rounded-full h-2">
+                      <div className="bg-brand-600 h-2 rounded-full" style={{ width: '100%' }}></div>
                     </div>
-                    <p className="text-xs text-blue-700">
+                    <p className="text-xs text-brand-700">
                       Complete your profile to improve discoverability and build trust with your audience.
                     </p>
                   </div>
@@ -558,7 +558,7 @@ export default function AccountPage() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                    className="w-full bg-brand-600 hover:bg-brand-700 text-white"
                   >
                     {isLoading ? (
                       <>

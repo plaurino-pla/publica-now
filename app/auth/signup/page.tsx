@@ -46,7 +46,7 @@ export default function SignUpPage() {
     return (
       <PageSection background="muted" className="min-h-[60vh] flex items-center">
         <Container className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Checking authentication...</p>
         </Container>
       </PageSection>
@@ -252,7 +252,7 @@ export default function SignUpPage() {
             <div className="text-center pt-4">
               <p className="text-sm text-gray-600">
                 Already have an account?{' '}
-                <Link href="/auth/signin" className="text-blue-600 hover:text-blue-700 font-medium">
+                <Link href="/auth/signin" className="text-brand-600 hover:text-brand-700 font-medium">
                   Sign in
                 </Link>
               </p>

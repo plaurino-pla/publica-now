@@ -103,13 +103,13 @@ export default function Paywall({
 
   if (hasPurchased && articleId) {
     return (
-      <Card className="border-blue-200 bg-blue-50">
+      <Card className="border-brand-200 bg-brand-50">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-            <Check className="h-6 w-6 text-blue-600" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-100">
+            <Check className="h-6 w-6 text-brand-600" />
           </div>
-          <CardTitle className="text-blue-800">Article Purchased</CardTitle>
-          <CardDescription className="text-blue-600">
+          <CardTitle className="text-brand-800">Article Purchased</CardTitle>
+          <CardDescription className="text-brand-600">
             You have access to this article
           </CardDescription>
         </CardHeader>
@@ -134,7 +134,7 @@ export default function Paywall({
       <div className="grid gap-4 md:grid-cols-2">
         {/* Individual Article Purchase */}
         {articleId && (
-          <Card className="border-2 border-gray-200 hover:border-blue-300 transition-colors">
+          <Card className="border-2 border-gray-200 hover:border-brand-300 transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
@@ -146,7 +146,7 @@ export default function Paywall({
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">
+                <div className="text-3xl font-bold text-brand-600">
                   {formatPrice(articlePrice)}
                 </div>
                 <div className="mt-1"><Badge variant="outline">One-time purchase</Badge></div>

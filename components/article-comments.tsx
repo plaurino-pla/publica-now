@@ -120,8 +120,8 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
               comments.map((comment) => (
                 <div key={comment.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-blue-600" />
+                    <div className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-brand-600" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">

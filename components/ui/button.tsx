@@ -9,24 +9,20 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary solid (brand)
-        default: "bg-blue-600 text-white hover:bg-blue-700",
-        // Secondary solid
+        default: "bg-brand-600 text-white hover:bg-brand-700",
+        gradient: "bg-gradient-to-r from-brand-500 to-brand-600 text-white hover:from-brand-600 hover:to-brand-700",
         secondary: "bg-gray-900 text-white hover:bg-gray-800",
-        // Subtle/ghost
         ghost: "hover:bg-gray-100 text-gray-900",
-        // Outline
         outline: "border border-gray-300 text-gray-900 hover:bg-gray-50",
-        // Destructive
         destructive: "bg-red-600 text-white hover:bg-red-700",
-        // Link style
-        link: "text-blue-600 underline-offset-4 hover:underline",
+        link: "text-brand-600 underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-4 py-2",
+        default: "h-11 px-4 py-2",
         sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        lg: "h-12 rounded-md px-8",
         icon: "h-10 w-10",
+        pill: "h-11 rounded-full px-6",
       },
     },
     defaultVariants: {

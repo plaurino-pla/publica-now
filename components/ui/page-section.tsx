@@ -20,7 +20,7 @@ export function PageSection({
     background === 'muted'
       ? 'bg-gray-50'
       : background === 'brand'
-      ? 'bg-blue-600'
+      ? 'bg-brand-600'
       : background === 'white'
       ? 'bg-white'
       : ''

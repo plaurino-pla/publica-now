@@ -50,7 +50,7 @@ export default function ReadingListPage() {
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">Loading your reading list...</p>
           </div>
         </div>
@@ -140,8 +140,8 @@ export default function ReadingListPage() {
                             </div>
                           </div>
                           <div className="ml-4 flex-shrink-0">
-                            <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
-                              <Bookmark className="w-5 h-5 text-blue-600 fill-current" />
+                            <div className="w-10 h-10 bg-brand-50 rounded-full flex items-center justify-center">
+                              <Bookmark className="w-5 h-5 text-brand-600 fill-current" />
                             </div>
                           </div>
                         </div>
