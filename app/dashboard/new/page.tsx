@@ -288,7 +288,7 @@ export default function NewPostPage() {
 
           {/* Message */}
           {message && (
-            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-500/10 text-red-800' : 'bg-emerald-500/10 text-green-800'}`}>
+            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-500/10 text-red-300' : 'bg-emerald-500/10 text-emerald-300'}`}>
               {message}
             </div>
           )}

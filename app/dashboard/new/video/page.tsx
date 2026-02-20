@@ -157,10 +157,33 @@ export default function VideoPostForm() {
 
       if (response.ok) {
         const data = await response.json()
-        setMessage('🎉 Video post created successfully!')
-        setTimeout(() => {
-          router.push('/dashboard/articles')
-        }, 2000)
+        setMessage('📤 Sending to publica.la...')
+        try {
+          const publicaRes = await fetch('/api/articles/video/publica', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              articleId: data.id,
+              title,
+              description,
+              videoUrl: videoSource === 'youtube' ? youtubeUrl : `stream://${nativeUploadUid}`,
+              videoId: videoSource === 'youtube' ? videoId : nativeUploadUid,
+              visibility,
+              pricing: visibility === 'paid' ? { USD: parseFloat(priceUSD) } : undefined,
+            }),
+          })
+          if (publicaRes.ok) {
+            setMessage('🎉 Video post created and sent to publica.la successfully!')
+            setTimeout(() => router.push('/dashboard/articles'), 2000)
+          } else {
+            const err = await publicaRes.json().catch(() => ({}))
+            setMessage(`✅ Video post created! ⚠️ Publica.la failed: ${err.error || 'Unknown error'}`)
+            setTimeout(() => router.push(`/dashboard/articles/${data.id}/edit`), 3000)
+          }
+        } catch (e) {
+          setMessage('✅ Video post created! ⚠️ Failed sending to publica.la, please retry from the editor')
+          setTimeout(() => router.push(`/dashboard/articles/${data.id}/edit`), 3000)
+        }
       } else {
         const error = await response.json()
         setMessage(`❌ Failed to create video post: ${error.message}`)
@@ -306,18 +329,18 @@ export default function VideoPostForm() {
                   </Button>
                 </div>
                 {youtubeUrl && videoId && (
-                  <div className="mt-3 p-3 bg-emerald-500/10 border border-green-200 rounded-md">
+                  <div className="mt-3 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-md">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span className="text-sm text-green-800">Valid YouTube URL detected</span>
+                      <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      <span className="text-sm text-emerald-300">Valid YouTube URL detected</span>
                     </div>
                   </div>
                 )}
                 {youtubeUrl && !videoId && (
-                  <div className="mt-3 p-3 bg-red-500/10 border border-red-200 rounded-md">
+                  <div className="mt-3 p-3 bg-red-500/10 border border-red-500/20 rounded-md">
                     <div className="flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 text-red-400" />
-                      <span className="text-sm text-red-800">Invalid YouTube URL</span>
+                      <span className="text-sm text-red-300">Invalid YouTube URL</span>
                     </div>
                   </div>
                 )}
@@ -399,13 +422,6 @@ export default function VideoPostForm() {
                       <p className="text-sm text-white/50">Select an MP4 or WebM file (max 200MB)</p>
                       
                       {/* Debug what's preventing file input */}
-                      <div className="text-xs bg-red-100 p-2 rounded">
-                        <strong>File Input Debug:</strong><br/>
-                        nativeUploadUrl: {nativeUploadUrl ? 'TRUE' : 'FALSE'}<br/>
-                        nativeUploadUid: {nativeUploadUid ? 'TRUE' : 'FALSE'}<br/>
-                        isUploading: {isUploading ? 'TRUE' : 'FALSE'}<br/>
-                        Should show file input: {(nativeUploadUrl && !nativeUploadUid && !isUploading) ? 'YES' : 'NO'}
-                      </div>
                     </div>
                   )}
 
@@ -433,7 +449,7 @@ export default function VideoPostForm() {
                     <div className="space-y-4">
                       <div className="text-center">
                         <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
-                        <h4 className="text-lg font-semibold text-green-800">Upload Successful!</h4>
+                        <h4 className="text-lg font-semibold text-emerald-300">Upload Successful!</h4>
                         <p className="text-green-400">Your video is ready. You can now publish your post.</p>
                       </div>
                       <Button
@@ -454,10 +470,6 @@ export default function VideoPostForm() {
                 </div>
               </div>
 
-              {/* Debug - always visible */}
-              <div className="p-3 bg-amber-500/10 border border-yellow-200 rounded text-xs">
-                <strong>Debug:</strong> URL: {nativeUploadUrl ? '✓' : '✗'} | UID: {nativeUploadUid ? '✓' : '✗'} | Uploading: {isUploading ? '✓' : '✗'}
-              </div>
             </div>
           )}
         </Card>
@@ -505,11 +517,11 @@ export default function VideoPostForm() {
         {message && (
           <Card className="p-4">
             <div className={`flex items-center gap-2 ${
-              message.includes('🎉') 
-                ? 'text-green-800' 
+              message.includes('🎉')
+                ? 'text-emerald-300'
                 : message.includes('❌')
-                ? 'text-red-800'
-                : 'text-brand-800'
+                ? 'text-red-300'
+                : 'text-brand-300'
             }`}>
               {message.includes('🎉') && <CheckCircle className="w-5 h-5" />}
               {message.includes('❌') && <AlertCircle className="w-5 h-5" />}

@@ -384,7 +384,7 @@ export default function AudioPostPage() {
                   <div className="w-5 h-5 bg-brand-500/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-brand-400 text-xs">ℹ</span>
                   </div>
-                  <div className="text-sm text-brand-800">
+                  <div className="text-sm text-brand-300">
                     <p className="font-medium mb-1">Audio file requirements:</p>
                     <ul className="space-y-1 text-xs">
                       <li>• Maximum file size: <strong>150MB</strong></li>
@@ -498,7 +498,7 @@ export default function AudioPostPage() {
 
           {/* Message */}
           {message && (
-            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-500/10 text-red-800' : 'bg-emerald-500/10 text-green-800'}`}>
+            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-500/10 text-red-300' : 'bg-emerald-500/10 text-emerald-300'}`}>
               {message}
             </div>
           )}

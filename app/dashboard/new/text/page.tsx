@@ -345,10 +345,10 @@ export default function NewTextPage() {
           {message && (
             <div className={`p-4 rounded-lg ${
               message.includes('successfully') 
-                ? 'bg-emerald-500/10 text-green-800 border border-green-200' 
-                : message.includes('failed') 
-                ? 'bg-red-500/10 text-red-800 border border-red-200'
-                : 'bg-brand-500/10 text-brand-800 border border-brand-200'
+                ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
+                : message.includes('failed')
+                ? 'bg-red-500/10 text-red-300 border border-red-500/20'
+                : 'bg-brand-500/10 text-brand-300 border border-brand-500/20'
             }`}>
               {message}
             </div>
