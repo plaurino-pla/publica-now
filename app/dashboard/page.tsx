@@ -63,6 +63,7 @@ function DashboardContent() {
   const [isLoading, setIsLoading] = useState(false)
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [statusMessage, setStatusMessage] = useState('')
 
   useEffect(() => {
     async function fetchDashboardData() {
@@ -71,11 +72,9 @@ function DashboardContent() {
         if (response.ok) {
           const data = await response.json()
           setDashboardData(data)
-        } else {
-          console.error('Dashboard API error:', response.status, response.statusText)
         }
-      } catch (error) {
-        console.error('Failed to fetch dashboard data:', error)
+      } catch {
+        // Failed to fetch dashboard data
       } finally {
         setLoading(false)
       }
@@ -83,32 +82,25 @@ function DashboardContent() {
     fetchDashboardData()
   }, [])
 
+  const showStatus = (msg: string) => {
+    setStatusMessage(msg)
+    setTimeout(() => setStatusMessage(''), 3000)
+  }
+
   const handleSyncPublica = async () => {
     setIsLoading(true)
     try {
       const response = await fetch('/api/sync/publica', { method: 'POST' })
       const result = await response.json()
-      alert(result.message)
-    } catch (error) {
-      alert('Failed to sync with publica.la')
+      showStatus(result.message)
+    } catch {
+      showStatus('Failed to sync with publica.la')
     } finally {
       setIsLoading(false)
     }
   }
 
-  const handleTestPublica = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/test/publica')
-      const result = await response.json()
-      console.log('Publica.la test result:', result)
-      alert(`Test completed!\n\nStatus: ${result.status}\nMessage: ${result.message}\n\nCheck console for details.`)
-    } catch (error) {
-      alert('Failed to test publica.la connection')
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const [refreshLabel, setRefreshLabel] = useState('Refresh')
 
   const handleRefreshDashboard = async () => {
     setLoading(true)
@@ -117,22 +109,13 @@ function DashboardContent() {
       if (response.ok) {
         const data = await response.json()
         setDashboardData(data)
-        // Show success message briefly
-        const refreshBtn = document.querySelector('[data-refresh-btn]') as HTMLButtonElement
-        if (refreshBtn) {
-          const originalText = refreshBtn.textContent
-          refreshBtn.textContent = 'Refreshed!'
-          setTimeout(() => {
-            refreshBtn.textContent = originalText
-          }, 2000)
-        }
+        setRefreshLabel('Refreshed!')
+        setTimeout(() => setRefreshLabel('Refresh'), 2000)
       } else {
-        console.error('Dashboard refresh error:', response.status, response.statusText)
-        alert('Failed to refresh dashboard data')
+        showStatus('Failed to refresh dashboard data')
       }
-    } catch (error) {
-      console.error('Failed to refresh dashboard data:', error)
-      alert('Failed to refresh dashboard data')
+    } catch {
+      showStatus('Failed to refresh dashboard data')
     } finally {
       setLoading(false)
     }
@@ -142,7 +125,7 @@ function DashboardContent() {
     return (
       <PageSection background="muted" className="min-h-[60vh] flex items-center">
         <Container className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading dashboard...</p>
         </Container>
       </PageSection>
@@ -160,7 +143,12 @@ function DashboardContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-brand-50">
+    <div className="min-h-screen bg-stone-50">
+      {statusMessage && (
+        <div className="bg-brand-50 border-b border-brand-200 px-4 py-3 text-sm text-brand-800 text-center">
+          {statusMessage}
+        </div>
+      )}
       <PageHeader 
         title="Dashboard" 
         subtitle={`Welcome back, ${dashboardData.user.name || 'User'}!`} 
@@ -175,7 +163,7 @@ function DashboardContent() {
               className="flex items-center gap-2"
             >
               <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-              {loading ? 'Refreshing...' : 'Refresh'}
+              {loading ? 'Refreshing...' : refreshLabel}
             </Button>
             {dashboardData.user.isCreator && <NewPostDropdown />}
           </div>
@@ -449,16 +437,6 @@ function DashboardContent() {
                         <RefreshCw className={`w-4 h-4 text-gray-600 flex-shrink-0 ${isLoading ? 'animate-spin' : ''}`} />
                         <span className="text-sm text-gray-700">
                           {isLoading ? 'Syncing...' : 'Sync to Publica.la'}
-                        </span>
-                      </button>
-                      <button 
-                        onClick={handleTestPublica} 
-                        disabled={isLoading} 
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors w-full text-left disabled:opacity-50"
-                      >
-                        <RefreshCw className={`w-4 h-4 text-gray-600 flex-shrink-0 ${isLoading ? 'animate-spin' : ''}`} />
-                        <span className="text-sm text-gray-700">
-                          {isLoading ? 'Testing...' : 'Test connection'}
                         </span>
                       </button>
                     </>
