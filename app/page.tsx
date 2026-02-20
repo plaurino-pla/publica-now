@@ -9,168 +9,203 @@ import {
   Upload,
   Share2,
   DollarSign,
-  CheckCircle,
-  ArrowRight,
+  ArrowUpRight,
 } from 'lucide-react'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Hero */}
-      <section
-        aria-label="Hero"
-        className="relative overflow-hidden bg-[#0a0a0a] pt-32 pb-40"
-      >
-        {/* Noise overlay */}
-        <div className="noise" aria-hidden="true" />
+    <div className="min-h-screen bg-[#080808] selection:bg-brand-500/30">
+      <div className="noise" aria-hidden="true" />
 
-        {/* Aurora orbs */}
-        <div className="aurora-orb-1 top-[-200px] left-[-100px]" aria-hidden="true" />
-        <div className="aurora-orb-2 top-[-100px] right-[-150px]" aria-hidden="true" />
-        <div className="aurora-orb-3 bottom-[-150px] left-[30%]" aria-hidden="true" />
-
-        <Container className="text-center relative z-10">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold text-[#FAFAFA] mb-6 leading-[1.05] tracking-tight">
-            Sell what you{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-white">
-              create
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-white/50 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Publish text, audio, images & video. Set your price.
-            Keep <span className="text-brand-400 font-semibold">85%</span> of every sale.
-          </p>
-          <Button asChild variant="gradient" size="lg" className="px-10 py-5 text-lg font-semibold">
-            <Link href="/auth/signup">
-              Start publishing free <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </Button>
-        </Container>
-      </section>
-
-      {/* Content Types — Bento Grid */}
-      <section aria-label="Content types" className="py-24 sm:py-32">
-        <Container>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#FAFAFA] mb-12 text-center">
-            Publish any type of content
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {/* Text — spans 2 cols */}
-            <div className="sm:col-span-2 lg:col-span-2 group flex flex-col p-8 rounded-2xl bg-surface-1 border border-white/[0.06] hover:border-brand-500/30 transition-all">
-              <div className="w-14 h-14 bg-brand-500/15 rounded-xl flex items-center justify-center mb-4">
-                <FileText className="w-7 h-7 text-brand-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-[#FAFAFA] mb-1">Text</h3>
-              <p className="text-white/50">Articles & newsletters</p>
+      {/* Hero Section: Editorial & Sharp */}
+      <section className="relative pt-40 pb-32 overflow-hidden border-b border-white/[0.03]">
+        <Container className="relative z-10 font-body">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
+            <div className="lg:col-span-8">
+              <span className="inline-block uppercase tracking-[0.2em] text-xs font-mono text-white/40 mb-8 border border-white/10 px-3 py-1.5">
+                The new creator standard
+              </span>
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-heading text-[#F2F2F0] leading-[0.9] tracking-tight mb-8">
+                Monetize <br />
+                <span className="italic text-white/40 font-serif">without</span> friction.
+              </h1>
             </div>
 
-            {/* Audio */}
-            <div className="group flex flex-col p-8 rounded-2xl bg-surface-1 border border-white/[0.06] hover:border-emerald-500/30 transition-all">
-              <div className="w-14 h-14 bg-emerald-500/15 rounded-xl flex items-center justify-center mb-4">
-                <Mic className="w-7 h-7 text-emerald-400" />
+            <div className="lg:col-span-4 lg:mb-4 lg:pl-10 lg:border-l border-white/[0.05]">
+              <p className="text-lg sm:text-xl text-white/60 leading-relaxed mb-8 max-w-md">
+                A radically simple platform to publish and sell text, audio, images, and video. Keep <strong className="text-[#FAFAFA] font-medium">85%</strong> of everything you earn.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="rounded-none bg-[#FAFAFA] text-[#080808] hover:bg-white/90 h-14 px-8 text-base font-semibold group"
+                >
+                  <Link href="/auth/signup">
+                    Start publishing free
+                    <ArrowUpRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </Link>
+                </Button>
               </div>
-              <h3 className="text-xl font-semibold text-[#FAFAFA] mb-1">Audio</h3>
-              <p className="text-white/50">Podcasts & music</p>
-            </div>
-
-            {/* Images */}
-            <div className="group flex flex-col p-8 rounded-2xl bg-surface-1 border border-white/[0.06] hover:border-purple-500/30 transition-all">
-              <div className="w-14 h-14 bg-purple-500/15 rounded-xl flex items-center justify-center mb-4">
-                <ImageIcon className="w-7 h-7 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-[#FAFAFA] mb-1">Images</h3>
-              <p className="text-white/50">Photography & art</p>
-            </div>
-
-            {/* Video — spans 2 cols */}
-            <div className="sm:col-span-2 lg:col-span-2 group flex flex-col p-8 rounded-2xl bg-surface-1 border border-white/[0.06] hover:border-orange-500/30 transition-all">
-              <div className="w-14 h-14 bg-orange-500/15 rounded-xl flex items-center justify-center mb-4">
-                <Video className="w-7 h-7 text-orange-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-[#FAFAFA] mb-1">Video</h3>
-              <p className="text-white/50">Courses & clips</p>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* How it works */}
-      <section aria-label="How it works" className="py-24 sm:py-32 bg-surface-1">
+      {/* Media Types Grid: Architectural & Asymmetrical */}
+      <section className="py-24 sm:py-32 border-b border-white/[0.03]">
         <Container>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#FAFAFA] mb-14 text-center">
-            How it works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto relative">
-            {/* Connecting line (desktop only) */}
-            <div className="hidden md:block absolute top-10 left-[20%] right-[20%] h-0.5 bg-brand-500/30" aria-hidden="true" />
+          <div className="flex justify-between items-end mb-16 border-b border-white/[0.05] pb-10">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-[#FAFAFA] leading-none tracking-tight">
+              A home for <br />
+              <span className="italic text-white/40">every format.</span>
+            </h2>
+            <div className="hidden md:block text-right">
+              <span className="font-mono text-xs text-white/30 uppercase tracking-widest">[ Capabilities ]</span>
+            </div>
+          </div>
 
-            {[
-              { step: '1', icon: Upload, title: 'Create', desc: 'Upload your content and set your price. Done in minutes.' },
-              { step: '2', icon: Share2, title: 'Share', desc: 'Get a beautiful link. Share it anywhere your audience lives.' },
-              { step: '3', icon: DollarSign, title: 'Earn', desc: 'Get paid automatically. Keep 85% of every sale.' },
-            ].map((item) => (
-              <div key={item.step} className="text-center relative">
-                <div className="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center mx-auto mb-5 text-white text-2xl font-bold relative z-10">
-                  {item.step}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/[0.05]">
+            {/* Text: Large Cell */}
+            <div className="md:col-span-7 bg-[#080808] p-10 group glow-card">
+              <div className="flex justify-between items-start mb-24">
+                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#FAFAFA] mb-2">{item.title}</h3>
-                <p className="text-white/50">{item.desc}</p>
+                <span className="font-mono text-xs text-white/30">01</span>
+              </div>
+              <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Editorial & Text</h3>
+              <p className="text-white/50 text-lg">In-depth articles, serialized fiction, and premium newsletters rendered in beautiful typography.</p>
+            </div>
+
+            {/* Audio: Medium Cell */}
+            <div className="md:col-span-5 bg-[#080808] p-10 group glow-card">
+              <div className="flex justify-between items-start mb-24">
+                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
+                  <Mic className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                </div>
+                <span className="font-mono text-xs text-white/30">02</span>
+              </div>
+              <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Podcasts & Audio</h3>
+              <p className="text-white/50 text-lg">High-fidelity audio delivery with built-in premium playback.</p>
+            </div>
+
+            {/* Video: Wide Bottom Cell */}
+            <div className="md:col-span-8 bg-[#080808] p-10 group glow-card">
+              <div className="flex justify-between items-start mb-16">
+                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
+                  <Video className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                </div>
+                <span className="font-mono text-xs text-white/30">03</span>
+              </div>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Premium Video</h3>
+                  <p className="text-white/50 text-lg">Sell masterclasses and exclusive clips with secure streaming, protecting your IP.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Images: Small Corner Cell */}
+            <div className="md:col-span-4 bg-[#080808] p-10 group glow-card flex flex-col justify-between">
+              <div className="flex justify-between items-start mb-12">
+                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
+                  <ImageIcon className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                </div>
+                <span className="font-mono text-xs text-white/30">04</span>
+              </div>
+              <div>
+                <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Photography</h3>
+                <p className="text-white/50 text-lg">High-res galleries & collections.</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Mechanism */}
+      <section className="py-24 sm:py-32 border-b border-white/[0.03] relative overflow-hidden">
+        <Container>
+          <div className="max-w-3xl mb-20">
+            <span className="inline-block uppercase tracking-[0.2em] text-xs font-mono text-brand-400 mb-6">Workflow</span>
+            <h2 className="text-4xl sm:text-6xl font-heading text-[#FAFAFA] leading-[0.95]">
+              Publishing engineered for velocity.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-px md:bg-white/[0.05] md:p-px overflow-hidden">
+            {[
+              { step: '01', icon: Upload, title: 'Upload', desc: 'Drag, drop, and configure pricing in a distraction-free interface.' },
+              { step: '02', icon: Share2, title: 'Distribute', desc: 'Secure links and automated paywalls ready to deploy anywhere.' },
+              { step: '03', icon: DollarSign, title: 'Capture Revenue', desc: 'Instant payouts and detailed analytics to drive your growth.' },
+            ].map((item) => (
+              <div key={item.step} className="bg-[#080808] p-8 md:p-12 relative group glow-card border border-white/[0.05] md:border-none">
+                <div className="text-xs font-mono text-white/20 mb-16">{item.step}</div>
+                <item.icon className="w-8 h-8 text-white/80 mb-8" strokeWidth={1} />
+                <h3 className="text-2xl font-heading text-[#FAFAFA] mb-4 group-hover:text-brand-400 transition-colors">{item.title}</h3>
+                <p className="text-white/50 text-lg leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Pricing */}
-      <section aria-label="Pricing" className="py-24 sm:py-32">
+      {/* Pricing - Minimalist, No "cards" just layout */}
+      <section className="py-24 sm:py-32 border-b border-white/[0.03]">
         <Container>
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#FAFAFA] mb-4">
-              Simple pricing
-            </h2>
-            <div className="bg-surface-1 rounded-3xl p-10 border border-brand-500/20 glow-brand mt-8">
-              <div className="flex items-baseline justify-center gap-1 mb-2">
-                <span className="text-6xl font-bold text-brand-400">$0</span>
-                <span className="text-xl text-white/40">/month</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+            <div>
+              <span className="inline-block uppercase tracking-[0.2em] text-xs font-mono text-white/40 mb-6 border border-white/10 px-3 py-1.5">
+                Economics
+              </span>
+              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-heading text-[#FAFAFA] mb-8 leading-[0.9]">
+                Aligned <br />
+                <span className="italic text-white/40">incentives.</span>
+              </h2>
+              <p className="text-xl text-white/60 mb-8 max-w-md">
+                We only succeed when you do. No monthly fees. Radically transparent economics designed for ambitious creators.
+              </p>
+            </div>
+
+            <div className="lg:border-l border-white/[0.05] lg:pl-16">
+              <div className="mb-12 border-b border-white/[0.05] pb-12">
+                <div className="flex items-start gap-4 mb-4">
+                  <span className="text-8xl md:text-9xl font-heading text-brand-400 leading-none tracking-tighter">0%</span>
+                </div>
+                <p className="text-2xl text-white/80 font-heading">Monthly subscription fee</p>
               </div>
-              <p className="text-white/50 mb-8">15% fee only when you get paid</p>
-              <ul className="space-y-3 text-left max-w-xs mx-auto mb-8">
-                {['Unlimited publishing', 'Built-in payments', 'Analytics dashboard', 'Keep 85% of earnings'].map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-white/60">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Button asChild variant="gradient" size="lg" className="px-10 text-lg font-semibold">
-                <Link href="/auth/signup">Start for free <ArrowRight className="ml-2 w-5 h-5" /></Link>
-              </Button>
+
+              <div>
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-5xl font-heading text-[#FAFAFA]">15%</span>
+                  <span className="font-mono text-xs uppercase tracking-widest text-white/40">Fee per transaction</span>
+                </div>
+                <p className="text-lg text-white/50">Includes all infrastructure, bandwidth, and standard payment processing costs.</p>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Final CTA */}
-      <section aria-label="Call to action" className="relative py-24 bg-gradient-to-r from-brand-600 to-brand-700 overflow-hidden">
-        {/* Noise overlay */}
-        <div className="noise" aria-hidden="true" />
+      {/* Final Editorial Call to Action */}
+      <section className="py-32 relative group">
         <Container className="text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-white mb-4">
-            Ready to start earning?
+          <h2 className="text-5xl sm:text-6xl md:text-8xl font-heading text-[#FAFAFA] mb-12 tracking-tight">
+            Begin <span className="italic text-white/40">transmitting.</span>
           </h2>
-          <p className="text-lg text-brand-100 mb-8 max-w-xl mx-auto">
-            Create your first post today. No credit card needed.
-          </p>
           <Button
             asChild
             size="lg"
-            className="bg-white text-[#0a0a0a] hover:bg-white/90 px-10 py-5 text-lg font-semibold"
+            className="rounded-none bg-[#FAFAFA] text-[#080808] hover:bg-white/90 h-16 px-10 text-lg font-semibold border-none"
           >
             <Link href="/auth/signup">
-              Get started now <ArrowRight className="ml-2 w-5 h-5" />
+              Create your account <ArrowUpRight className="ml-3 w-6 h-6" />
             </Link>
           </Button>
         </Container>
+
+        {/* Abstract background detail for the ending statement */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-brand-500/10 transition-colors duration-1000" />
       </section>
     </div>
   )

@@ -1,21 +1,20 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import localFont from 'next/font/local'
+import { Instrument_Serif, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from '@/components/auth-provider'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-body',
 })
 
-const clashDisplay = localFont({
-  src: '../public/fonts/ClashDisplay-Variable.woff2',
-  variable: '--font-clash-display',
-  display: 'swap',
-  weight: '200 700',
+const instrumentSerif = Instrument_Serif({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-heading',
+  style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
@@ -89,17 +88,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${clashDisplay.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${instrumentSerif.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="theme-color" content="#080808" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="publica.now" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className="font-body bg-[#0a0a0a] text-[#FAFAFA] antialiased">
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[10000] focus:bg-surface-1 focus:text-brand-400 focus:ring-2 focus:ring-brand-500 focus:outline-none px-4 py-2 rounded">
+      <body className="font-body bg-[#080808] text-[#EBEBEB] antialiased selection:bg-brand-500/30 selection:text-white">
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[10000] focus:bg-surface-1 focus:text-brand-400 focus:ring-1 focus:ring-brand-500 focus:outline-none px-4 py-2 rounded-sm text-sm">
           Skip to main content
         </a>
         <AuthProvider>

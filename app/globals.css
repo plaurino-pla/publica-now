@@ -4,43 +4,43 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 3%;
+    --foreground: 0 0% 92%;
 
-    --muted: 0 0% 7%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 95%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 95%;
 
-    --border: 0 0% 100% / 0.08;
+    --border: 0 0% 100% / 0.06;
     --input: 0 0% 100% / 0.08;
-    --ring: 4 80% 63%;
+    --ring: 14 100% 55%;
 
-    /* Brand — warm coral */
-    --primary: 4 80% 63%;
-    --primary-foreground: 0 0% 100%;
+    /* Brand — sharp vermilion */
+    --primary: 14 100% 55%;
+    --primary-foreground: 0 0% 10%;
 
-    --secondary: 261 52% 65%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --accent: 168 76% 36%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.75rem;
+    --radius: 0rem;
   }
 
   * {
     @apply border-border;
   }
   body {
-    @apply bg-[#0a0a0a] text-[#FAFAFA] antialiased;
+    @apply bg-[#080808] text-[#EBEBEB] antialiased;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -76,77 +76,40 @@
 }
 
 @layer components {
-  /* Noise texture overlay */
+  /* Subtle Noise texture overlay */
   .noise::before {
     content: '';
     position: fixed;
     inset: 0;
-    z-index: 1;
+    z-index: 100;
     pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-size: 182px 182px;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+    mix-blend-mode: overlay;
   }
 
-  /* Aurora gradient orbs */
-  .aurora-orb-1 {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 9999px;
-    background: radial-gradient(circle, rgba(255,107,107,0.20) 0%, transparent 70%);
-    filter: blur(80px);
-    animation: aurora-1 18s ease-in-out infinite;
-  }
-  .aurora-orb-2 {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 9999px;
-    background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
-    filter: blur(80px);
-    animation: aurora-2 22s ease-in-out infinite;
-  }
-  .aurora-orb-3 {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    border-radius: 9999px;
-    background: radial-gradient(circle, rgba(20,184,166,0.10) 0%, transparent 70%);
-    filter: blur(80px);
-    animation: aurora-3 25s ease-in-out infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .aurora-orb-1, .aurora-orb-2, .aurora-orb-3 {
-      animation: none;
-    }
-  }
-
-  /* Glow effects */
-  .glow-brand {
-    box-shadow: 0 0 15px rgba(255,107,107,0.3), 0 0 30px rgba(255,107,107,0.1);
-  }
+  /* High-end glow effect (replacing typical tailwind shadows) */
   .glow-card {
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .glow-card:hover {
-    box-shadow: 0 0 20px rgba(255,107,107,0.06);
-    border-color: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.15);
   }
 
   /* Prose — dark text */
-  .prose h1 { @apply text-2xl sm:text-3xl font-bold text-[#FAFAFA] mb-4 sm:mb-6 mt-6 sm:mt-8; }
-  .prose h2 { @apply text-xl sm:text-2xl font-semibold text-[#FAFAFA] mb-3 sm:mb-4 mt-5 sm:mt-6; }
-  .prose h3 { @apply text-lg sm:text-xl font-semibold text-[#FAFAFA] mb-2 sm:mb-3 mt-4 sm:mt-5; }
-  .prose p { @apply text-white/60 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base; }
+  .prose h1 { @apply text-2xl sm:text-3xl font-heading text-[#FAFAFA] mb-4 sm:mb-6 mt-6 sm:mt-8 tracking-tight; }
+  .prose h2 { @apply text-xl sm:text-2xl font-heading text-[#FAFAFA] mb-3 sm:mb-4 mt-5 sm:mt-6 tracking-tight; }
+  .prose h3 { @apply text-lg sm:text-xl font-heading text-[#FAFAFA] mb-2 sm:mb-3 mt-4 sm:mt-5 tracking-tight; }
+  .prose p { @apply text-white/70 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base; }
   .prose ul { @apply list-disc list-inside mb-3 sm:mb-4 space-y-1 sm:space-y-2; }
   .prose ol { @apply list-decimal list-inside mb-3 sm:mb-4 space-y-1 sm:space-y-2; }
-  .prose li { @apply text-white/60 text-sm sm:text-base; }
-  .prose blockquote { @apply border-l-4 border-white/[0.15] pl-3 sm:pl-4 italic text-white/50 my-4 sm:my-6 text-sm sm:text-base; }
-  .prose code { @apply bg-white/[0.08] px-2 py-1 rounded text-xs sm:text-sm font-mono text-white/80; }
-  .prose pre { @apply bg-surface-1 p-3 sm:p-4 rounded-lg overflow-x-auto mb-3 sm:mb-4 border border-white/[0.06]; }
-  .prose img { @apply rounded-lg my-4 sm:my-6 max-w-full h-auto; }
+  .prose li { @apply text-white/70 text-sm sm:text-base; }
+  .prose blockquote { @apply border-l border-white/[0.2] pl-4 sm:pl-5 italic font-heading text-white/60 my-6 sm:my-8 text-lg sm:text-xl; }
+  .prose code { @apply bg-white/[0.05] px-2 py-1 text-xs sm:text-sm font-mono text-white/80 border border-white/10; }
+  .prose pre { @apply bg-surface-1 p-4 sm:p-5 overflow-x-auto mb-4 sm:mb-5 border border-white/[0.06]; }
+  .prose img { @apply my-6 sm:my-8 max-w-full h-auto; border: 1px solid rgba(255,255,255,0.1); }
 
   /* Mobile utility classes */
   .touch-manipulation { touch-action: manipulation; }

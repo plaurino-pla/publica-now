@@ -5,24 +5,24 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-none text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-500 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-brand-500 text-white hover:bg-brand-600",
-        gradient: "bg-gradient-to-r from-brand-500 to-brand-600 text-white hover:from-brand-600 hover:to-brand-700 glow-brand",
-        secondary: "bg-surface-2 text-white/90 border border-white/[0.08] hover:bg-surface-3 hover:border-white/[0.15]",
-        ghost: "hover:bg-white/[0.06] text-white/70",
-        outline: "border border-white/[0.1] text-white/80 hover:bg-white/[0.06] hover:border-white/[0.15]",
-        destructive: "bg-red-600/20 text-red-400 border border-red-500/20 hover:bg-red-600/30",
-        link: "text-brand-400 underline-offset-4 hover:underline",
+        default: "bg-[#FAFAFA] text-[#080808] hover:bg-white",
+        gradient: "bg-brand-500 text-white hover:bg-brand-400", // kept name for backwards comp, but removed gradient
+        secondary: "bg-[#080808] text-[#FAFAFA] border border-white/[0.1] hover:bg-white/[0.05]",
+        ghost: "hover:bg-white/[0.05] text-white/70 hover:text-white",
+        outline: "border border-white/[0.1] text-white/80 hover:bg-white/[0.05] hover:border-white/[0.2]",
+        destructive: "bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20",
+        link: "text-white/70 underline-offset-4 hover:underline hover:text-white",
       },
       size: {
-        default: "h-11 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-12 rounded-md px-8",
-        icon: "h-10 w-10",
-        pill: "h-11 rounded-full px-6",
+        default: "h-11 px-6 py-2",
+        sm: "h-9 px-4 text-xs tracking-wider",
+        lg: "h-14 px-8 text-base",
+        icon: "h-11 w-11",
+        pill: "h-11 px-6", // Kept name for comp but no pill shape
       },
     },
     defaultVariants: {
@@ -34,7 +34,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
 

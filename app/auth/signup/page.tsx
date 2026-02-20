@@ -5,9 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Container } from '@/components/ui/container'
-import { PageSection } from '@/components/ui/page-section'
 
 export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -52,109 +50,103 @@ export default function SignUpPage() {
           if (signInResponse.ok) {
             router.push('/dashboard')
           } else {
-            setError('Account created successfully! Please sign in to continue.')
+            setError('Entity created. Re-authentication required.')
             setTimeout(() => {
-              router.push('/auth/signin?message=Account created successfully! Please sign in.')
+              router.push('/auth/signin')
             }, 2000)
           }
         } catch {
-          setError('Account created successfully! Please sign in to continue.')
+          setError('Entity created. Re-authentication required.')
           setTimeout(() => {
-            router.push('/auth/signin?message=Account created successfully! Please sign in.')
+            router.push('/auth/signin')
           }, 2000)
         }
       } else {
-        setError(data.error || 'Failed to create account. Please try again.')
+        setError(data.error || 'Setup failed. Aborting.')
       }
     } catch {
-      setError('An error occurred. Please try again.')
+      setError('System error. Process aborted.')
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-surface-0">
-      <Container className="max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-heading font-bold text-[#FAFAFA] mb-2">Create your account</h1>
-          <p className="text-white/50">Start your journey as a creator</p>
+    <div className="min-h-screen bg-[#080808] pt-32 pb-24 flex items-center">
+      <Container className="max-w-xl w-full">
+        <div className="mb-16 border-b border-white/[0.05] pb-8">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/40 mb-4 block">New Entity Registration</span>
+          <h1 className="text-6xl sm:text-7xl font-heading font-bold text-[#FAFAFA] leading-none tracking-tight">
+            Initiate
+          </h1>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-xl">Sign up</CardTitle>
-            <CardDescription>
-              Create your account to start publishing content
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={onSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white/60 mb-1">
-                  Email address
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="Enter your email"
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-white/60 mb-1">
-                  Password
-                </label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  minLength={8}
-                  placeholder="Create a password (min 8 characters)"
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-white/60 mb-1">
-                  Full name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="Enter your full name"
-                  className="w-full"
-                />
-              </div>
-
-              {error && (
-                <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md">
-                  {error}
-                </div>
-              )}
-
-              <Button type="submit" variant="gradient" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Creating account...' : 'Create account'}
-              </Button>
-            </form>
-
-            <div className="text-center pt-4">
-              <p className="text-sm text-white/50">
-                Already have an account?{' '}
-                <Link href="/auth/signin" className="text-brand-400 hover:text-brand-300 font-medium">
-                  Sign in
-                </Link>
-              </p>
+        <div className="bg-[#080808] border border-white/[0.05] p-8 sm:p-12 relative">
+          <form onSubmit={onSubmit} className="space-y-8">
+            <div>
+              <label htmlFor="name" className="block text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                Full Designation
+              </label>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Enter full name"
+                className="w-full bg-transparent border-white/10 rounded-none focus-visible:ring-1 focus-visible:ring-brand-400 h-14 text-lg"
+              />
             </div>
-          </CardContent>
-        </Card>
+
+            <div>
+              <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                Target Address
+              </label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="Enter email"
+                className="w-full bg-transparent border-white/10 rounded-none focus-visible:ring-1 focus-visible:ring-brand-400 h-14 text-lg"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                Master Key
+              </label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                required
+                minLength={8}
+                placeholder="Key must be 8+ characters"
+                className="w-full bg-transparent border-white/10 rounded-none focus-visible:ring-1 focus-visible:ring-brand-400 h-14 text-lg"
+              />
+            </div>
+
+            {error && (
+              <div className="text-red-400 text-sm font-mono p-4 border border-red-500/20 bg-red-500/5">
+                [ERROR]: {error}
+              </div>
+            )}
+
+            <Button type="submit" className="w-full h-14 rounded-none text-base uppercase font-mono tracking-widest mt-4" disabled={isLoading}>
+              {isLoading ? 'Processing...' : 'Deploy Instance'}
+            </Button>
+          </form>
+
+          <div className="mt-12 text-center border-t border-white/[0.05] pt-8">
+            <p className="text-xs font-mono uppercase tracking-widest text-white/40">
+              Already allocated?{' '}
+              <Link href="/auth/signin" className="text-[#FAFAFA] border-b border-brand-400 hover:text-brand-400 pb-1 ml-2 transition-colors">
+                Access System
+              </Link>
+            </p>
+          </div>
+        </div>
       </Container>
-    </PageSection>
+    </div>
   )
 }

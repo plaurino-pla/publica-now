@@ -1,75 +1,59 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Search, Menu, X } from 'lucide-react'
+import { MobileNav } from '@/components/mobile-nav'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { UserMenu } from '@/components/user-menu'
-import { MobileNav } from '@/components/mobile-nav'
 
 export async function SiteHeader() {
   const session = await getServerSession(authOptions)
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0a0a0a]/70">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-white/[0.03] bg-[#080808]/90 backdrop-blur supports-[backdrop-filter]:bg-[#080808]/80 font-body">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6">
         {/* Logo - Different behavior for logged-in vs signed-out */}
-        <Link href={session?.user ? "/dashboard" : "/"} className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
-          <Image
-            src="/images/publica-now-logo.svg"
-            alt="publica.now"
-            width={40}
-            height={40}
-            className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0"
-            priority
-          />
-          <div className="flex flex-col min-w-0">
-            <span className="text-lg sm:text-xl font-bold text-[#FAFAFA] truncate">publica.now</span>
-            <span className="text-xs text-white/40 uppercase tracking-wide hidden sm:block">by publica.la</span>
-          </div>
+        <Link href={session?.user ? "/dashboard" : "/"} className="flex flex-col min-w-0 group pt-1">
+          <span className="text-xl sm:text-2xl font-bold font-heading tracking-tight text-[#FAFAFA] truncate group-hover:text-white transition-colors">
+            publica<span className="text-white/40 font-serif italic font-normal">.now</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
         {session?.user ? (
-          <nav className="hidden lg:flex items-center gap-6 text-sm text-white/50" aria-label="Primary">
-            <Link href="/dashboard" className="hover:text-white transition-colors font-medium">
+          <nav className="hidden lg:flex items-center gap-8 text-sm" aria-label="Primary">
+            <Link href="/dashboard" className="text-white/60 hover:text-white transition-colors uppercase tracking-[0.1em] text-xs font-mono">
               Dashboard
             </Link>
-            <Link href="/creators" className="hover:text-white transition-colors">
-              Discover
+            <Link href="/creators" className="text-white/60 hover:text-white transition-colors uppercase tracking-[0.1em] text-xs font-mono">
+              Network
             </Link>
           </nav>
         ) : (
-          <nav className="hidden lg:flex items-center gap-8 text-sm text-white/50" aria-label="Primary">
-            <Link href="/creators" className="hover:text-white transition-colors">Discover</Link>
-            <Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link>
+          <nav className="hidden lg:flex items-center gap-10 text-sm" aria-label="Primary">
+            <Link href="/creators" className="text-white/60 hover:text-white transition-colors uppercase tracking-[0.1em] text-xs font-mono">Index</Link>
+            <Link href="/pricing" className="text-white/60 hover:text-white transition-colors uppercase tracking-[0.1em] text-xs font-mono">Economics</Link>
           </nav>
         )}
 
         {/* Right side actions */}
-        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+        <div className="flex items-center gap-4 flex-shrink-0">
           {session?.user ? (
-            // Logged-in user actions
-            <>
-              {/* User Menu */}
-              <UserMenu />
-            </>
+            <UserMenu />
           ) : (
-            // Signed-out user actions (marketing site)
             <>
-              <div className="hidden md:flex items-center gap-2">
-                <Button asChild variant="ghost" size="sm">
-                  <Link href="/auth/signin">Sign in</Link>
+              <div className="hidden md:flex items-center gap-4">
+                <Button asChild variant="ghost" className="uppercase tracking-[0.1em] text-xs font-mono">
+                  <Link href="/auth/signin">Log In</Link>
                 </Button>
-                <Button asChild variant="gradient" size="pill">
-                  <Link href="/auth/signup">Start Creating &rarr;</Link>
+                <Button asChild variant="default" className="uppercase tracking-[0.1em] text-xs font-mono border border-transparent">
+                  <Link href="/auth/signup">Initiate</Link>
                 </Button>
               </div>
             </>
           )}
-
-          {/* Mobile menu button */}
-          <MobileNav session={session} />
+          <div className="md:hidden">
+            <MobileNav session={session} />
+          </div>
         </div>
       </div>
     </header>

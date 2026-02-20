@@ -6,10 +6,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { User, Mail, Lock, LogIn, Sparkles, Globe, FileText } from 'lucide-react'
 import { Container } from '@/components/ui/container'
-import { PageSection } from '@/components/ui/page-section'
 
 export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -31,10 +28,8 @@ export default function SignInPage() {
         setIsEmailConfigured(false)
       }
     }
-
     checkEmailConfig()
   }, [])
-
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -56,10 +51,10 @@ export default function SignInPage() {
       if (res?.ok) {
         router.push('/dashboard')
       } else {
-        setError('Invalid credentials. Please check your email and password.')
+        setError('Invalid access credentials.')
       }
     } catch {
-      setError('An error occurred during sign in. Please try again.')
+      setError('System error. Please retry.')
     } finally {
       setIsLoading(false)
     }
@@ -72,7 +67,7 @@ export default function SignInPage() {
     setSuccess('')
 
     if (!isEmailConfigured) {
-      setError('Magic link authentication is not configured. Please use email and password instead.')
+      setError('Magic link offline. Use credentials.')
       setIsLoading(false)
       return
     }
@@ -83,14 +78,14 @@ export default function SignInPage() {
       const res = await signIn('email', { email, redirect: false })
 
       if (res?.ok) {
-        setSuccess('Magic link sent! Check your email.')
+        setSuccess('Transmission sent. Check inbox.')
         setError('')
       } else {
-        setError('Failed to send magic link. Please try again.')
+        setError('Transmission failed. Retry.')
         setSuccess('')
       }
     } catch {
-      setError('An error occurred. Please try again.')
+      setError('System error. Please retry.')
       setSuccess('')
     } finally {
       setIsLoading(false)
@@ -98,141 +93,133 @@ export default function SignInPage() {
   }
 
   return (
-    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-surface-0">
-      <Container className="max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-heading font-bold text-[#FAFAFA] mb-2">Welcome back</h1>
-          <p className="text-white/50">Sign in to your account to continue</p>
+    <div className="min-h-screen bg-[#080808] pt-32 pb-24 flex items-center">
+      <Container className="max-w-xl w-full">
+        <div className="mb-16 border-b border-white/[0.05] pb-8">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/40 mb-4 block">System Access</span>
+          <h1 className="text-6xl sm:text-7xl font-heading font-bold text-[#FAFAFA] leading-none tracking-tight">
+            Authenticate
+          </h1>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-xl">Sign in</CardTitle>
-            <CardDescription>
-              Choose your preferred sign in method
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Method Tabs */}
-            <div className="flex space-x-1 p-1 bg-surface-2 rounded-lg">
-              <button
-                type="button"
-                onClick={() => setActiveMethod('credentials')}
-                className={`flex-1 py-2 px-3 text-sm font-medium rounded-md transition-colors ${
-                  activeMethod === 'credentials'
-                    ? 'bg-surface-3 text-white'
-                    : 'text-white/50 hover:text-white'
+        <div className="bg-[#080808] border border-white/[0.05] p-8 sm:p-12 relative">
+          {/* Method Tabs */}
+          <div className="flex border-b border-white/[0.05] mb-10">
+            <button
+              type="button"
+              onClick={() => setActiveMethod('credentials')}
+              className={`flex-1 pb-4 text-xs font-mono uppercase tracking-widest transition-colors ${activeMethod === 'credentials'
+                  ? 'border-b-2 border-brand-400 text-[#FAFAFA]'
+                  : 'text-white/40 hover:text-white/70'
                 }`}
-              >
-                <Mail className="w-4 h-4 inline mr-2" />
-                Email & Password
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveMethod('magic')}
-                className={`flex-1 py-2 px-3 text-sm font-medium rounded-md transition-colors ${
-                  activeMethod === 'magic'
-                    ? 'bg-surface-3 text-white'
-                    : 'text-white/50 hover:text-white'
-                } ${!isEmailConfigured ? 'opacity-50 cursor-not-allowed' : ''}`}
-                disabled={!isEmailConfigured}
-              >
-                <Sparkles className="w-4 h-4 inline mr-2" />
-                Magic Link
-                {!isEmailConfigured && <span className="text-xs ml-1">(Unavailable)</span>}
-              </button>
-            </div>
+            >
+              Credentials
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveMethod('magic')}
+              className={`flex-1 pb-4 text-xs font-mono uppercase tracking-widest transition-colors ${activeMethod === 'magic'
+                  ? 'border-b-2 border-brand-400 text-[#FAFAFA]'
+                  : 'text-white/40 hover:text-white/70'
+                } ${!isEmailConfigured ? 'opacity-30 cursor-not-allowed' : ''}`}
+              disabled={!isEmailConfigured}
+            >
+              Magic Link
+            </button>
+          </div>
 
-            {/* Credentials Form */}
-            {activeMethod === 'credentials' && (
-              <form onSubmit={onSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/60 mb-1">
-                    Email address
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-white/60 mb-1">
-                    Password
-                  </label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    placeholder="Enter your password"
-                    className="w-full"
-                  />
-                </div>
-                {error && (
-                  <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md">
-                    {error}
-                  </div>
-                )}
-                <Button type="submit" variant="gradient" className="w-full" disabled={isLoading}>
-                  {isLoading ? 'Signing in...' : 'Sign in'}
-                </Button>
-              </form>
-            )}
+          {/* Credentials Form */}
+          {activeMethod === 'credentials' && (
+            <form onSubmit={onSubmit} className="space-y-8">
+              <div>
+                <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                  Email Target
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="Enter transmission address"
+                  className="w-full bg-transparent border-white/10 rounded-none focus-visible:ring-1 focus-visible:ring-brand-400 h-14 text-lg"
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                  Authorization Key
+                </label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  placeholder="Enter secure key"
+                  className="w-full bg-transparent border-white/10 rounded-none focus-visible:ring-1 focus-visible:ring-brand-400 h-14 text-lg"
+                />
+              </div>
 
-            {/* Magic Link Form */}
-            {activeMethod === 'magic' && (
-              <form onSubmit={sendMagicLink} className="space-y-4">
-                {!isEmailConfigured && (
-                  <div className="text-amber-400 text-sm bg-amber-500/10 p-3 rounded-md">
-                    Magic link authentication is not configured. Please use email and password instead.
-                  </div>
-                )}
-                <div>
-                  <label htmlFor="magicEmail" className="block text-sm font-medium text-white/60 mb-1">
-                    Email address
-                  </label>
-                  <Input
-                    id="magicEmail"
-                    name="magicEmail"
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    className="w-full"
-                    disabled={!isEmailConfigured}
-                  />
+              {error && (
+                <div className="text-red-400 text-sm font-mono p-4 border border-red-500/20 bg-red-500/5">
+                  [ERROR]: {error}
                 </div>
-                {error && (
-                  <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md">
-                    {error}
-                  </div>
-                )}
-                {success && (
-                  <div className="text-emerald-400 text-sm bg-emerald-500/10 p-3 rounded-md">
-                    {success}
-                  </div>
-                )}
-                <Button type="submit" variant="gradient" className="w-full" disabled={isLoading || !isEmailConfigured}>
-                  {isLoading ? 'Sending...' : 'Send magic link'}
-                </Button>
-              </form>
-            )}
+              )}
 
-            {/* Sign Up Link */}
-            <div className="text-center pt-4">
-              <p className="text-sm text-white/50">
-                Don't have an account?{' '}
-                <Link href="/auth/signup" className="text-brand-400 hover:text-brand-300 font-medium">
-                  Sign up
-                </Link>
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+              <Button type="submit" className="w-full h-14 rounded-none text-base uppercase font-mono tracking-widest mt-4">
+                {isLoading ? 'Processing...' : 'Access Files'}
+              </Button>
+            </form>
+          )}
+
+          {/* Magic Link Form */}
+          {activeMethod === 'magic' && (
+            <form onSubmit={sendMagicLink} className="space-y-8">
+              {!isEmailConfigured && (
+                <div className="text-brand-400 text-sm font-mono p-4 border border-brand-500/20 bg-brand-500/5 mb-6">
+                  [OFFLINE]: Auth protocols down. Revert to credentials.
+                </div>
+              )}
+              <div>
+                <label htmlFor="magicEmail" className="block text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                  Email Target
+                </label>
+                <Input
+                  id="magicEmail"
+                  name="magicEmail"
+                  type="email"
+                  required
+                  placeholder="Enter transmission address"
+                  className="w-full bg-transparent border-white/10 rounded-none focus-visible:ring-1 focus-visible:ring-brand-400 h-14 text-lg"
+                  disabled={!isEmailConfigured}
+                />
+              </div>
+
+              {error && (
+                <div className="text-red-400 text-sm font-mono p-4 border border-red-500/20 bg-red-500/5">
+                  [ERROR]: {error}
+                </div>
+              )}
+              {success && (
+                <div className="text-brand-400 text-sm font-mono p-4 border border-brand-500/20 bg-brand-500/5">
+                  [SUCCESS]: {success}
+                </div>
+              )}
+
+              <Button type="submit" className="w-full h-14 rounded-none text-base uppercase font-mono tracking-widest mt-4" disabled={isLoading || !isEmailConfigured}>
+                {isLoading ? 'Transmitting...' : 'Send Uplink'}
+              </Button>
+            </form>
+          )}
+
+          <div className="mt-12 text-center border-t border-white/[0.05] pt-8">
+            <p className="text-xs font-mono uppercase tracking-widest text-white/40">
+              Unregistered entity?{' '}
+              <Link href="/auth/signup" className="text-[#FAFAFA] border-b border-brand-400 hover:text-brand-400 pb-1 ml-2 transition-colors">
+                Initiate Setup
+              </Link>
+            </p>
+          </div>
+        </div>
       </Container>
-    </PageSection>
+    </div>
   )
 }

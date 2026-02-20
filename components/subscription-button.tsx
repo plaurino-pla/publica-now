@@ -4,8 +4,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Check, Star, Users, FileText, Zap } from 'lucide-react'
+import { Check, ArrowRight } from 'lucide-react'
 
 interface SubscriptionButtonProps {
   creatorId: string
@@ -58,85 +57,83 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="text-white"
+          className="rounded-none font-mono text-xs uppercase tracking-widest text-white hover:opacity-90 transition-opacity"
           style={{ backgroundColor: mainColor }}
           onClick={() => setShowModal(true)}
         >
-          Subscribe
+          Establish Uplink
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="text-center">Subscribe to {creatorName}</DialogTitle>
-          <DialogDescription className="text-center">
-            Get unlimited access to all content and support the creator
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="sm:max-w-md bg-[#080808] border border-white/10 rounded-none p-0 overflow-hidden">
+        <div className="p-8 sm:p-10">
+          <DialogHeader className="mb-8">
+            <span className="font-mono text-xs text-brand-400 uppercase tracking-widest block mb-4">Total Access Subscription</span>
+            <DialogTitle className="text-3xl font-heading text-[#FAFAFA] tracking-tight">Connect to {creatorName}</DialogTitle>
+            <DialogDescription className="text-white/50 text-sm mt-2">
+              Bypass firewalls. Gain uninterrupted clearance to all restricted files.
+            </DialogDescription>
+          </DialogHeader>
 
-        <div className="space-y-4">
-          {/* Pricing Card */}
-          <Card className="border-2 border-brand-500/20 bg-brand-500/10">
-            <CardHeader className="text-center pb-2">
-              <CardTitle className="text-2xl text-brand-300">
-                {formatPrice(subscriptionPrice)}/month
-              </CardTitle>
-              <CardDescription className="text-brand-400">
-                Cancel anytime • No hidden fees
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <div className="space-y-8">
+            {/* Pricing Node */}
+            <div className="border border-brand-500/20 bg-brand-500/5 p-6 text-center">
+              <div className="flex items-baseline justify-center gap-2 mb-2">
+                <span className="text-5xl font-heading text-brand-400">
+                  {formatPrice(subscriptionPrice)}
+                </span>
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40">/ mo</span>
+              </div>
+              <p className="text-brand-400/60 font-mono text-xs uppercase tracking-widest">
+                Cancel Anytime • Zero Covert Fees
+              </p>
+            </div>
 
-          {/* Benefits */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-[#FAFAFA]">What's included:</h4>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-emerald-400" />
-                <span className="text-white/60">Access to all subscriber-only content</span>
+            {/* Benefits */}
+            <div className="space-y-4 font-mono text-xs uppercase tracking-widest">
+              <div className="flex items-start gap-4">
+                <Check className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
+                <span className="text-white/60">Decrypted access to all subscriber files</span>
               </div>
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-emerald-400" />
-                <span className="text-white/60">Early access to new releases</span>
+              <div className="flex items-start gap-4">
+                <Check className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
+                <span className="text-white/60">Priority clearance for zero-day drops</span>
               </div>
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-emerald-400" />
-                <span className="text-white/60">Support the creator directly</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-emerald-400" />
-                <span className="text-white/60">Cancel or change plan anytime</span>
+              <div className="flex items-start gap-4">
+                <Check className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
+                <span className="text-white/60">Direct hardware support to {creatorName}</span>
               </div>
             </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-3 pt-4">
-            <Button
-              onClick={handleSubscribe}
-              disabled={isLoading}
-              className="flex-1"
-              style={{ backgroundColor: mainColor }}
-            >
-              {isLoading ? 'Processing...' : `Subscribe for ${formatPrice(subscriptionPrice)}/month`}
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => setShowModal(false)}
-              className="flex-1"
-            >
-              Maybe Later
-            </Button>
-          </div>
+            {/* Action Buttons */}
+            <div className="pt-4 flex flex-col gap-3">
+              <Button
+                onClick={handleSubscribe}
+                disabled={isLoading}
+                className="w-full h-14 rounded-none font-mono text-xs uppercase tracking-widest flex justify-between items-center px-6 transition-opacity hover:opacity-90"
+                style={{ backgroundColor: mainColor, color: '#FAFAFA' }}
+              >
+                {isLoading ? 'Processing...' : `Initiate Protocol • ${formatPrice(subscriptionPrice)}/mo`}
+                <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setShowModal(false)}
+                className="w-full h-14 rounded-none border-white/10 text-white/50 hover:text-[#FAFAFA] hover:bg-white/[0.03] font-mono text-xs uppercase tracking-widest"
+              >
+                Abort
+              </Button>
+            </div>
 
-          {error && (
-            <p className="text-sm text-red-400 text-center bg-red-500/10 p-2 rounded-md">
-              {error}
+            {error && (
+              <p className="font-mono text-xs uppercase tracking-widest text-red-400 bg-red-500/5 border border-red-500/20 p-4 text-center">
+                [ERROR]: {error}
+              </p>
+            )}
+
+            <p className="text-[10px] font-mono tracking-widest uppercase text-white/30 text-center">
+              Secure Auth token exchange via Stripe
             </p>
-          )}
-
-          <p className="text-xs text-white/40 text-center">
-            You'll be redirected to Stripe to complete your subscription securely
-          </p>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

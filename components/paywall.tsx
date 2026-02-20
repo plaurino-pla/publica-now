@@ -2,9 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import Badge from '@/components/ui/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Lock, Crown, CreditCard, Check } from 'lucide-react'
+import { Lock, Crown, CreditCard, Check, ArrowRight } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 
 interface PaywallProps {
@@ -39,7 +37,6 @@ export default function Paywall({
 
   const handlePurchase = async (type: 'article' | 'subscription') => {
     if (!session?.user) {
-      // Redirect to sign in
       window.location.href = '/auth/signin'
       return
     }
@@ -87,124 +84,115 @@ export default function Paywall({
 
   if (isSubscribed) {
     return (
-      <Card className="border-emerald-500/20 bg-emerald-500/10">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20">
-            <Crown className="h-6 w-6 text-emerald-400" />
-          </div>
-          <CardTitle className="text-emerald-300">Subscriber Access</CardTitle>
-          <CardDescription className="text-emerald-400">
-            You have full access to all content from {creatorName}
-          </CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="border border-white/10 p-8 sm:p-12 text-center bg-[#080808]">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-white/10">
+          <Crown className="h-6 w-6 text-[#FAFAFA]" />
+        </div>
+        <h3 className="text-3xl font-heading text-[#FAFAFA] tracking-tight mb-2">Access Granted</h3>
+        <p className="text-white/50 text-lg">
+          You hold active clearance for {creatorName}'s archive.
+        </p>
+      </div>
     )
   }
 
   if (hasPurchased && articleId) {
     return (
-      <Card className="border-brand-500/20 bg-brand-500/10">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-500/20">
-            <Check className="h-6 w-6 text-brand-400" />
-          </div>
-          <CardTitle className="text-brand-300">Article Purchased</CardTitle>
-          <CardDescription className="text-brand-400">
-            You have access to this article
-          </CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="border border-white/10 p-8 sm:p-12 text-center bg-[#080808]">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-brand-500/30">
+          <Check className="h-6 w-6 text-brand-400" />
+        </div>
+        <h3 className="text-3xl font-heading text-[#FAFAFA] tracking-tight mb-2">Record Acquired</h3>
+        <p className="text-white/50 text-lg">
+          You currently hold permanent clearance to this specific file.
+        </p>
+      </div>
     )
   }
 
   return (
-    <div className="space-y-6">
-      <Card className="border-amber-500/20 bg-amber-500/10">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20">
-            <Lock className="h-6 w-6 text-amber-400" />
-          </div>
-          <CardTitle className="text-amber-300">Premium Content</CardTitle>
-          <CardDescription className="text-amber-400">
-            This content requires payment to access
-          </CardDescription>
-        </CardHeader>
-      </Card>
+    <div className="space-y-12 my-16">
+      <div className="text-center py-12 border-b border-t border-white/[0.05] relative overflow-hidden bg-white/[0.01]">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-white/10 relative z-10 bg-[#080808]">
+          <Lock className="h-5 w-5 text-white/60" />
+        </div>
+        <h3 className="text-4xl sm:text-5xl font-heading text-[#FAFAFA] tracking-tight mb-4 relative z-10">
+          Encrypted Payload
+        </h3>
+        <p className="text-white/50 text-xl max-w-lg mx-auto relative z-10">
+          Clearance is required to access the remainder of this transmission.
+        </p>
+      </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-px bg-white/[0.05] border border-white/[0.05] md:grid-cols-2">
         {/* Individual Article Purchase */}
         {articleId && (
-          <Card className="border-2 border-white/[0.08] hover:border-brand-500/30 transition-colors">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CreditCard className="h-5 w-5" />
-                Individual Article
-              </CardTitle>
-              <CardDescription>
-                Purchase this specific article
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-400">
-                  {formatPrice(articlePrice)}
-                </div>
-                <div className="mt-1"><Badge variant="outline">One-time purchase</Badge></div>
+          <div className="bg-[#080808] p-8 sm:p-12 flex flex-col justify-between group hover:bg-white/[0.01] transition-colors">
+            <div>
+              <div className="flex justify-between items-start mb-12">
+                <CreditCard className="h-6 w-6 text-white/40 group-hover:text-[#FAFAFA] transition-colors" />
+                <span className="font-mono text-xs uppercase tracking-widest text-white/40 border border-white/10 px-2 py-1">One-Time</span>
+              </div>
+              <h4 className="text-2xl font-heading text-[#FAFAFA] mb-2">Decrypt Single File</h4>
+              <p className="text-white/50 mb-12">Gain permanent access solely to this particular transmission.</p>
+            </div>
+
+            <div>
+              <div className="mb-6 flex items-baseline gap-2">
+                <span className="text-5xl font-heading text-[#FAFAFA]">{formatPrice(articlePrice)}</span>
               </div>
               <Button
                 onClick={() => handlePurchase('article')}
                 disabled={isLoading}
-                className="w-full"
-                size="lg"
+                className="w-full h-14 rounded-none bg-white/5 border border-white/10 text-[#FAFAFA] hover:bg-white/10 font-mono text-xs uppercase tracking-widest transition-colors flex justify-between items-center px-6"
                 aria-label={`Buy article for ${formatPrice(articlePrice)}`}
               >
-                {loadingType === 'article' ? 'Loading...' : `Buy Article - ${formatPrice(articlePrice)}`}
+                {loadingType === 'article' ? 'Processing...' : 'Acquire File'}
+                <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Subscription */}
         {subscriptionPriceId && (
-          <Card className="border-2 border-purple-500/20 hover:border-purple-500/30 transition-colors">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Crown className="h-5 w-5" />
-                Monthly Subscription
-              </CardTitle>
-              <CardDescription>
-                Access all content from {creatorName}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">
-                  {formatPrice(subscriptionPrice)}
-                </div>
-                <div className="mt-1"><Badge variant="outline">Per month</Badge></div>
+          <div className="bg-[#080808] p-8 sm:p-12 flex flex-col justify-between group hover:bg-white/[0.01] transition-colors">
+            <div>
+              <div className="flex justify-between items-start mb-12">
+                <Crown className="h-6 w-6 text-brand-400 opacity-80 group-hover:opacity-100 transition-opacity" />
+                <span className="font-mono text-xs uppercase tracking-widest text-brand-400 border border-brand-500/20 px-2 py-1">Recurring</span>
+              </div>
+              <h4 className="text-2xl font-heading text-[#FAFAFA] mb-2">Total Archive Access</h4>
+              <p className="text-white/50 mb-12">Attain unrestricted clearance to all current and future transmissions by {creatorName}.</p>
+            </div>
+
+            <div>
+              <div className="mb-6 flex items-baseline gap-2">
+                <span className="text-5xl font-heading text-brand-400">{formatPrice(subscriptionPrice)}</span>
+                <span className="font-mono font-normal text-xs text-white/40 uppercase">/ month</span>
               </div>
               <Button
                 onClick={() => handlePurchase('subscription')}
                 disabled={isLoading}
-                className="w-full"
-                size="lg"
-                variant="default"
+                className="w-full h-14 rounded-none bg-[#FAFAFA] text-[#080808] hover:bg-white/90 font-mono text-xs uppercase tracking-widest transition-colors flex justify-between items-center px-6"
                 aria-label={`Subscribe for ${formatPrice(subscriptionPrice)} per month`}
               >
-                {loadingType === 'subscription' ? 'Loading...' : `Subscribe - ${formatPrice(subscriptionPrice)}/month`}
+                {loadingType === 'subscription' ? 'Processing...' : 'Establish Uplink'}
+                <ArrowRight className="w-4 h-4 ml-2 opacity-50" />
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
       </div>
 
       {error && (
-        <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md text-center">
-          {error}
+        <div className="text-red-400 text-sm font-mono p-4 border border-red-500/20 bg-red-500/5 max-w-2xl mx-auto">
+          [OVERRIDE FAILED]: {error}
         </div>
       )}
-      <div className="text-center text-sm text-white/40">
-        Secure payment powered by Stripe
+
+      <div className="text-center font-mono text-xs text-white/30 uppercase tracking-widest pt-8">
+        Secure Handshake via Stripe
       </div>
     </div>
   )

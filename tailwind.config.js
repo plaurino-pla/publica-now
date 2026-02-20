@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['var(--font-clash-display)', 'system-ui', 'sans-serif'],
-        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'Times New Roman', 'serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
       },
       screens: {
         'xs': '475px',
@@ -153,7 +153,7 @@ module.exports = {
     },
   },
   plugins: [
-    function({ addUtilities }) {
+    function ({ addUtilities }) {
       const newUtilities = {
         '.touch-manipulation': {
           'touch-action': 'manipulation',
