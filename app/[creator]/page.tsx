@@ -275,20 +275,11 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
 
           {/* Navigation Tabs */}
           <div className="flex items-center gap-8 border-b border-gray-200">
-            <button 
+            <button
               className="pb-4 px-1 border-b-2 font-medium"
               style={{ borderColor: mainColor, color: mainColor }}
             >
-              Activity
-            </button>
-            <button className="pb-4 px-1 text-gray-600 hover:text-gray-900 font-medium">
               Posts
-            </button>
-            <button className="pb-4 px-1 text-gray-600 hover:text-gray-900 font-medium">
-              Likes
-            </button>
-            <button className="pb-4 px-1 text-gray-600 hover:text-gray-900 font-medium">
-              Reads
             </button>
           </div>
         </div>

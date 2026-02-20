@@ -35,6 +35,7 @@ export default function Paywall({
   const { data: session } = useSession()
   const [isLoading, setIsLoading] = useState(false)
   const [loadingType, setLoadingType] = useState<'article' | 'subscription' | null>(null)
+  const [error, setError] = useState('')
 
   const handlePurchase = async (type: 'article' | 'subscription') => {
     if (!session?.user) {
@@ -69,12 +70,11 @@ export default function Paywall({
           window.location.href = url
         }
       } else {
-        const error = await response.json()
-        alert(`Error: ${error.error}`)
+        const data = await response.json()
+        setError(data.error || 'Checkout failed. Please try again.')
       }
-    } catch (error) {
-      console.error('Checkout error:', error)
-      alert('Failed to start checkout. Please try again.')
+    } catch {
+      setError('Failed to start checkout. Please try again.')
     } finally {
       setIsLoading(false)
       setLoadingType(null)
@@ -198,6 +198,11 @@ export default function Paywall({
         )}
       </div>
 
+      {error && (
+        <div className="text-red-600 text-sm bg-red-50 p-3 rounded-md text-center">
+          {error}
+        </div>
+      )}
       <div className="text-center text-sm text-gray-500">
         Secure payment powered by Stripe
       </div>
