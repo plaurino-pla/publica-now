@@ -14,21 +14,21 @@ import { PageHeader } from '@/components/dashboard/page-header'
 
 function getStatusColor(status: string) {
   switch (status) {
-    case 'published': return 'bg-green-100 text-green-800'
-    case 'draft': return 'bg-gray-100 text-gray-800'
-    case 'ready': return 'bg-brand-100 text-brand-800'
+    case 'published': return 'bg-emerald-500/15 text-green-800'
+    case 'draft': return 'bg-surface-2 text-[#FAFAFA]'
+    case 'ready': return 'bg-brand-500/15 text-brand-800'
     case 'publishing': return 'bg-yellow-100 text-yellow-800'
     case 'failed': return 'bg-red-100 text-red-800'
-    default: return 'bg-gray-100 text-gray-800'
+    default: return 'bg-surface-2 text-[#FAFAFA]'
   }
 }
 
 function getVisibilityColor(visibility: string) {
   switch (visibility) {
-    case 'free': return 'bg-green-100 text-green-800'
-    case 'subscribers': return 'bg-brand-100 text-brand-800'
+    case 'free': return 'bg-emerald-500/15 text-green-800'
+    case 'subscribers': return 'bg-brand-500/15 text-brand-800'
     case 'paid': return 'bg-purple-100 text-purple-800'
-    default: return 'bg-gray-100 text-gray-800'
+    default: return 'bg-surface-2 text-[#FAFAFA]'
   }
 }
 
@@ -102,13 +102,13 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       <PageHeader title="Posts" subtitle="Manage your published content" actions={<NewPostDropdown />} />
 
       {/* Delete Error */}
       {deleteError && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <p className="text-sm text-red-600 bg-red-50 p-3 rounded-md text-center">
+          <p className="text-sm text-red-400 bg-red-500/10 p-3 rounded-md text-center">
             {deleteError}
           </p>
         </div>
@@ -117,12 +117,12 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {articles.length === 0 ? (
-          <div className="bg-white rounded-xl p-12 text-center shadow-sm border border-gray-200">
-            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Edit className="w-10 h-10 text-gray-400" />
+          <div className="bg-surface-1 rounded-xl p-12 text-center  border border-white/[0.06]">
+            <div className="w-20 h-20 bg-surface-2 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Edit className="w-10 h-10 text-white/30" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">No posts yet</h3>
-            <p className="text-gray-600 mb-8 text-lg max-w-md mx-auto">
+            <h3 className="text-xl font-semibold text-[#FAFAFA] mb-3">No posts yet</h3>
+            <p className="text-white/50 mb-8 text-lg max-w-md mx-auto">
               Start creating your first piece of content to build your audience
             </p>
             <NewPostDropdown size="lg" />
@@ -130,18 +130,18 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
         ) : (
           <div className="space-y-6">
             {articles.map((article: Article) => (
-              <div key={article.id} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all">
+              <div key={article.id} className="bg-surface-0 border border-white/[0.06] rounded-xl p-6 hover:border-white/[0.12] transition-all">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="w-10 h-10 bg-surface-2 rounded-lg flex items-center justify-center">
                           {(() => {
                             const IconComponent = getContentTypeIcon(article.contentType || 'text')
-                            return <IconComponent className="w-5 h-5 text-gray-600" />
+                            return <IconComponent className="w-5 h-5 text-white/50" />
                           })()}
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900">{article.title}</h3>
+                        <h3 className="text-xl font-semibold text-[#FAFAFA]">{article.title}</h3>
                       </div>
                       <div className="flex items-center gap-2">
                         {/* Status */}
@@ -163,25 +163,25 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-6 text-sm text-gray-600 mb-4">
+                    <div className="flex items-center gap-6 text-sm text-white/50 mb-4">
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-gray-500" />
+                        <Calendar className="w-4 h-4 text-white/40" />
                         <span>Created {formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })}</span>
                       </div>
                       {article.publishedAt && (
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-gray-500" />
+                          <Calendar className="w-4 h-4 text-white/40" />
                           <span>Published {formatDistanceToNow(new Date(article.publishedAt), { addSuffix: true })}</span>
                         </div>
                       )}
                       {article.currentArtifact && (
-                        <span className="text-gray-500">Version {article.currentArtifact.version}</span>
+                        <span className="text-white/40">Version {article.currentArtifact.version}</span>
                       )}
                     </div>
 
                     {article.tags && article.tags.length > 0 && (
                       <div className="flex items-center gap-2 mb-4">
-                        <Tag className="w-4 h-4 text-gray-400" />
+                        <Tag className="w-4 h-4 text-white/30" />
                         <div className="flex gap-2">
                           {article.tags.map((tag: string) => (
                             <Badge key={tag} variant="outline">#{tag.trim()}</Badge>
@@ -191,20 +191,20 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
                     )}
 
                     {article.visibility === 'paid' && article.pricing && typeof article.pricing === 'object' && 'USD' in article.pricing && (
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-white/50">
                         <Badge variant="warning">${(article.pricing as any).USD}</Badge>
                       </div>
                     )}
                   </div>
 
                   <div className="flex gap-3 ml-6">
-                    <Button asChild variant="outline" size="sm" className="border-gray-300 hover:border-gray-400">
+                    <Button asChild variant="outline" size="sm" className="border-white/[0.08] hover:border-gray-400">
                       <Link aria-label={`Edit ${article.title}`} href={`/dashboard/articles/${article.id}/edit`} className="flex items-center gap-2">
                         <Edit className="w-4 h-4" />
                         Edit
                       </Link>
                     </Button>
-                    <Button asChild variant="outline" size="sm" className="border-gray-300 hover:border-gray-400">
+                    <Button asChild variant="outline" size="sm" className="border-white/[0.08] hover:border-gray-400">
                       <Link aria-label={`View ${article.title}`} href={`/dashboard/articles/${article.id}/view`} className="flex items-center gap-2">
                         <Eye className="w-4 h-4" />
                         View
@@ -216,7 +216,7 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
                       onClick={() => handleDelete(article.id)}
                       disabled={deletingArticleId === article.id}
                       aria-label={`Delete ${article.title}`}
-                      className="border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
+                      className="border-red-200 text-red-400 hover:bg-red-500/100/10 hover:border-red-300"
                     >
                       <Trash2 className="w-4 h-4" />
                       {deletingArticleId === article.id ? 'Deleting...' : 'Delete'}

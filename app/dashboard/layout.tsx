@@ -5,7 +5,7 @@ import { DashboardMobileTabs } from '@/components/dashboard/mobile-tabs'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       <Container className="py-6">
         <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-6">
           <div className="hidden lg:block">

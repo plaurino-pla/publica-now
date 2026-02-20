@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        heading: ['var(--font-clash-display)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+      },
       screens: {
         'xs': '475px',
         '3xl': '1600px',
@@ -64,6 +68,12 @@ module.exports = {
           900: "#C92A2A",
           950: "#A51111",
         },
+        surface: {
+          0: '#0a0a0a',
+          1: '#111111',
+          2: '#1a1a1a',
+          3: '#222222',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -81,6 +91,8 @@ module.exports = {
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
         '5xl': ['3rem', { lineHeight: '1' }],
         '6xl': ['3.75rem', { lineHeight: '1' }],
+        '7xl': ['4.5rem', { lineHeight: '1' }],
+        '8xl': ['6rem', { lineHeight: '1' }],
       },
       minHeight: {
         'touch': '44px',
@@ -97,6 +109,9 @@ module.exports = {
         'slide-up': 'slideUp 0.3s ease-out',
         'slide-down': 'slideDown 0.3s ease-out',
         'scale-in': 'scaleIn 0.2s ease-out',
+        'aurora-1': 'aurora-1 18s ease-in-out infinite',
+        'aurora-2': 'aurora-2 22s ease-in-out infinite',
+        'aurora-3': 'aurora-3 25s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -115,6 +130,21 @@ module.exports = {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        'aurora-1': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+        },
+        'aurora-2': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(-40px, 30px) scale(1.15)' },
+          '66%': { transform: 'translate(25px, -40px) scale(0.85)' },
+        },
+        'aurora-3': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(50px, 20px) scale(1.05)' },
+          '66%': { transform: 'translate(-30px, -30px) scale(0.95)' },
+        },
       },
       transitionProperty: {
         'height': 'height',
@@ -123,8 +153,7 @@ module.exports = {
     },
   },
   plugins: [
-    // Custom plugin for mobile-first utilities
-    function({ addUtilities, theme }) {
+    function({ addUtilities }) {
       const newUtilities = {
         '.touch-manipulation': {
           'touch-action': 'manipulation',

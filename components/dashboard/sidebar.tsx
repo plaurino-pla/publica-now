@@ -22,7 +22,7 @@ export function DashboardSidebar() {
           aria-current={(item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)) ? 'page' : undefined}
           className={cn(
             'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600',
-            (item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)) ? 'bg-brand-50 text-brand-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+            (item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)) ? 'bg-brand-500/15 text-brand-400' : 'text-white/50 hover:bg-white/[0.06] hover:text-white'
           )}
         >
           <item.icon className="w-4 h-4" />

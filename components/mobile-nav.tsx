@@ -90,13 +90,13 @@ export function MobileNav({ session }: MobileNavProps) {
         <div className="fixed inset-0 z-[9998] lg:hidden">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm" 
+            className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm"
             onClick={closeMenu}
           />
 
           {/* Panel */}
           <div
-            className="fixed inset-0 z-[9999] bg-white flex flex-col shadow-2xl h-screen"
+            className="fixed inset-0 z-[9999] bg-surface-0 flex flex-col shadow-2xl h-screen"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation menu"
@@ -104,8 +104,8 @@ export function MobileNav({ session }: MobileNavProps) {
             ref={panelRef}
           >
             {/* Header */}
-            <div className="flex h-16 items-center justify-between border-b px-4 sm:px-6 bg-white">
-              <h2 id="mobile-menu-title" className="text-lg font-semibold">Menu</h2>
+            <div className="flex h-16 items-center justify-between border-b border-white/[0.06] px-4 sm:px-6 bg-surface-0">
+              <h2 id="mobile-menu-title" className="text-lg font-semibold text-[#FAFAFA]">Menu</h2>
               <Button
                 variant="ghost"
                 size="sm"
@@ -119,24 +119,24 @@ export function MobileNav({ session }: MobileNavProps) {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-6 bg-white grow">
+            <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-6 bg-surface-0 grow">
               {session?.user ? (
                 <>
-                  <div className="border rounded-xl p-4 bg-white">
+                  <div className="border border-white/[0.08] rounded-xl p-4 bg-surface-1">
                     <div className="flex items-center gap-3">
-                      <div className="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
-                        <User className="h-6 w-6 text-gray-600" />
+                      <div className="h-12 w-12 rounded-full bg-surface-2 flex items-center justify-center flex-shrink-0">
+                        <User className="h-6 w-6 text-white/50" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="font-medium text-gray-900 truncate">{session.user.email}</p>
-                        <p className="text-sm text-gray-500">Creator</p>
+                        <p className="font-medium text-[#FAFAFA] truncate">{session.user.email}</p>
+                        <p className="text-sm text-white/40">Creator</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Dashboard Section */}
                   <div>
-                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Dashboard</p>
+                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-white/40">Dashboard</p>
                     <nav className="space-y-3" role="navigation" aria-label="Dashboard">
                       <Link href="/dashboard" onClick={closeMenu}>
                         <Button variant="ghost" className="w-full justify-start h-14 text-base" size="lg">
@@ -162,8 +162,8 @@ export function MobileNav({ session }: MobileNavProps) {
                   </div>
 
                   {/* Account Section */}
-                  <div className="border-t pt-4 space-y-3">
-                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Account</p>
+                  <div className="border-t border-white/[0.06] pt-4 space-y-3">
+                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-white/40">Account</p>
                     <nav className="space-y-3" role="navigation" aria-label="Account">
                       <Link href="/dashboard/account" onClick={closeMenu}>
                         <Button variant="outline" className="w-full justify-start h-14 text-base" size="lg">
@@ -173,10 +173,10 @@ export function MobileNav({ session }: MobileNavProps) {
                     </nav>
                   </div>
 
-                  <div className="border-t pt-4">
+                  <div className="border-t border-white/[0.06] pt-4">
                     <Button
                       variant="ghost"
-                      className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 h-14 text-base"
+                      className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-500/10 h-14 text-base"
                       size="lg"
                       onClick={() => { closeMenu(); signOut({ callbackUrl: '/' }) }}
                     >
@@ -188,7 +188,7 @@ export function MobileNav({ session }: MobileNavProps) {
                 <>
                   {/* Browse Section */}
                   <div>
-                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Browse</p>
+                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-white/40">Browse</p>
                     <nav className="space-y-3" role="navigation" aria-label="Browse">
                       <Link href="/creators" onClick={closeMenu}>
                         <Button variant="ghost" className="w-full justify-start h-14 text-base" size="lg">
@@ -204,7 +204,7 @@ export function MobileNav({ session }: MobileNavProps) {
                   </div>
 
                   {/* Get Started Section */}
-                  <div className="border-t pt-4 space-y-3">
+                  <div className="border-t border-white/[0.06] pt-4 space-y-3">
                     <nav className="space-y-3" role="navigation" aria-label="Get started">
                       <Link href="/auth/signin" onClick={closeMenu}>
                         <Button variant="outline" className="w-full h-14 text-base" size="lg">

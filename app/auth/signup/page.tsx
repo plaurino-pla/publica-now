@@ -35,7 +35,6 @@ export default function SignUpPage() {
       const data = await response.json()
 
       if (response.ok) {
-        // Sign up successful, now automatically sign in
         try {
           const signInResponse = await fetch('/api/auth/callback/credentials', {
             method: 'POST',
@@ -51,18 +50,14 @@ export default function SignUpPage() {
           })
 
           if (signInResponse.ok) {
-            // Successfully signed in, redirect to dashboard
             router.push('/dashboard')
           } else {
-            // Sign up worked but sign in failed, show success message and redirect to sign in
             setError('Account created successfully! Please sign in to continue.')
             setTimeout(() => {
               router.push('/auth/signin?message=Account created successfully! Please sign in.')
             }, 2000)
           }
-        } catch (signInError) {
-          console.error('Sign in error:', signInError)
-          // Show success message and redirect to sign in
+        } catch {
           setError('Account created successfully! Please sign in to continue.')
           setTimeout(() => {
             router.push('/auth/signin?message=Account created successfully! Please sign in.')
@@ -71,7 +66,7 @@ export default function SignUpPage() {
       } else {
         setError(data.error || 'Failed to create account. Please try again.')
       }
-    } catch (error) {
+    } catch {
       setError('An error occurred. Please try again.')
     } finally {
       setIsLoading(false)
@@ -79,11 +74,11 @@ export default function SignUpPage() {
   }
 
   return (
-    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-gradient-to-br from-brand-50/50 to-white">
+    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-surface-0">
       <Container className="max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create your account</h1>
-          <p className="text-gray-600">Start your journey as a creator</p>
+          <h1 className="text-3xl font-heading font-bold text-[#FAFAFA] mb-2">Create your account</h1>
+          <p className="text-white/50">Start your journey as a creator</p>
         </div>
 
         <Card>
@@ -96,7 +91,7 @@ export default function SignUpPage() {
           <CardContent>
             <form onSubmit={onSubmit} className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-white/60 mb-1">
                   Email address
                 </label>
                 <Input
@@ -108,9 +103,9 @@ export default function SignUpPage() {
                   className="w-full"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-white/60 mb-1">
                   Password
                 </label>
                 <Input
@@ -123,9 +118,9 @@ export default function SignUpPage() {
                   className="w-full"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-white/60 mb-1">
                   Full name
                 </label>
                 <Input
@@ -139,7 +134,7 @@ export default function SignUpPage() {
               </div>
 
               {error && (
-                <div className="text-red-600 text-sm bg-red-50 p-3 rounded-md">
+                <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md">
                   {error}
                 </div>
               )}
@@ -150,9 +145,9 @@ export default function SignUpPage() {
             </form>
 
             <div className="text-center pt-4">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-white/50">
                 Already have an account?{' '}
-                <Link href="/auth/signin" className="text-brand-600 hover:text-brand-700 font-medium">
+                <Link href="/auth/signin" className="text-brand-400 hover:text-brand-300 font-medium">
                   Sign in
                 </Link>
               </p>

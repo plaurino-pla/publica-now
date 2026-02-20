@@ -91,9 +91,9 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-1">
       {/* Header */}
-      <div className="border-b border-gray-200 sticky top-0 bg-white z-10">
+      <div className="border-b border-white/[0.06] sticky top-0 bg-surface-1 z-10">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -101,15 +101,15 @@ export default function NewPostPage() {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => router.back()}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-white/50 hover:text-[#FAFAFA]"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
               </Button>
               <div className="h-6 w-px bg-gray-300" />
               <div className="flex items-center gap-2">
-                <currentType.icon className="w-5 h-5 text-gray-600" />
-                <span className="text-sm text-gray-500">New {currentType.label}</span>
+                <currentType.icon className="w-5 h-5 text-white/50" />
+                <span className="text-sm text-white/40">New {currentType.label}</span>
               </div>
             </div>
             
@@ -118,7 +118,7 @@ export default function NewPostPage() {
                 variant="ghost" 
                 size="sm"
                 onClick={() => setShowSettings(!showSettings)}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-white/50 hover:text-[#FAFAFA]"
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Settings
@@ -147,13 +147,13 @@ export default function NewPostPage() {
               placeholder="Post title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full text-4xl font-bold text-gray-900 placeholder-gray-400 border-0 outline-none resize-none"
+              className="w-full text-4xl font-bold text-[#FAFAFA] placeholder-gray-400 border-0 outline-none resize-none"
               style={{ minHeight: 'auto' }}
             />
           </div>
 
           {/* Content Type Indicator */}
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-white/50">
             <currentType.icon className="w-4 h-4" />
             <span>Creating a {currentType.label.toLowerCase()}</span>
           </div>
@@ -161,7 +161,7 @@ export default function NewPostPage() {
           {/* Content Editor */}
           <div className="space-y-4">
             {/* Toolbar */}
-            <div className="flex items-center gap-1 p-2 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-1 p-2 bg-surface-0 rounded-lg">
               <Button
                 type="button"
                 variant="ghost"
@@ -235,32 +235,32 @@ export default function NewPostPage() {
               placeholder={currentType.placeholder}
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full min-h-[500px] text-lg text-gray-900 placeholder-gray-400 border-0 outline-none resize-none leading-relaxed"
+              className="w-full min-h-[500px] text-lg text-[#FAFAFA] placeholder-gray-400 border-0 outline-none resize-none leading-relaxed"
             />
           </div>
 
           {/* Settings Panel */}
           {showSettings && (
-            <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Post settings</h3>
+            <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-0">
+              <h3 className="text-lg font-semibold text-[#FAFAFA] mb-4">Post settings</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Cover image URL</label>
+                  <label className="block text-sm font-medium text-white/60 mb-2">Cover image URL</label>
                   <input
                     type="url"
                     placeholder="https://example.com/image.jpg"
                     value={coverUrl}
                     onChange={(e) => setCoverUrl(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-3 py-2 border border-white/[0.08] rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Visibility</label>
+                  <label className="block text-sm font-medium text-white/60 mb-2">Visibility</label>
                   <select
                     value={visibility}
                     onChange={(e) => setVisibility(e.target.value as 'free' | 'paid' | 'subscribers')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-3 py-2 border border-white/[0.08] rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   >
                     <option value="free">Free</option>
                     <option value="subscribers">Subscribers Only</option>
@@ -270,7 +270,7 @@ export default function NewPostPage() {
                 
                 {visibility === 'paid' && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Price (USD)</label>
+                    <label className="block text-sm font-medium text-white/60 mb-2">Price (USD)</label>
                     <input
                       type="number"
                       step="0.01"
@@ -278,7 +278,7 @@ export default function NewPostPage() {
                       placeholder="9.99"
                       value={priceUSD}
                       onChange={(e) => setPriceUSD(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                      className="w-full px-3 py-2 border border-white/[0.08] rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                     />
                   </div>
                 )}
@@ -288,7 +288,7 @@ export default function NewPostPage() {
 
           {/* Message */}
           {message && (
-            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-50 text-red-800' : 'bg-green-50 text-green-800'}`}>
+            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-500/10 text-red-800' : 'bg-emerald-500/10 text-green-800'}`}>
               {message}
             </div>
           )}

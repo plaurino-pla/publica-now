@@ -190,9 +190,9 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
   const profileImage = branding.profileImage || ''
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0a0a0a]">
       {/* Header */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-white/[0.06]">
         {/* Header Background Image */}
         {headerImage && (
           <div 
@@ -229,9 +229,9 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
             
             {/* Creator Info */}
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-gray-900 mb-1">{creator.name}</h1>
-              <p className="text-gray-600 mb-4">@{creator.slug}</p>
-              <p className="text-gray-700 mb-4 max-w-2xl">
+              <h1 className="text-3xl font-heading font-bold text-[#FAFAFA] mb-1">{creator.name}</h1>
+              <p className="text-white/40 mb-4">@{creator.slug}</p>
+              <p className="text-white/60 mb-4 max-w-2xl">
                 {branding.description || 'Independent creator publishing on publica.now. Building a community around thoughtful content and meaningful discussions.'}
               </p>
               <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -242,7 +242,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
               </div>
               
               {/* Stats */}
-              <div className="flex items-center gap-6 text-sm text-gray-600 mb-6">
+              <div className="flex items-center gap-6 text-sm text-white/50 mb-6">
                 <span>{publishedArticles.length} posts</span>
                 <span>•</span>
                 <span>{publishedArticles.filter((a: any) => a.visibility === 'free').length} free</span>
@@ -259,7 +259,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                 {!isSubscribed ? (
                   <SubscriptionButton creatorId={creator.id} mainColor={mainColor} />
                 ) : (
-                  <Button size="lg" variant="outline" className="text-green-600 border-green-600">
+                  <Button size="lg" variant="outline" className="text-green-400 border-green-500/30">
                     ✓ Subscribed
                   </Button>
                 )}
@@ -274,7 +274,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-8 border-b border-gray-200">
+          <div className="flex items-center gap-8 border-b border-white/[0.06]">
             <button
               className="pb-4 px-1 border-b-2 font-medium"
               style={{ borderColor: mainColor, color: mainColor }}
@@ -296,7 +296,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
               className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                 filter === type.value
                   ? 'text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-surface-2 text-white/60 hover:bg-surface-3'
               }`}
               style={filter === type.value ? { backgroundColor: mainColor } : {}}
             >
@@ -307,20 +307,20 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
 
         {filteredArticles.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-16 h-16 bg-surface-2 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No content found</h3>
-            <p className="text-gray-600">Try adjusting your filters or check back later</p>
+            <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No content found</h3>
+            <p className="text-white/50">Try adjusting your filters or check back later</p>
           </div>
         ) : (
           <div className="space-y-8">
             {/* Latest Post Label */}
             {filteredArticles.length > 0 && (
-              <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-                <Star className="w-4 h-4 text-yellow-500" />
+              <div className="flex items-center gap-2 text-sm text-white/50 mb-4">
+                <Star className="w-4 h-4 text-amber-400" />
                 <span>Latest post</span>
               </div>
             )}
@@ -332,7 +332,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
               const isPaid = article.visibility === 'paid'
               
               return (
-                <article key={article.id} className={`border-b border-gray-100 last:border-b-0 ${isPaid ? 'bg-gray-50 rounded-xl p-6 mb-8' : 'pb-8'}`}>
+                <article key={article.id} className={`border-b border-white/[0.06] last:border-b-0 ${isPaid ? 'bg-surface-1 rounded-xl p-6 mb-8 border border-white/[0.06]' : 'pb-8'}`}>
                   {/* Article Header */}
                   <div className="flex items-start gap-4 mb-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
@@ -342,9 +342,9 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1 leading-none">
-                        <span className="font-semibold text-gray-900 text-sm md:text-base">{creator.name}</span>
-                        <span className="text-gray-500">•</span>
-                        <span className="text-gray-500 text-sm">
+                        <span className="font-semibold text-[#FAFAFA] text-sm md:text-base">{creator.name}</span>
+                        <span className="text-white/40">•</span>
+                        <span className="text-white/40 text-sm">
                           {article.publishedAt 
                             ? formatDistanceToNow(new Date(article.publishedAt), { addSuffix: true })
                             : formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })
@@ -398,7 +398,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     {article.contentType === 'image' && article.imageUrls && (
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-purple-50 text-purple-700 rounded-md text-xs font-medium">
+                          <div className="flex items-center gap-2 px-2 py-1 bg-purple-500/10 text-purple-400 rounded-md text-xs font-medium">
                             <ImageIcon className="w-3 h-3" />
                             <span>Image Gallery</span>
                           </div>
@@ -406,7 +406,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                         
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-w-2xl mb-3">
                           {article.imageUrls.slice(0, 3).map((url: string, index: number) => (
-                            <div key={index} className="aspect-square bg-gray-200 rounded-lg overflow-hidden">
+                            <div key={index} className="aspect-square bg-surface-2 rounded-lg overflow-hidden">
                               <img 
                                 src={url} 
                                 alt={`Image ${index + 1}`}
@@ -434,14 +434,14 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     {article.contentType === 'video' && (
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-red-50 text-red-700 rounded-md text-xs font-medium">
+                          <div className="flex items-center gap-2 px-2 py-1 bg-red-500/10 text-red-400 rounded-md text-xs font-medium">
                             <Video className="w-3 h-3" />
                             <span>Video Content</span>
                           </div>
                         </div>
                         
                         {/* Show excerpt only, not the video player */}
-                        <div className="text-gray-700 leading-relaxed mb-3">
+                        <div className="text-white/60 leading-relaxed mb-3">
                           {article.bodyMarkdown 
                             ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
                             : 'Video content available'
@@ -466,7 +466,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     {article.contentType === 'text' && (
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-brand-50 text-brand-700 rounded-md text-xs font-medium">
+                          <div className="flex items-center gap-2 px-2 py-1 bg-brand-500/10 text-brand-400 rounded-md text-xs font-medium">
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
@@ -475,7 +475,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                         </div>
                         
                         {/* Show excerpt only, not full content */}
-                        <div className="text-gray-700 leading-relaxed mb-3">
+                        <div className="text-white/60 leading-relaxed mb-3">
                           {article.bodyMarkdown 
                             ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
                             : 'No description available'
@@ -500,14 +500,14 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
                     {article.contentType === 'audio' && (
                       <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-green-50 text-green-700 rounded-md text-xs font-medium">
+                          <div className="flex items-center gap-2 px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded-md text-xs font-medium">
                             <Play className="w-3 h-3" />
                             <span>Audio Content</span>
                           </div>
                         </div>
                         
                         {/* Show excerpt only, not the audio player */}
-                        <div className="text-gray-700 leading-relaxed mb-3">
+                        <div className="text-white/60 leading-relaxed mb-3">
                           {article.bodyMarkdown 
                             ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
                             : 'Audio content available'
@@ -530,7 +530,7 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
 
                     {/* Article Title and Content */}
                     <div className="mb-2">
-                      <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 leading-tight">{article.title}</h2>
+                      <h2 className="text-xl md:text-2xl font-bold text-[#FAFAFA] mb-1 leading-tight">{article.title}</h2>
                       {/* Content excerpt is now handled in the content type specific sections above */}
                     </div>
 
@@ -545,11 +545,11 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
 
                     {/* Paywall CTA for Paid Articles */}
                     {isPaid && (
-                      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+                      <div className="bg-surface-1 border border-white/[0.08] rounded-lg p-4 mb-4">
                         <div className="text-center">
-                          <Lock className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">Subscribe to unlock this content</h3>
-                          <p className="text-gray-600 mb-4">
+                          <Lock className="w-8 h-8 text-white/30 mx-auto mb-2" />
+                          <h3 className="text-lg font-semibold text-[#FAFAFA] mb-2">Subscribe to unlock this content</h3>
+                          <p className="text-white/50 mb-4">
                             Get access to all premium content from {creator.name} and support independent creators.
                           </p>
                           <SubscriptionButton creatorId={creator.id} mainColor="#dc2626" />
@@ -559,26 +559,26 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
 
                     {/* Engagement and Actions */}
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
-                        <button aria-label="Like" className="flex items-center gap-1 hover:text-red-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
+                      <div className="flex items-center gap-4 text-sm text-white/40">
+                        <button aria-label="Like" className="flex items-center gap-1 hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <Heart className="w-4 h-4" />
                           <span>3</span>
                         </button>
-                        <button aria-label="Comment" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
+                        <button aria-label="Comment" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <MessageCircle className="w-4 h-4" />
                           <span>1</span>
                         </button>
-                        <button aria-label="Repost" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
+                        <button aria-label="Repost" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <RotateCcw className="w-4 h-4" />
                           <span>1</span>
                         </button>
-                        <button aria-label="Share" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
+                        <button aria-label="Share" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <Upload className="w-4 h-4" />
                         </button>
-                        <button aria-label="Save" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
+                        <button aria-label="Save" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <Bookmark className="w-4 h-4" />
                         </button>
-                        <button aria-label="More options" className="flex items-center gap-1 hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
+                        <button aria-label="More options" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
                           <MoreHorizontal className="w-4 h-4" />
                         </button>
                       </div>

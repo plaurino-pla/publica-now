@@ -16,9 +16,9 @@ export function UserMenu() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button className="flex items-center gap-2 text-gray-700 hover:text-gray-900 rounded-md px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-            <User className="h-4 w-4 text-gray-600" />
+        <button className="flex items-center gap-2 text-white/70 hover:text-white rounded-md px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <div className="h-8 w-8 rounded-full bg-surface-2 flex items-center justify-center">
+            <User className="h-4 w-4 text-white/50" />
           </div>
           <ChevronDown className="w-4 h-4" />
         </button>
@@ -26,23 +26,23 @@ export function UserMenu() {
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-1 animate-scale-in"
+          className="w-56 bg-surface-1 border border-white/[0.08] rounded-lg shadow-2xl z-50 py-1 animate-scale-in"
           sideOffset={8}
           align="end"
         >
           <DropdownMenu.Item asChild>
             <Link
               href="/dashboard/account"
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-900 hover:bg-gray-50 outline-none cursor-pointer transition-colors"
+              className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/80 hover:bg-white/[0.06] outline-none cursor-pointer transition-colors"
             >
-              <Settings className="w-4 h-4 text-gray-500" />
+              <Settings className="w-4 h-4 text-white/40" />
               My Account
             </Link>
           </DropdownMenu.Item>
 
-          <DropdownMenu.Separator className="h-px bg-gray-200 my-1" />
+          <DropdownMenu.Separator className="h-px bg-white/[0.06] my-1" />
 
-          <DropdownMenu.Label className="px-4 py-1.5 text-xs font-medium text-gray-500 uppercase tracking-wide">
+          <DropdownMenu.Label className="px-4 py-1.5 text-xs font-medium text-white/40 uppercase tracking-wide">
             Create Content
           </DropdownMenu.Label>
           {contentTypes.map((ct) => {
@@ -51,19 +51,19 @@ export function UserMenu() {
               <DropdownMenu.Item key={ct.type} asChild>
                 <Link
                   href={ct.href}
-                  className="flex items-center gap-3 px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 outline-none cursor-pointer transition-colors"
+                  className="flex items-center gap-3 px-4 py-2 text-sm text-white/80 hover:bg-white/[0.06] outline-none cursor-pointer transition-colors"
                 >
-                  <Icon className="w-4 h-4 text-gray-500" />
+                  <Icon className="w-4 h-4 text-white/40" />
                   {ct.label}
                 </Link>
               </DropdownMenu.Item>
             )
           })}
 
-          <DropdownMenu.Separator className="h-px bg-gray-200 my-1" />
+          <DropdownMenu.Separator className="h-px bg-white/[0.06] my-1" />
 
           <DropdownMenu.Item
-            className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 outline-none cursor-pointer transition-colors"
+            className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 outline-none cursor-pointer transition-colors"
             onSelect={() => signOut({ callbackUrl: '/' })}
           >
             <LogOut className="w-4 h-4" />

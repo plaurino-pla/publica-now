@@ -139,19 +139,19 @@ function ArticleEditor({ params }: { params: { id: string } }) {
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-surface-1 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading article...</p>
+          <p className="text-white/50">Loading article...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-1">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white sticky top-0 z-10">
+      <div className="border-b border-white/[0.06] bg-surface-1 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -159,15 +159,15 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                 variant="ghost" 
                 size="sm" 
                 onClick={() => router.push('/dashboard/articles')}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-white/50 hover:text-[#FAFAFA]"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
               </Button>
               <div className="h-6 w-px bg-gray-300" />
               <div className="flex items-center gap-2">
-                {article?.contentType === 'audio' && <Mic className="w-4 h-4 text-gray-600" />}
-                <span className="text-sm text-gray-500">
+                {article?.contentType === 'audio' && <Mic className="w-4 h-4 text-white/50" />}
+                <span className="text-sm text-white/40">
                   Edit {article?.contentType === 'audio' ? 'audio' : ''} post
                 </span>
               </div>
@@ -178,7 +178,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowSettings(!showSettings)}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-white/50 hover:text-[#FAFAFA]"
               >
                 {showSettings ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 <span className="ml-2">Settings</span>
@@ -240,14 +240,14 @@ function ArticleEditor({ params }: { params: { id: string } }) {
 
             {/* Toolbar - Only show for text content */}
             {article?.contentType !== 'audio' && (
-              <div className="mb-4 flex flex-wrap gap-2 border-b border-gray-200 pb-4">
+              <div className="mb-4 flex flex-wrap gap-2 border-b border-white/[0.06] pb-4">
                 <Button 
                   type="button" 
                   variant="ghost" 
                   size="sm"
                   onClick={() => insertMarkdown('**Bold text**')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <Bold className="w-4 h-4" />
                 </Button>
@@ -257,7 +257,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   size="sm"
                   onClick={() => insertMarkdown('*Italic text*')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <Italic className="w-4 h-4" />
                 </Button>
@@ -267,7 +267,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   size="sm"
                   onClick={() => insertMarkdown('# Heading 1')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <Heading1 className="w-4 h-4" />
                 </Button>
@@ -277,7 +277,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   size="sm"
                   onClick={() => insertMarkdown('## Heading 2')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <Heading2 className="w-4 h-4" />
                 </Button>
@@ -287,7 +287,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   size="sm"
                   onClick={() => insertMarkdown('- List item')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <List className="w-4 h-4" />
                 </Button>
@@ -297,7 +297,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   size="sm"
                   onClick={() => insertMarkdown('[Link text](https://example.com)')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <Link className="w-4 h-4" />
                 </Button>
@@ -307,7 +307,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   size="sm"
                   onClick={() => insertMarkdown('![Alt text](https://example.com/image.jpg)')}
                   disabled={loading || success}
-                  className="text-gray-600 hover:text-gray-900"
+                  className="text-white/50 hover:text-[#FAFAFA]"
                 >
                   <Image className="w-4 h-4" />
                 </Button>
@@ -319,10 +319,10 @@ function ArticleEditor({ params }: { params: { id: string } }) {
               <div className="space-y-6">
                 {/* Audio Player */}
                 {article.audioUrl && (
-                  <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                  <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-0">
                     <div className="flex items-center gap-2 mb-4">
-                      <Play className="w-5 h-5 text-gray-600" />
-                      <h3 className="text-lg font-medium text-gray-900">Audio Content</h3>
+                      <Play className="w-5 h-5 text-white/50" />
+                      <h3 className="text-lg font-medium text-[#FAFAFA]">Audio Content</h3>
                     </div>
                     <audio
                       src={article.audioUrl}
@@ -334,10 +334,10 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                 
                 {/* Description */}
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">Description</h3>
+                  <h3 className="text-lg font-medium text-[#FAFAFA] mb-3">Description</h3>
                   <textarea 
                     id="body"
-                    className="w-full min-h-[200px] border border-gray-200 rounded-lg p-4 outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none text-lg leading-relaxed" 
+                    className="w-full min-h-[200px] border border-white/[0.06] rounded-lg p-4 outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none text-lg leading-relaxed" 
                     value={body} 
                     onChange={(e) => setBody(e.target.value)}
                     placeholder="Add a description, transcript, or notes about your audio content..."
@@ -360,7 +360,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
           {/* Settings Panel */}
           {showSettings && (
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
+              <div className="bg-surface-0 rounded-lg p-6 sticky top-24">
                 <h3 className="text-lg font-semibold mb-4">Post Settings</h3>
                 
                 <div className="space-y-4">
@@ -371,7 +371,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                       value={coverUrl}
                       onChange={(e) => setCoverUrl(e.target.value)}
                       placeholder="https://example.com/image.jpg"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent"
+                      className="w-full px-3 py-2 border border-white/[0.08] rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent"
                       disabled={loading || success}
                     />
                   </div>
@@ -383,7 +383,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                       value={tags}
                       onChange={(e) => setTags(e.target.value)}
                       placeholder="tag1, tag2, tag3"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent"
+                      className="w-full px-3 py-2 border border-white/[0.08] rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent"
                       disabled={loading || success}
                     />
                   </div>
@@ -391,7 +391,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                   <div>
                     <label className="block text-sm font-medium mb-2">Visibility</label>
                     <select 
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent" 
+                      className="w-full px-3 py-2 border border-white/[0.08] rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent" 
                       value={visibility} 
                       onChange={(e) => setVisibility(e.target.value as any)}
                       disabled={loading || success}
@@ -411,7 +411,7 @@ function ArticleEditor({ params }: { params: { id: string } }) {
                         min="0"
                         value={priceUSD}
                         onChange={(e) => setPriceUSD(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent"
+                        className="w-full px-3 py-2 border border-white/[0.08] rounded-md text-sm focus:ring-2 focus:ring-black focus:border-transparent"
                         disabled={loading || success}
                       />
                     </div>
@@ -424,13 +424,13 @@ function ArticleEditor({ params }: { params: { id: string } }) {
 
         {/* Error/Success Messages */}
         {error && (
-          <div className="fixed bottom-4 right-4 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg shadow-lg">
+          <div className="fixed bottom-4 right-4 bg-red-500/10 border border-red-200 text-red-400 px-4 py-3 rounded-lg shadow-lg">
             {error}
           </div>
         )}
 
         {success && (
-          <div className="fixed bottom-4 right-4 bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-lg shadow-lg">
+          <div className="fixed bottom-4 right-4 bg-emerald-500/10 border border-green-200 text-green-400 px-4 py-3 rounded-lg shadow-lg">
             🎉 Article updated successfully! Redirecting...
           </div>
         )}

@@ -126,7 +126,7 @@ function DashboardContent() {
       <PageSection background="muted" className="min-h-[60vh] flex items-center">
         <Container className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-white/50">Loading dashboard...</p>
         </Container>
       </PageSection>
     )
@@ -136,16 +136,16 @@ function DashboardContent() {
     return (
       <PageSection background="muted" className="min-h-[60vh] flex items-center">
         <Container className="text-center">
-          <p className="text-gray-600">Failed to load dashboard data</p>
+          <p className="text-white/50">Failed to load dashboard data</p>
         </Container>
       </PageSection>
     )
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       {statusMessage && (
-        <div className="bg-brand-50 border-b border-brand-200 px-4 py-3 text-sm text-brand-800 text-center">
+        <div className="bg-brand-500/10 border-b border-brand-200 px-4 py-3 text-sm text-brand-800 text-center">
           {statusMessage}
         </div>
       )}
@@ -176,15 +176,15 @@ function DashboardContent() {
           {/* Stats Grid - Responsive 4-column layout */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8 lg:mb-12">
             {dashboardData.user.isCreator && (
-              <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200">
+              <div className="bg-surface-1 rounded-xl p-4 lg:p-6  border border-white/[0.06] hover:border-white/[0.12] transition-all duration-200">
                 <div className="flex items-center justify-between">
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Total Posts</p>
-                    <p className="mt-2 text-2xl lg:text-3xl font-bold text-gray-900">{dashboardData.stats.totalPosts}</p>
-                    <p className="text-xs text-gray-500 mt-1">Published content</p>
+                    <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Total Posts</p>
+                    <p className="mt-2 text-2xl lg:text-3xl font-bold text-[#FAFAFA]">{dashboardData.stats.totalPosts}</p>
+                    <p className="text-xs text-white/40 mt-1">Published content</p>
                   </div>
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
-                    <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-brand-600" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-brand-500/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
+                    <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-brand-400" />
                   </div>
                 </div>
               </div>
@@ -192,15 +192,15 @@ function DashboardContent() {
             
             {/* Liked Articles Counter */}
             <Link href="/dashboard/liked" className="block">
-              <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 cursor-pointer">
+              <div className="bg-surface-1 rounded-xl p-4 lg:p-6  border border-white/[0.06] hover:border-white/[0.12] transition-all duration-200 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Liked Articles</p>
-                    <p className="mt-2 text-2xl lg:text-3xl font-bold text-gray-900">{dashboardData.stats.totalLikes}</p>
-                    <p className="text-xs text-gray-500 mt-1">Articles you liked</p>
+                    <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Liked Articles</p>
+                    <p className="mt-2 text-2xl lg:text-3xl font-bold text-[#FAFAFA]">{dashboardData.stats.totalLikes}</p>
+                    <p className="text-xs text-white/40 mt-1">Articles you liked</p>
                   </div>
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-red-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
-                    <Heart className="w-5 h-5 lg:w-6 lg:h-6 text-red-600" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-red-500/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
+                    <Heart className="w-5 h-5 lg:w-6 lg:h-6 text-red-400" />
                   </div>
                 </div>
               </div>
@@ -208,29 +208,29 @@ function DashboardContent() {
 
             {/* Reading List Counter */}
             <Link href="/dashboard/reading-list" className="block">
-              <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 cursor-pointer">
+              <div className="bg-surface-1 rounded-xl p-4 lg:p-6  border border-white/[0.06] hover:border-white/[0.12] transition-all duration-200 cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Reading List</p>
-                    <p className="mt-2 text-2xl lg:text-3xl font-bold text-gray-900">{dashboardData.stats.totalReadingList}</p>
-                    <p className="text-xs text-gray-500 mt-1">Saved for later</p>
+                    <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Reading List</p>
+                    <p className="mt-2 text-2xl lg:text-3xl font-bold text-[#FAFAFA]">{dashboardData.stats.totalReadingList}</p>
+                    <p className="text-xs text-white/40 mt-1">Saved for later</p>
                   </div>
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
-                    <Bookmark className="w-5 h-5 lg:w-6 lg:h-6 text-brand-600" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-brand-500/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
+                    <Bookmark className="w-5 h-5 lg:w-6 lg:h-6 text-brand-400" />
                   </div>
                 </div>
               </div>
             </Link>
 
-            <div className="bg-white rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200">
+            <div className="bg-surface-1 rounded-xl p-4 lg:p-6  border border-white/[0.06] hover:border-white/[0.12] transition-all duration-200">
               <div className="flex items-center justify-between">
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Subscriptions</p>
-                  <p className="mt-2 text-2xl lg:text-3xl font-bold text-gray-900">{dashboardData.stats.totalSubscriptions}</p>
-                  <p className="text-xs text-gray-500 mt-1">Active subscriptions</p>
+                  <p className="text-xs font-medium text-white/40 uppercase tracking-wide">Subscriptions</p>
+                  <p className="mt-2 text-2xl lg:text-3xl font-bold text-[#FAFAFA]">{dashboardData.stats.totalSubscriptions}</p>
+                  <p className="text-xs text-white/40 mt-1">Active subscriptions</p>
                 </div>
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
-                  <UserPlus className="w-5 h-5 lg:w-6 lg:h-6 text-green-600" />
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-3">
+                  <UserPlus className="w-5 h-5 lg:w-6 lg:h-6 text-green-400" />
                 </div>
               </div>
             </div>
@@ -241,62 +241,62 @@ function DashboardContent() {
             {/* Left Column - Main Content */}
             <div className="xl:col-span-2 space-y-6 lg:space-y-8">
               {/* Quick Actions */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="bg-surface-1 rounded-xl  border border-white/[0.06] overflow-hidden">
                 <div className="px-6 py-5 border-b border-gray-100">
-                  <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
-                  <p className="text-sm text-gray-600 mt-1">Get started with common tasks</p>
+                  <h2 className="text-lg font-semibold text-[#FAFAFA]">Quick Actions</h2>
+                  <p className="text-sm text-white/50 mt-1">Get started with common tasks</p>
                 </div>
                 <div className="p-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {dashboardData.user.isCreator ? (
                       <Link href="/dashboard/articles" className="group">
-                        <div className="border border-gray-200 rounded-lg p-5 hover:border-brand-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
+                        <div className="border border-white/[0.06] rounded-lg p-5 hover:border-brand-300 hover:border-white/[0.12] transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-200 transition-colors">
-                                <FileText className="w-6 h-6 text-brand-600" />
+                              <div className="w-12 h-12 bg-brand-500/15 rounded-lg flex items-center justify-center  flex-shrink-0 group-hover:bg-brand-200 transition-colors">
+                                <FileText className="w-6 h-6 text-brand-400" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-brand-900 transition-colors">Manage Posts</h3>
-                                <p className="text-gray-600 text-sm mt-1">Edit, publish, or delete your content</p>
+                                <h3 className="font-semibold text-[#FAFAFA] group-hover:text-brand-900 transition-colors">Manage Posts</h3>
+                                <p className="text-white/50 text-sm mt-1">Edit, publish, or delete your content</p>
                               </div>
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-brand-600 transition-colors flex-shrink-0" />
+                            <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-brand-400 transition-colors flex-shrink-0" />
                           </div>
                         </div>
                       </Link>
                     ) : (
                       <Link href="/creators" className="group">
-                        <div className="border border-gray-200 rounded-lg p-5 hover:border-brand-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
+                        <div className="border border-white/[0.06] rounded-lg p-5 hover:border-brand-300 hover:border-white/[0.12] transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-brand-200 transition-colors">
-                                <Search className="w-6 h-6 text-brand-600" />
+                              <div className="w-12 h-12 bg-brand-500/15 rounded-lg flex items-center justify-center  flex-shrink-0 group-hover:bg-brand-200 transition-colors">
+                                <Search className="w-6 h-6 text-brand-400" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-brand-900 transition-colors">Discover Creators</h3>
-                                <p className="text-gray-600 text-sm mt-1">Find and subscribe to new creators</p>
+                                <h3 className="font-semibold text-[#FAFAFA] group-hover:text-brand-900 transition-colors">Discover Creators</h3>
+                                <p className="text-white/50 text-sm mt-1">Find and subscribe to new creators</p>
                               </div>
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-brand-600 transition-colors flex-shrink-0" />
+                            <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-brand-400 transition-colors flex-shrink-0" />
                           </div>
                         </div>
                       </Link>
                     )}
 
                     <Link href="/dashboard/account" className="group">
-                      <div className="border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-gray-100 group-hover:to-white">
+                      <div className="border border-white/[0.06] rounded-lg p-5 hover:border-white/[0.08] hover:border-white/[0.12] transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-gray-100 group-hover:to-white">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-gray-200 transition-colors">
-                              <Settings className="w-6 h-6 text-gray-600" />
+                            <div className="w-12 h-12 bg-surface-2 rounded-lg flex items-center justify-center  flex-shrink-0 group-hover:bg-surface-2 transition-colors">
+                              <Settings className="w-6 h-6 text-white/50" />
                             </div>
                             <div className="min-w-0 flex-1">
-                              <h3 className="font-semibold text-gray-900 group-hover:text-gray-800 transition-colors">Profile Settings</h3>
-                              <p className="text-gray-600 text-sm mt-1">Update your profile and preferences</p>
+                              <h3 className="font-semibold text-[#FAFAFA] group-hover:text-[#FAFAFA] transition-colors">Profile Settings</h3>
+                              <p className="text-white/50 text-sm mt-1">Update your profile and preferences</p>
                             </div>
                           </div>
-                          <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors flex-shrink-0" />
+                          <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-white/50 transition-colors flex-shrink-0" />
                         </div>
                       </div>
                     </Link>
@@ -305,20 +305,20 @@ function DashboardContent() {
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="bg-surface-1 rounded-xl  border border-white/[0.06] overflow-hidden">
                 <div className="px-6 py-5 border-b border-gray-100">
-                  <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
-                  <p className="text-sm text-gray-600 mt-1">Your latest interactions and content</p>
+                  <h2 className="text-lg font-semibold text-[#FAFAFA]">Recent Activity</h2>
+                  <p className="text-sm text-white/50 mt-1">Your latest interactions and content</p>
                 </div>
                 
                 <div className="p-6">
                   {dashboardData.likedArticles.length === 0 && dashboardData.readingList.length === 0 ? (
                     <div className="text-center py-12">
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Heart className="w-8 h-8 text-gray-400" />
+                      <div className="w-16 h-16 bg-surface-2 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Heart className="w-8 h-8 text-white/30" />
                       </div>
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">No activity yet</h3>
-                      <p className="text-gray-600 mb-6 text-sm">Start exploring content to see your activity here</p>
+                      <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No activity yet</h3>
+                      <p className="text-white/50 mb-6 text-sm">Start exploring content to see your activity here</p>
                       <Link href="/creators">
                         <Button size="lg" className="bg-brand-600 hover:bg-brand-700">
                           <Search className="w-4 h-4 mr-2" />
@@ -329,18 +329,18 @@ function DashboardContent() {
                   ) : (
                     <div className="space-y-3">
                       {dashboardData.likedArticles.slice(0, 3).map((article) => (
-                        <div key={article.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <div key={article.id} className="flex items-center justify-between p-4 bg-surface-0 rounded-lg hover:bg-surface-2 transition-colors">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <Heart className="w-4 h-4 text-red-600" />
+                              <Heart className="w-4 h-4 text-red-400" />
                             </div>
                             <div className="min-w-0 flex-1">
-                              <p className="font-medium text-gray-900 text-sm">Liked "{article.title}"</p>
-                              <p className="text-xs text-gray-600">by {article.creator.name}</p>
+                              <p className="font-medium text-[#FAFAFA] text-sm">Liked "{article.title}"</p>
+                              <p className="text-xs text-white/50">by {article.creator.name}</p>
                             </div>
                           </div>
                           <Link href={`/${article.creator.slug}/content/${article.slug}`}>
-                            <Button variant="ghost" size="sm" className="text-brand-600 hover:text-brand-700 hover:bg-brand-50">
+                            <Button variant="ghost" size="sm" className="text-brand-400 hover:text-brand-400 hover:bg-brand-500/10">
                               View
                             </Button>
                           </Link>
@@ -358,8 +358,8 @@ function DashboardContent() {
               {dashboardData.user.isCreator && (
                 <div className="bg-gradient-to-br from-brand-50 to-indigo-50 rounded-xl p-6 border border-brand-200">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center">
-                      <Plus className="w-5 h-5 text-brand-600" />
+                    <div className="w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
+                      <Plus className="w-5 h-5 text-brand-400" />
                     </div>
                     <h3 className="font-semibold text-brand-900">Creator Tools</h3>
                   </div>
@@ -373,7 +373,7 @@ function DashboardContent() {
                         Manage Posts
                       </Link>
                     </Button>
-                    <Button asChild size="sm" variant="outline" className="w-full border-brand-300 text-brand-700 hover:bg-brand-50">
+                    <Button asChild size="sm" variant="outline" className="w-full border-brand-300 text-brand-400 hover:bg-brand-500/10">
                       <Link href="/dashboard/analytics">
                         <BarChart3 className="w-4 h-4 mr-2" />
                         View Analytics
@@ -385,27 +385,27 @@ function DashboardContent() {
 
               {/* Subscriptions */}
               {dashboardData.subscriptions.length > 0 && (
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                <div className="bg-surface-1 rounded-xl p-6  border border-white/[0.06]">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <UserPlus className="w-5 h-5 text-green-600" />
+                    <div className="w-10 h-10 bg-emerald-500/15 rounded-lg flex items-center justify-center">
+                      <UserPlus className="w-5 h-5 text-green-400" />
                     </div>
-                    <h3 className="font-semibold text-gray-900">Your Subscriptions</h3>
+                    <h3 className="font-semibold text-[#FAFAFA]">Your Subscriptions</h3>
                   </div>
                   <div className="space-y-3">
                     {dashboardData.subscriptions.slice(0, 3).map((creator) => (
                       <Link key={creator.id} href={`/${creator.slug}`} className="block">
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <UserPlus className="w-4 h-4 text-green-600" />
+                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-0 transition-colors">
+                          <div className="w-8 h-8 bg-emerald-500/15 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <UserPlus className="w-4 h-4 text-green-400" />
                           </div>
-                          <span className="text-sm text-gray-700 font-medium">{creator.name}</span>
+                          <span className="text-sm text-white/60 font-medium">{creator.name}</span>
                         </div>
                       </Link>
                     ))}
                     {dashboardData.subscriptions.length > 3 && (
                       <Link href="/dashboard/subscriptions">
-                        <Button variant="ghost" size="sm" className="w-full text-brand-600 hover:text-brand-700 hover:bg-brand-50">
+                        <Button variant="ghost" size="sm" className="w-full text-brand-400 hover:text-brand-400 hover:bg-brand-500/10">
                           View all subscriptions
                         </Button>
                       </Link>
@@ -415,27 +415,27 @@ function DashboardContent() {
               )}
 
               {/* Tools & Settings */}
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className="bg-surface-1 rounded-xl p-6  border border-white/[0.06]">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <Settings className="w-5 h-5 text-gray-600" />
+                  <div className="w-10 h-10 bg-surface-2 rounded-lg flex items-center justify-center">
+                    <Settings className="w-5 h-5 text-white/50" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">Tools & Settings</h3>
+                  <h3 className="font-semibold text-[#FAFAFA]">Tools & Settings</h3>
                 </div>
                 <div className="space-y-3">
-                  <Link href="/dashboard/account" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                    <Settings className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                    <span className="text-sm text-gray-700">Profile settings</span>
+                  <Link href="/dashboard/account" className="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-0 transition-colors">
+                    <Settings className="w-4 h-4 text-white/50 flex-shrink-0" />
+                    <span className="text-sm text-white/60">Profile settings</span>
                   </Link>
                   {dashboardData.user.isCreator && (
                     <>
                       <button 
                         onClick={handleSyncPublica} 
                         disabled={isLoading} 
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors w-full text-left disabled:opacity-50"
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-0 transition-colors w-full text-left disabled:opacity-50"
                       >
-                        <RefreshCw className={`w-4 h-4 text-gray-600 flex-shrink-0 ${isLoading ? 'animate-spin' : ''}`} />
-                        <span className="text-sm text-gray-700">
+                        <RefreshCw className={`w-4 h-4 text-white/50 flex-shrink-0 ${isLoading ? 'animate-spin' : ''}`} />
+                        <span className="text-sm text-white/60">
                           {isLoading ? 'Syncing...' : 'Sync to Publica.la'}
                         </span>
                       </button>

@@ -9,12 +9,12 @@ type BadgeProps = {
 export default function Badge({ children, variant = 'default', className }: BadgeProps) {
   const base = 'inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full'
   const variants: Record<NonNullable<BadgeProps['variant']>, string> = {
-    default: 'bg-gray-100 text-gray-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-yellow-100 text-yellow-800',
-    danger: 'bg-red-100 text-red-800',
-    info: 'bg-brand-100 text-brand-800',
-    outline: 'border border-gray-300 text-gray-800',
+    default: 'bg-white/[0.08] text-white/70',
+    success: 'bg-emerald-500/15 text-emerald-400',
+    warning: 'bg-amber-500/15 text-amber-400',
+    danger: 'bg-red-500/15 text-red-400',
+    info: 'bg-brand-500/15 text-brand-400',
+    outline: 'border border-white/[0.1] text-white/70',
   }
   return <span className={cn(base, variants[variant], className)}>{children}</span>
 }

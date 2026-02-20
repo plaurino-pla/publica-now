@@ -4,9 +4,9 @@ import Skeleton from '@/components/ui/skeleton'
 
 export default function CreatorLoading() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0a0a0a]">
       {/* Header skeleton */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-6 py-8">
           <div className="flex items-start gap-6 mb-8">
             <Skeleton className="w-20 h-20 rounded-full" />
@@ -21,7 +21,7 @@ export default function CreatorLoading() {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-8 border-b border-gray-200">
+          <div className="flex items-center gap-8 border-b border-white/[0.06]">
             <Skeleton className="h-8 w-24" />
             <Skeleton className="h-8 w-16" />
             <Skeleton className="h-8 w-16" />
@@ -41,7 +41,7 @@ export default function CreatorLoading() {
 
         <div className="space-y-8">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="border-b border-gray-100 pb-8">
+            <div key={i} className="border-b border-white/[0.06] pb-8">
               <div className="flex items-start gap-4 mb-4">
                 <Skeleton className="w-12 h-12 rounded-full" />
                 <div className="flex-1">
@@ -67,5 +67,3 @@ export default function CreatorLoading() {
     </div>
   )
 }
-
-

@@ -49,11 +49,11 @@ export default function AnalyticsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-stone-50 py-8">
+      <div className="min-h-screen bg-surface-0 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading analytics...</p>
+            <p className="mt-4 text-white/50">Loading analytics...</p>
           </div>
         </div>
       </div>
@@ -62,14 +62,14 @@ export default function AnalyticsPage() {
 
   if (error || !analytics) {
     return (
-      <div className="min-h-screen bg-stone-50 py-8">
+      <div className="min-h-screen bg-surface-0 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <BarChart className="w-8 h-8 text-yellow-600" />
+              <BarChart className="w-8 h-8 text-amber-400" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No analytics data yet</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No analytics data yet</h3>
+            <p className="text-white/50 mb-4">
               {error || 'Start creating content to see your analytics here. Your performance data will appear once you publish articles and gain readers.'}
             </p>
             <div className="flex justify-center gap-3">
@@ -90,7 +90,7 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       <PageHeader title="Analytics" subtitle="Track your content performance and audience engagement" />
 
       {/* Main Content */}
@@ -152,10 +152,10 @@ export default function AnalyticsPage() {
 
         {/* Note about placeholder data */}
         {analytics.note && (
-          <div className="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div className="mb-8 p-4 bg-amber-500/10 border border-yellow-200 rounded-lg">
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 bg-yellow-100 rounded-full flex items-center justify-center">
-                <span className="text-yellow-600 text-xs">ℹ</span>
+                <span className="text-amber-400 text-xs">ℹ</span>
               </div>
               <p className="text-sm text-yellow-800">{analytics.note}</p>
             </div>
@@ -174,13 +174,13 @@ export default function AnalyticsPage() {
                 {analytics.monthlyData.map((month, index) => (
                   <div key={month.month} className="flex-1 flex flex-col items-center">
                     <div 
-                      className="w-full bg-brand-500 rounded-t"
+                      className="w-full bg-brand-500/100 rounded-t"
                       style={{ 
                         height: `${Math.max(month.articles * 20, 20)}px`,
                         minHeight: '20px'
                       }}
                     />
-                    <span className="text-xs text-gray-600 mt-2">{month.month}</span>
+                    <span className="text-xs text-white/50 mt-2">{month.month}</span>
                     <span className="text-xs font-medium">{month.articles}</span>
                   </div>
                 ))}
@@ -198,13 +198,13 @@ export default function AnalyticsPage() {
                 {analytics.monthlyData.map((month, index) => (
                   <div key={month.month} className="flex-1 flex flex-col items-center">
                     <div 
-                      className="w-full bg-green-500 rounded-t"
+                      className="w-full bg-emerald-500/100 rounded-t"
                       style={{ 
                         height: `${Math.max(month.revenue * 4, 20)}px`,
                         minHeight: '20px'
                       }}
                     />
-                    <span className="text-xs text-gray-600 mt-2">{month.month}</span>
+                    <span className="text-xs text-white/50 mt-2">{month.month}</span>
                     <span className="text-xs font-medium">${month.revenue.toFixed(2)}</span>
                   </div>
                 ))}
@@ -214,7 +214,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Last Updated */}
-        <div className="mt-8 text-center text-sm text-gray-500">
+        <div className="mt-8 text-center text-sm text-white/40">
           Last updated: {new Date(analytics.lastUpdated).toLocaleString()}
         </div>
       </div>

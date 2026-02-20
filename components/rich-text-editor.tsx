@@ -4,14 +4,14 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
-import { 
-  Bold, 
-  Italic, 
-  List, 
-  ListOrdered, 
-  Quote, 
-  Heading1, 
-  Heading2, 
+import {
+  Bold,
+  Italic,
+  List,
+  ListOrdered,
+  Quote,
+  Heading1,
+  Heading2,
   Heading3,
   Image as ImageIcon,
   Link as LinkIcon,
@@ -57,10 +57,10 @@ const MenuBar = ({ editor }: { editor: any }) => {
   }
 
   return (
-    <div className="border-b border-gray-200 p-3 bg-gray-50 rounded-t-lg">
+    <div className="border-b border-white/[0.08] p-3 bg-surface-1 rounded-t-lg">
       <div className="flex flex-wrap items-center gap-2">
         {/* Text Formatting */}
-        <div className="flex items-center gap-1 border-r border-gray-300 pr-3">
+        <div className="flex items-center gap-1 border-r border-white/[0.1] pr-3">
           <Button
             variant={editor.isActive('bold') ? 'default' : 'ghost'}
             size="sm"
@@ -96,7 +96,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         </div>
 
         {/* Headings */}
-        <div className="flex items-center gap-1 border-r border-gray-300 pr-3">
+        <div className="flex items-center gap-1 border-r border-white/[0.1] pr-3">
           <Button
             variant={editor.isActive('heading', { level: 1 }) ? 'default' : 'ghost'}
             size="sm"
@@ -124,7 +124,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         </div>
 
         {/* Lists */}
-        <div className="flex items-center gap-1 border-r border-gray-300 pr-3">
+        <div className="flex items-center gap-1 border-r border-white/[0.1] pr-3">
           <Button
             variant={editor.isActive('bulletList') ? 'default' : 'ghost'}
             size="sm"
@@ -152,7 +152,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         </div>
 
         {/* Media & Links */}
-        <div className="flex items-center gap-1 border-r border-gray-300 pr-3">
+        <div className="flex items-center gap-1 border-r border-white/[0.1] pr-3">
           <Button
             variant="ghost"
             size="sm"
@@ -196,7 +196,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
       {/* Image Input */}
       {showImageInput && (
-        <div className="mt-3 p-3 bg-white border border-gray-200 rounded-lg">
+        <div className="mt-3 p-3 bg-surface-2 border border-white/[0.08] rounded-lg">
           <div className="flex items-center gap-2">
             <Input
               type="url"
@@ -208,9 +208,9 @@ const MenuBar = ({ editor }: { editor: any }) => {
             <Button size="sm" onClick={addImage}>
               Add Image
             </Button>
-            <Button 
-              size="sm" 
-              variant="outline" 
+            <Button
+              size="sm"
+              variant="outline"
               onClick={() => setShowImageInput(false)}
             >
               Cancel
@@ -221,7 +221,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
       {/* Link Input */}
       {showLinkInput && (
-        <div className="mt-3 p-3 bg-white border border-gray-200 rounded-lg">
+        <div className="mt-3 p-3 bg-surface-2 border border-white/[0.08] rounded-lg">
           <div className="flex items-center gap-2">
             <Input
               type="url"
@@ -233,9 +233,9 @@ const MenuBar = ({ editor }: { editor: any }) => {
             <Button size="sm" onClick={setLink}>
               Add Link
             </Button>
-            <Button 
-              size="sm" 
-              variant="outline" 
+            <Button
+              size="sm"
+              variant="outline"
               onClick={() => setShowLinkInput(false)}
             >
               Cancel
@@ -255,7 +255,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-brand-600 underline cursor-pointer',
+          class: 'text-brand-400 underline cursor-pointer',
         },
       }),
     ],
@@ -271,7 +271,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
   })
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden">
+    <div className="border border-white/[0.08] rounded-lg overflow-hidden">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>

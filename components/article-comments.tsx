@@ -57,9 +57,9 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
   if (!session?.user) {
     return (
       <div className="text-center py-8">
-        <MessageCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 mb-2">Join the conversation</h3>
-        <p className="text-gray-600 mb-4">Sign in to leave a comment and engage with other readers.</p>
+        <MessageCircle className="w-12 h-12 text-white/30 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">Join the conversation</h3>
+        <p className="text-white/50 mb-4">Sign in to leave a comment and engage with other readers.</p>
         <Button asChild>
           <a href="/auth/signin">Sign In to Comment</a>
         </Button>
@@ -70,7 +70,7 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
   return (
     <div className="mt-8">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+        <h3 className="text-xl font-semibold text-[#FAFAFA] flex items-center gap-2">
           <MessageCircle className="w-5 h-5" />
           Comments ({comments.length})
         </h3>
@@ -97,8 +97,8 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
                 disabled={isSubmitting}
               />
               <div className="flex justify-end">
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={!newComment.trim() || isSubmitting}
                   size="sm"
                 >
@@ -112,25 +112,25 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
           {/* Comments List */}
           <div className="space-y-4">
             {comments.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-white/40">
                 <MessageCircle className="w-8 h-8 mx-auto mb-2" />
                 <p>No comments yet. Be the first to share your thoughts!</p>
               </div>
             ) : (
               comments.map((comment) => (
-                <div key={comment.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                <div key={comment.id} className="border border-white/[0.06] rounded-lg p-4 bg-surface-1">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-brand-600" />
+                    <div className="w-8 h-8 bg-brand-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-brand-400" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium text-gray-900">{comment.author.name}</span>
-                        <span className="text-sm text-gray-500">
+                        <span className="font-medium text-[#FAFAFA]">{comment.author.name}</span>
+                        <span className="text-sm text-white/40">
                           {new Date(comment.createdAt).toLocaleDateString()}
                         </span>
                       </div>
-                      <p className="text-gray-700">{comment.content}</p>
+                      <p className="text-white/60">{comment.content}</p>
                     </div>
                   </div>
                 </div>

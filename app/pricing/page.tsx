@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-brand-50">
+    <div className="min-h-screen bg-[#0a0a0a]">
       {/* Header */}
       <PageSection background="white">
         <Container className="text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">Start publishing for free. Only pay when you earn. No monthly fees, no hidden costs, just clear transaction fees.</p>
+          <h1 className="font-heading text-5xl font-bold text-[#FAFAFA] mb-6">Simple, Transparent Pricing</h1>
+          <p className="text-xl text-white/50 max-w-3xl mx-auto">Start publishing for free. Only pay when you earn. No monthly fees, no hidden costs, just clear transaction fees.</p>
         </Container>
       </PageSection>
 
@@ -32,29 +32,29 @@ export default function PricingPage() {
       <PageSection>
         <Container>
           <div className="max-w-4xl mx-auto">
-            <Card className="text-center border-2 border-brand-200 shadow-xl">
+            <Card className="text-center border-2 border-white/[0.08]">
               <CardHeader className="pb-8">
-                <CardTitle className="text-4xl text-brand-600 mb-2">Creator Plan</CardTitle>
+                <CardTitle className="font-heading text-4xl text-brand-400 mb-2">Creator Plan</CardTitle>
                 <CardDescription className="text-xl">Everything you need to monetize your content</CardDescription>
               </CardHeader>
               <CardContent className="space-y-8">
                 <div className="text-center">
-                  <div className="text-6xl font-bold text-gray-900 mb-2"><span className="text-3xl">$</span>0</div>
-                  <p className="text-gray-600 text-lg">per month</p>
-                  <p className="text-sm text-gray-500 mt-2">No upfront costs, no monthly fees</p>
+                  <div className="text-6xl font-bold text-[#FAFAFA] mb-2"><span className="text-3xl">$</span>0</div>
+                  <p className="text-white/50 text-lg">per month</p>
+                  <p className="text-sm text-white/40 mt-2">No upfront costs, no monthly fees</p>
                 </div>
                 <div className="space-y-4 text-left max-w-lg mx-auto">
                   {['Unlimited content publishing','Beautiful content pages','Built-in payment processing','Analytics and insights','Customer support','Custom branding','Email marketing tools'].map((item) => (
-                    <div key={item} className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" /><span>{item}</span></div>
+                    <div key={item} className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /><span>{item}</span></div>
                   ))}
                 </div>
-                <div className="pt-6 border-t border-gray-200">
-                  <div className="bg-brand-50 rounded-lg p-6 mb-6">
+                <div className="pt-6 border-t border-white/[0.06]">
+                  <div className="bg-brand-500/10 rounded-lg p-6 mb-6">
                     <div className="flex items-start gap-3">
-                      <Info className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
+                      <Info className="w-5 h-5 text-brand-400 flex-shrink-0 mt-0.5" />
                       <div className="text-left">
-                        <h4 className="font-semibold text-brand-900 mb-2">Transaction Fee: 15%</h4>
-                        <p className="text-brand-800 text-sm">When you accept subscriptions or payments, we take a 15% transaction fee. This includes all payment gateway fees, so you don't pay anything extra.</p>
+                        <h4 className="font-heading font-semibold text-brand-400 mb-2">Transaction Fee: 15%</h4>
+                        <p className="text-brand-400 text-sm">When you accept subscriptions or payments, we take a 15% transaction fee. This includes all payment gateway fees, so you don't pay anything extra.</p>
                       </div>
                     </div>
                   </div>
@@ -71,7 +71,7 @@ export default function PricingPage() {
       {/* Fee Breakdown */}
       <PageSection background="white">
         <Container>
-          <div className="text-center mb-16"><h2 className="text-4xl font-bold text-gray-900 mb-4">What the 15% Covers</h2><p className="text-xl text-gray-600 max-w-2xl mx-auto">Our transaction fee includes everything you need to run your business</p></div>
+          <div className="text-center mb-16"><h2 className="font-heading text-4xl font-bold text-[#FAFAFA] mb-4">What the 15% Covers</h2><p className="text-xl text-white/50 max-w-2xl mx-auto">Our transaction fee includes everything you need to run your business</p></div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               { icon: '💳', title: 'Payment Processing', desc: 'Credit card processing, bank transfers, and international payments. All major payment methods supported.' },
@@ -81,7 +81,7 @@ export default function PricingPage() {
               { icon: '🎯', title: 'Marketing Tools', desc: 'Email campaigns, social sharing, and audience building tools. Grow your following and increase sales.' },
               { icon: '🛠️', title: 'Customer Support', desc: "Help desk, documentation, and expert support. We're here to help you succeed every step of the way." },
             ].map((f) => (
-              <Card key={f.title} className="text-center"><CardHeader><div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-4"><span className="text-2xl">{f.icon}</span></div><CardTitle className="text-xl">{f.title}</CardTitle></CardHeader><CardContent><p className="text-gray-600">{f.desc}</p></CardContent></Card>
+              <Card key={f.title} className="text-center"><CardHeader><div className="w-16 h-16 bg-brand-500/15 rounded-full flex items-center justify-center mx-auto mb-4"><span className="text-2xl">{f.icon}</span></div><CardTitle className="font-heading text-xl">{f.title}</CardTitle></CardHeader><CardContent><p className="text-white/50">{f.desc}</p></CardContent></Card>
             ))}
           </div>
         </Container>
@@ -90,14 +90,14 @@ export default function PricingPage() {
       {/* Comparison */}
       <PageSection background="muted">
         <Container>
-          <div className="text-center mb-16"><h2 className="text-4xl font-bold text-gray-900 mb-4">How We Compare</h2><p className="text-xl text-gray-600 max-w-2xl mx-auto">See why creators choose publica.now over other platforms</p></div>
+          <div className="text-center mb-16"><h2 className="font-heading text-4xl font-bold text-[#FAFAFA] mb-4">How We Compare</h2><p className="text-xl text-white/50 max-w-2xl mx-auto">See why creators choose publica.now over other platforms</p></div>
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="grid grid-cols-4 text-sm"><div className="p-4 bg-gray-50 font-semibold">Platform</div><div className="p-4 bg-gray-50 font-semibold">Monthly Fee</div><div className="p-4 bg-gray-50 font-semibold">Transaction Fee</div><div className="p-4 bg-gray-50 font-semibold">Total Cost</div></div>
-              <div className="grid grid-cols-4 text-sm border-t"><div className="p-4 font-semibold">publica.now</div><div className="p-4 text-green-600 font-semibold">$0</div><div className="p-4">15%</div><div className="p-4 text-green-600 font-semibold">15% only</div></div>
-              <div className="grid grid-cols-4 text-sm border-t bg-gray-50"><div className="p-4">Other Platforms</div><div className="p-4">$29-99/month</div><div className="p-4">3-5% + fees</div><div className="p-4 text-red-600">$348-1,188/year + fees</div></div>
+            <div className="bg-surface-1 rounded-lg border border-white/[0.06] overflow-hidden">
+              <div className="grid grid-cols-4 text-sm"><div className="p-4 bg-surface-2 font-semibold">Platform</div><div className="p-4 bg-surface-2 font-semibold">Monthly Fee</div><div className="p-4 bg-surface-2 font-semibold">Transaction Fee</div><div className="p-4 bg-surface-2 font-semibold">Total Cost</div></div>
+              <div className="grid grid-cols-4 text-sm border-t border-white/[0.06]"><div className="p-4 font-semibold">publica.now</div><div className="p-4 text-green-400 font-semibold">$0</div><div className="p-4">15%</div><div className="p-4 text-green-400 font-semibold">15% only</div></div>
+              <div className="grid grid-cols-4 text-sm border-t border-white/[0.06] bg-surface-2"><div className="p-4">Other Platforms</div><div className="p-4">$29-99/month</div><div className="p-4">3-5% + fees</div><div className="p-4 text-red-400">$348-1,188/year + fees</div></div>
             </div>
-            <div className="text-center mt-8"><p className="text-gray-600 mb-6"><strong>Example:</strong> If you earn $1,000/month, you keep $850 with publica.now vs. $650-750 with other platforms (after monthly fees and transaction costs).</p><Button asChild size="lg" className="text-lg px-8 py-4"><Link href="/auth/signup" aria-label="Start saving money today">Start Saving Money Today</Link></Button></div>
+            <div className="text-center mt-8"><p className="text-white/50 mb-6"><strong>Example:</strong> If you earn $1,000/month, you keep $850 with publica.now vs. $650-750 with other platforms (after monthly fees and transaction costs).</p><Button asChild size="lg" className="text-lg px-8 py-4"><Link href="/auth/signup" aria-label="Start saving money today">Start Saving Money Today</Link></Button></div>
           </div>
         </Container>
       </PageSection>
@@ -105,7 +105,7 @@ export default function PricingPage() {
       {/* FAQ */}
       <PageSection background="white">
         <Container>
-          <div className="text-center mb-16"><h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2></div>
+          <div className="text-center mb-16"><h2 className="font-heading text-4xl font-bold text-[#FAFAFA] mb-4">Frequently Asked Questions</h2></div>
           <div className="max-w-3xl mx-auto space-y-8">
             {[
               { q: 'Is there really no monthly fee?', a: 'Yes, absolutely! You can publish unlimited content for free. We only take a 15% transaction fee when you actually earn money from subscriptions or sales.' },
@@ -114,7 +114,7 @@ export default function PricingPage() {
               { q: 'Do you support international payments?', a: 'Yes! We support customers and creators worldwide with multiple currencies and payment methods.' },
               { q: 'What if I have questions about pricing?', a: "Our support team is here to help! Contact us anytime with questions about pricing, fees, or anything else." },
             ].map((item) => (
-              <div key={item.q} className="border-b border-gray-200 pb-6"><h3 className="text-xl font-semibold text-gray-900 mb-3">{item.q}</h3><p className="text-gray-600">{item.a}</p></div>
+              <div key={item.q} className="border-b border-white/[0.08] pb-6"><h3 className="font-heading text-xl font-semibold text-[#FAFAFA] mb-3">{item.q}</h3><p className="text-white/50">{item.a}</p></div>
             ))}
           </div>
         </Container>
@@ -123,7 +123,7 @@ export default function PricingPage() {
       {/* Final CTA */}
       <PageSection background="brand">
         <Container className="text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Earning More?</h2>
+          <h2 className="font-heading text-4xl font-bold text-white mb-6">Ready to Start Earning More?</h2>
           <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">Join thousands of creators who are already saving money and earning more with publica.now. Start publishing today - it's completely free.</p>
           <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-4"><Link href="/auth/signup" aria-label="Start Publishing Free">Start Publishing Free</Link></Button>
         </Container>

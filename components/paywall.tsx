@@ -48,11 +48,11 @@ export default function Paywall({
     setLoadingType(type)
 
     try {
-      const endpoint = type === 'article' 
+      const endpoint = type === 'article'
         ? '/api/stripe/checkout/article'
         : '/api/stripe/checkout/subscription'
 
-      const payload = type === 'article' 
+      const payload = type === 'article'
         ? { articleId }
         : { creatorId }
 
@@ -87,13 +87,13 @@ export default function Paywall({
 
   if (isSubscribed) {
     return (
-      <Card className="border-green-200 bg-green-50">
+      <Card className="border-emerald-500/20 bg-emerald-500/10">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-            <Crown className="h-6 w-6 text-green-600" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20">
+            <Crown className="h-6 w-6 text-emerald-400" />
           </div>
-          <CardTitle className="text-green-800">Subscriber Access</CardTitle>
-          <CardDescription className="text-green-600">
+          <CardTitle className="text-emerald-300">Subscriber Access</CardTitle>
+          <CardDescription className="text-emerald-400">
             You have full access to all content from {creatorName}
           </CardDescription>
         </CardHeader>
@@ -103,13 +103,13 @@ export default function Paywall({
 
   if (hasPurchased && articleId) {
     return (
-      <Card className="border-brand-200 bg-brand-50">
+      <Card className="border-brand-500/20 bg-brand-500/10">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-100">
-            <Check className="h-6 w-6 text-brand-600" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-500/20">
+            <Check className="h-6 w-6 text-brand-400" />
           </div>
-          <CardTitle className="text-brand-800">Article Purchased</CardTitle>
-          <CardDescription className="text-brand-600">
+          <CardTitle className="text-brand-300">Article Purchased</CardTitle>
+          <CardDescription className="text-brand-400">
             You have access to this article
           </CardDescription>
         </CardHeader>
@@ -119,13 +119,13 @@ export default function Paywall({
 
   return (
     <div className="space-y-6">
-      <Card className="border-amber-200 bg-amber-50">
+      <Card className="border-amber-500/20 bg-amber-500/10">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
-            <Lock className="h-6 w-6 text-amber-600" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20">
+            <Lock className="h-6 w-6 text-amber-400" />
           </div>
-          <CardTitle className="text-amber-800">Premium Content</CardTitle>
-          <CardDescription className="text-amber-600">
+          <CardTitle className="text-amber-300">Premium Content</CardTitle>
+          <CardDescription className="text-amber-400">
             This content requires payment to access
           </CardDescription>
         </CardHeader>
@@ -134,7 +134,7 @@ export default function Paywall({
       <div className="grid gap-4 md:grid-cols-2">
         {/* Individual Article Purchase */}
         {articleId && (
-          <Card className="border-2 border-gray-200 hover:border-brand-300 transition-colors">
+          <Card className="border-2 border-white/[0.08] hover:border-brand-500/30 transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
@@ -146,7 +146,7 @@ export default function Paywall({
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-brand-600">
+                <div className="text-3xl font-bold text-brand-400">
                   {formatPrice(articlePrice)}
                 </div>
                 <div className="mt-1"><Badge variant="outline">One-time purchase</Badge></div>
@@ -166,7 +166,7 @@ export default function Paywall({
 
         {/* Subscription */}
         {subscriptionPriceId && (
-          <Card className="border-2 border-purple-200 hover:border-purple-300 transition-colors">
+          <Card className="border-2 border-purple-500/20 hover:border-purple-500/30 transition-colors">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Crown className="h-5 w-5" />
@@ -178,7 +178,7 @@ export default function Paywall({
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">
+                <div className="text-3xl font-bold text-purple-400">
                   {formatPrice(subscriptionPrice)}
                 </div>
                 <div className="mt-1"><Badge variant="outline">Per month</Badge></div>
@@ -199,11 +199,11 @@ export default function Paywall({
       </div>
 
       {error && (
-        <div className="text-red-600 text-sm bg-red-50 p-3 rounded-md text-center">
+        <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md text-center">
           {error}
         </div>
       )}
-      <div className="text-center text-sm text-gray-500">
+      <div className="text-center text-sm text-white/40">
         Secure payment powered by Stripe
       </div>
     </div>

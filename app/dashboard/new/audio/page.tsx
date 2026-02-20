@@ -272,7 +272,7 @@ export default function AudioPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-1">
       <PageHeader
         title="New audio post"
         actions={(
@@ -281,7 +281,7 @@ export default function AudioPostPage() {
               variant="outline" 
               size="sm"
               onClick={() => setShowSettings(!showSettings)}
-              className="border-gray-300 text-gray-700 hover:bg-gray-50"
+              className="border-white/[0.08] text-white/60 hover:bg-surface-0"
             >
               <Settings className="w-4 h-4 mr-2" />
               {showSettings ? 'Hide Settings' : 'Show Settings'}
@@ -309,21 +309,21 @@ export default function AudioPostPage() {
               placeholder="Audio post title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full text-4xl font-bold text-gray-900 placeholder-gray-400 border-0 outline-none resize-none"
+              className="w-full text-4xl font-bold text-[#FAFAFA] placeholder-gray-400 border-0 outline-none resize-none"
               style={{ minHeight: 'auto' }}
             />
           </div>
 
           {/* Audio Recording/Upload Section */}
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-900">Audio content</h2>
+            <h2 className="text-xl font-semibold text-[#FAFAFA]">Audio content</h2>
             
             {/* Recording Controls */}
-            <div className="border border-gray-200 rounded-lg p-6">
+            <div className="border border-white/[0.06] rounded-lg p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-gray-900">Record or upload audio</h3>
+                <h3 className="text-lg font-medium text-[#FAFAFA]">Record or upload audio</h3>
                 {recordingTime > 0 && (
-                  <span className="text-sm text-gray-600 font-mono">
+                  <span className="text-sm text-white/50 font-mono">
                     {formatTime(recordingTime)}
                   </span>
                 )}
@@ -373,16 +373,16 @@ export default function AudioPostPage() {
               </div>
 
               {!isRecordingSupported && (
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-white/50 mb-4">
                   Audio recording is not supported in your browser. Please upload an audio file instead.
                 </p>
               )}
 
               {/* File size information */}
-              <div className="mt-4 p-3 bg-brand-50 border border-brand-200 rounded-lg">
+              <div className="mt-4 p-3 bg-brand-500/10 border border-brand-200 rounded-lg">
                 <div className="flex items-start gap-2">
-                  <div className="w-5 h-5 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-brand-600 text-xs">ℹ</span>
+                  <div className="w-5 h-5 bg-brand-500/15 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-brand-400 text-xs">ℹ</span>
                   </div>
                   <div className="text-sm text-brand-800">
                     <p className="font-medium mb-1">Audio file requirements:</p>
@@ -391,7 +391,7 @@ export default function AudioPostPage() {
                       <li>• Supported formats: MP3, WAV, AAC, OGG, M4A</li>
                       <li>• For large files, consider compressing or using lower quality settings</li>
                     </ul>
-                    <p className="text-xs text-brand-700 mt-2">
+                    <p className="text-xs text-brand-400 mt-2">
                       <strong>Note:</strong> If you encounter upload errors with large files, the new 150MB limit may still be propagating. Try again in a few minutes.
                     </p>
                   </div>
@@ -400,11 +400,11 @@ export default function AudioPostPage() {
 
               {/* Audio Player */}
               {audioUrl && (
-                <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                <div className="border border-white/[0.06] rounded-lg p-4 bg-surface-0">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <FileAudio className="w-5 h-5 text-gray-600" />
-                      <span className="text-sm font-medium text-gray-900">
+                      <FileAudio className="w-5 h-5 text-white/50" />
+                      <span className="text-sm font-medium text-[#FAFAFA]">
                         {uploadedFile ? uploadedFile.name : 'Recorded audio'}
                       </span>
                     </div>
@@ -413,7 +413,7 @@ export default function AudioPostPage() {
                       onClick={clearAudio}
                       variant="ghost"
                       size="sm"
-                      className="text-red-600 hover:text-red-700"
+                      className="text-red-400 hover:text-red-400"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -435,42 +435,42 @@ export default function AudioPostPage() {
 
           {/* Description */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-900">Description</h3>
+            <h3 className="text-lg font-medium text-[#FAFAFA]">Description</h3>
             <textarea
               placeholder="Add a description, transcript, or notes about your audio content..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full min-h-[200px] text-lg text-gray-900 placeholder-gray-400 border border-gray-200 rounded-lg p-4 outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none"
+              className="w-full min-h-[200px] text-lg text-[#FAFAFA] placeholder-gray-400 border border-white/[0.06] rounded-lg p-4 outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none"
             />
           </div>
 
           {/* Settings Panel */}
           {showSettings && (
-            <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+            <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-0">
               <div className="mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Post settings</h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <h3 className="text-lg font-semibold text-[#FAFAFA]">Post settings</h3>
+                <p className="text-sm text-white/50 mt-1">
                   Configure visibility, pricing, and cover image for your audio post
                 </p>
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Cover image URL</label>
+                  <label className="block text-sm font-medium text-white/60 mb-2">Cover image URL</label>
                   <input
                     type="url"
                     placeholder="https://example.com/image.jpg"
                     value={coverUrl}
                     onChange={(e) => setCoverUrl(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-3 py-2 border border-white/[0.08] rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Visibility</label>
+                  <label className="block text-sm font-medium text-white/60 mb-2">Visibility</label>
                   <select
                     value={visibility}
                     onChange={(e) => setVisibility(e.target.value as 'free' | 'paid' | 'subscribers')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-3 py-2 border border-white/[0.08] rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                   >
                     <option value="free">Free</option>
                     <option value="paid">Paid</option>
@@ -480,7 +480,7 @@ export default function AudioPostPage() {
                 
                 {visibility === 'paid' && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Price (USD)</label>
+                    <label className="block text-sm font-medium text-white/60 mb-2">Price (USD)</label>
                     <input
                       type="number"
                       step="0.01"
@@ -488,7 +488,7 @@ export default function AudioPostPage() {
                       placeholder="9.99"
                       value={priceUSD}
                       onChange={(e) => setPriceUSD(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                      className="w-full px-3 py-2 border border-white/[0.08] rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                     />
                   </div>
                 )}
@@ -498,7 +498,7 @@ export default function AudioPostPage() {
 
           {/* Message */}
           {message && (
-            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-50 text-red-800' : 'bg-green-50 text-green-800'}`}>
+            <div className={`p-4 rounded-lg ${message.includes('Failed') ? 'bg-red-500/10 text-red-800' : 'bg-emerald-500/10 text-green-800'}`}>
               {message}
             </div>
           )}

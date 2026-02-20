@@ -100,8 +100,8 @@ function ContentRenderer({ article }: { article: any }) {
               style={{ minHeight: '600px' }}
             />
           </div>
-          <p className="text-xs text-gray-500 mt-2 text-center">
-            Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
+          <p className="text-xs text-white/40 mt-2 text-center">
+            Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">Publica.la</a>
           </p>
         </div>
       )
@@ -131,18 +131,18 @@ function ContentRenderer({ article }: { article: any }) {
                 style={{ minHeight: '600px' }}
               />
             </div>
-            <p className="text-xs text-gray-500 mt-2 text-center">
-              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
+            <p className="text-xs text-white/40 mt-2 text-center">
+              Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">Publica.la</a>
             </p>
           </div>
         ) : article.audioUrl ? (
           <div className="w-full">
-            <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+            <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-1">
               <div className="flex items-center gap-2 mb-4">
-                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3l14 9-14 9V3z" />
                 </svg>
-                <h3 className="text-lg font-medium text-gray-900">Audio Content</h3>
+                <h3 className="text-lg font-medium text-[#FAFAFA]">Audio Content</h3>
               </div>
               <audio
                 src={article.audioUrl}
@@ -153,8 +153,8 @@ function ContentRenderer({ article }: { article: any }) {
             </div>
           </div>
         ) : (
-          <div className="text-center py-8 border border-gray-200 rounded-lg">
-            <p className="text-gray-600">Audio content available</p>
+          <div className="text-center py-8 border border-white/[0.06] rounded-lg">
+            <p className="text-white/50">Audio content available</p>
           </div>
         )}
       </div>
@@ -164,8 +164,8 @@ function ContentRenderer({ article }: { article: any }) {
   if (article.contentType === 'image') {
     return (
       <div className="space-y-4">
-        <div className="text-center py-8 border border-gray-200 rounded-lg">
-          <p className="text-gray-600">Image content available</p>
+        <div className="text-center py-8 border border-white/[0.06] rounded-lg">
+          <p className="text-white/50">Image content available</p>
         </div>
         {article.bodyMarkdown && <TextArticleContent article={article} />}
       </div>
@@ -188,13 +188,13 @@ function ContentRenderer({ article }: { article: any }) {
                 style={{ minHeight: '400px' }}
               />
             </div>
-            <p className="text-xs text-gray-500 mt-2 text-center">
-              Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Cloudflare Stream</a>
+            <p className="text-xs text-white/40 mt-2 text-center">
+              Powered by <a href="https://cloudflare.com/stream" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">Cloudflare Stream</a>
             </p>
           </div>
         ) : (
-          <div className="text-center py-8 border border-gray-200 rounded-lg">
-            <p className="text-gray-600">Video content available</p>
+          <div className="text-center py-8 border border-white/[0.06] rounded-lg">
+            <p className="text-white/50">Video content available</p>
           </div>
         )}
         {article.bodyMarkdown && <TextArticleContent article={article} />}
@@ -359,12 +359,12 @@ export default async function ContentPage({ params }: ContentPageProps) {
       : 500
 
     return (
-      <div className="min-h-screen bg-stone-50">
+      <div className="min-h-screen bg-[#0a0a0a]">
         <div className="max-w-4xl mx-auto px-4 py-8">
           {/* Back Navigation */}
           <Link
             href={`/${creator.slug}`}
-            className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-6"
+            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to {creator.name}
@@ -406,11 +406,11 @@ export default async function ContentPage({ params }: ContentPageProps) {
           )}
 
           {/* Footer */}
-          <div className="text-center mt-16 pt-8 border-t border-gray-200">
-            <p className="text-gray-600">
-              Published on <span className="font-medium text-brand-600">publica.now</span>
+          <div className="text-center mt-16 pt-8 border-t border-white/[0.06]">
+            <p className="text-white/50">
+              Published on <span className="font-medium text-brand-400">publica.now</span>
             </p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-white/40 mt-2">
               Professional publishing infrastructure for independent creators
             </p>
           </div>

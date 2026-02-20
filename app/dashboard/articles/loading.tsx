@@ -4,7 +4,7 @@ import Skeleton from '@/components/ui/skeleton'
 
 export default function DashboardArticlesLoading() {
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
           <Skeleton className="h-8 w-40 mb-2" />
@@ -13,7 +13,7 @@ export default function DashboardArticlesLoading() {
 
         <div className="space-y-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-white border border-gray-200 rounded-xl p-6">
+            <div key={i} className="bg-surface-0 border border-white/[0.06] rounded-xl p-6">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-4">

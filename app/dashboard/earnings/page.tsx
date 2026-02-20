@@ -45,11 +45,11 @@ export default function EarningsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-stone-50 py-8">
+      <div className="min-h-screen bg-surface-0 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading earnings...</p>
+            <p className="mt-4 text-white/50">Loading earnings...</p>
           </div>
         </div>
       </div>
@@ -58,14 +58,14 @@ export default function EarningsPage() {
 
   if (error || !earnings) {
     return (
-      <div className="min-h-screen bg-stone-50 py-8">
+      <div className="min-h-screen bg-surface-0 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <DollarSign className="w-8 h-8 text-yellow-600" />
+              <DollarSign className="w-8 h-8 text-amber-400" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No earnings data yet</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No earnings data yet</h3>
+            <p className="text-white/50 mb-4">
               {error || 'Start monetizing your content to see your earnings here. Your revenue data will appear once you publish paid articles or gain subscribers.'}
             </p>
             <div className="flex justify-center gap-3">
@@ -86,7 +86,7 @@ export default function EarningsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       <PageHeader title="Earnings" subtitle="Track your revenue and manage payouts" />
 
       {/* Main Content */}
@@ -202,13 +202,13 @@ export default function EarningsPage() {
               {earnings.monthlyEarnings.map((revenue, index) => (
                 <div key={earnings.monthlyLabels[index]} className="flex-1 flex flex-col items-center">
                   <div 
-                    className="w-full bg-green-500 rounded-t"
+                    className="w-full bg-emerald-500/100 rounded-t"
                     style={{ 
                       height: `${Math.max(revenue * 2, 20)}px`,
                       minHeight: '20px'
                     }}
                   />
-                  <span className="text-xs text-gray-600 mt-2">{earnings.monthlyLabels[index]}</span>
+                  <span className="text-xs text-white/50 mt-2">{earnings.monthlyLabels[index]}</span>
                   <span className="text-xs font-medium">${revenue.toFixed(2)}</span>
                 </div>
               ))}
@@ -224,12 +224,12 @@ export default function EarningsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-brand-50 rounded-lg">
+              <div className="p-4 bg-brand-500/10 rounded-lg">
                 <h4 className="font-medium text-brand-900 mb-2">Available Balance</h4>
                 <p className="text-2xl font-bold text-brand-900">${earnings.pendingPayout.toFixed(2)}</p>
-                <p className="text-sm text-brand-700 mt-1">Ready for withdrawal</p>
+                <p className="text-sm text-brand-400 mt-1">Ready for withdrawal</p>
               </div>
-              <div className="p-4 bg-green-50 rounded-lg">
+              <div className="p-4 bg-emerald-500/10 rounded-lg">
                 <h4 className="font-medium text-green-900 mb-2">Minimum Payout</h4>
                 <p className="text-2xl font-bold text-green-900">$50.00</p>
                 <p className="text-sm text-green-700 mt-1">Required to withdraw</p>
@@ -241,7 +241,7 @@ export default function EarningsPage() {
                 className={`px-6 py-3 rounded-lg font-medium ${
                   earnings.pendingPayout >= 50
                     ? 'bg-brand-600 text-white hover:bg-brand-700'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-gray-300 text-white/40 cursor-not-allowed'
                 }`}
               >
                 {earnings.pendingPayout >= 50 ? 'Request Payout' : 'Minimum $50 required'}
@@ -251,7 +251,7 @@ export default function EarningsPage() {
         </Card>
 
         {/* Last Updated */}
-        <div className="mt-8 text-center text-sm text-gray-500">
+        <div className="mt-8 text-center text-sm text-white/40">
           Last updated: {new Date(earnings.lastUpdated).toLocaleString()}
         </div>
       </div>

@@ -16,10 +16,9 @@ export default function SignInPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeMethod, setActiveMethod] = useState<'credentials' | 'magic'>('credentials')
-  const [isEmailConfigured, setIsEmailConfigured] = useState(true) // Assume true initially
+  const [isEmailConfigured, setIsEmailConfigured] = useState(true)
   const router = useRouter()
 
-  // Check if email is configured
   useEffect(() => {
     const checkEmailConfig = async () => {
       try {
@@ -28,12 +27,11 @@ export default function SignInPage() {
           const config = await response.json()
           setIsEmailConfigured(config.configured)
         }
-      } catch (error) {
-        console.log('Could not check email configuration')
+      } catch {
         setIsEmailConfigured(false)
       }
     }
-    
+
     checkEmailConfig()
   }, [])
 
@@ -43,24 +41,24 @@ export default function SignInPage() {
     setIsLoading(true)
     setError('')
     setSuccess('')
-    
+
     try {
       const form = new FormData(e.currentTarget)
       const email = form.get('email') as string
       const password = form.get('password') as string
-      
-      const res = await signIn('credentials', { 
-        email, 
-        password, 
-        redirect: false 
+
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false
       })
-      
+
       if (res?.ok) {
         router.push('/dashboard')
       } else {
         setError('Invalid credentials. Please check your email and password.')
       }
-    } catch (error) {
+    } catch {
       setError('An error occurred during sign in. Please try again.')
     } finally {
       setIsLoading(false)
@@ -72,18 +70,18 @@ export default function SignInPage() {
     setIsLoading(true)
     setError('')
     setSuccess('')
-    
+
     if (!isEmailConfigured) {
       setError('Magic link authentication is not configured. Please use email and password instead.')
       setIsLoading(false)
       return
     }
-    
+
     try {
       const form = new FormData(e.currentTarget)
       const email = form.get('magicEmail') as string
       const res = await signIn('email', { email, redirect: false })
-      
+
       if (res?.ok) {
         setSuccess('Magic link sent! Check your email.')
         setError('')
@@ -91,7 +89,7 @@ export default function SignInPage() {
         setError('Failed to send magic link. Please try again.')
         setSuccess('')
       }
-    } catch (error) {
+    } catch {
       setError('An error occurred. Please try again.')
       setSuccess('')
     } finally {
@@ -100,11 +98,11 @@ export default function SignInPage() {
   }
 
   return (
-    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-gradient-to-br from-brand-50/50 to-white">
+    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-surface-0">
       <Container className="max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
-          <p className="text-gray-600">Sign in to your account to continue</p>
+          <h1 className="text-3xl font-heading font-bold text-[#FAFAFA] mb-2">Welcome back</h1>
+          <p className="text-white/50">Sign in to your account to continue</p>
         </div>
 
         <Card>
@@ -116,14 +114,14 @@ export default function SignInPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Method Tabs */}
-            <div className="flex space-x-1 p-1 bg-gray-100 rounded-lg">
+            <div className="flex space-x-1 p-1 bg-surface-2 rounded-lg">
               <button
                 type="button"
                 onClick={() => setActiveMethod('credentials')}
                 className={`flex-1 py-2 px-3 text-sm font-medium rounded-md transition-colors ${
                   activeMethod === 'credentials'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-surface-3 text-white'
+                    : 'text-white/50 hover:text-white'
                 }`}
               >
                 <Mail className="w-4 h-4 inline mr-2" />
@@ -134,8 +132,8 @@ export default function SignInPage() {
                 onClick={() => setActiveMethod('magic')}
                 className={`flex-1 py-2 px-3 text-sm font-medium rounded-md transition-colors ${
                   activeMethod === 'magic'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-surface-3 text-white'
+                    : 'text-white/50 hover:text-white'
                 } ${!isEmailConfigured ? 'opacity-50 cursor-not-allowed' : ''}`}
                 disabled={!isEmailConfigured}
               >
@@ -149,7 +147,7 @@ export default function SignInPage() {
             {activeMethod === 'credentials' && (
               <form onSubmit={onSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-white/60 mb-1">
                     Email address
                   </label>
                   <Input
@@ -162,7 +160,7 @@ export default function SignInPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="password" className="block text-sm font-medium text-white/60 mb-1">
                     Password
                   </label>
                   <Input
@@ -175,7 +173,7 @@ export default function SignInPage() {
                   />
                 </div>
                 {error && (
-                  <div className="text-red-600 text-sm bg-red-50 p-3 rounded-md">
+                  <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md">
                     {error}
                   </div>
                 )}
@@ -189,12 +187,12 @@ export default function SignInPage() {
             {activeMethod === 'magic' && (
               <form onSubmit={sendMagicLink} className="space-y-4">
                 {!isEmailConfigured && (
-                  <div className="text-amber-600 text-sm bg-amber-50 p-3 rounded-md">
+                  <div className="text-amber-400 text-sm bg-amber-500/10 p-3 rounded-md">
                     Magic link authentication is not configured. Please use email and password instead.
                   </div>
                 )}
                 <div>
-                  <label htmlFor="magicEmail" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="magicEmail" className="block text-sm font-medium text-white/60 mb-1">
                     Email address
                   </label>
                   <Input
@@ -208,12 +206,12 @@ export default function SignInPage() {
                   />
                 </div>
                 {error && (
-                  <div className="text-red-600 text-sm bg-red-50 p-3 rounded-md">
+                  <div className="text-red-400 text-sm bg-red-500/10 p-3 rounded-md">
                     {error}
                   </div>
                 )}
                 {success && (
-                  <div className="text-green-600 text-sm bg-green-50 p-3 rounded-md">
+                  <div className="text-emerald-400 text-sm bg-emerald-500/10 p-3 rounded-md">
                     {success}
                   </div>
                 )}
@@ -225,9 +223,9 @@ export default function SignInPage() {
 
             {/* Sign Up Link */}
             <div className="text-center pt-4">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-white/50">
                 Don't have an account?{' '}
-                <Link href="/auth/signup" className="text-brand-600 hover:text-brand-700 font-medium">
+                <Link href="/auth/signup" className="text-brand-400 hover:text-brand-300 font-medium">
                   Sign up
                 </Link>
               </p>

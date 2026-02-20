@@ -56,21 +56,21 @@ async function getArticle(articleId: string, userId: string) {
 
 function getStatusColor(status: string) {
   switch (status) {
-    case 'published': return 'bg-green-100 text-green-800'
-    case 'draft': return 'bg-gray-100 text-gray-800'
-    case 'ready': return 'bg-brand-100 text-brand-800'
+    case 'published': return 'bg-emerald-500/15 text-green-800'
+    case 'draft': return 'bg-surface-2 text-[#FAFAFA]'
+    case 'ready': return 'bg-brand-500/15 text-brand-800'
     case 'publishing': return 'bg-yellow-100 text-yellow-800'
     case 'failed': return 'bg-red-100 text-red-800'
-    default: return 'bg-gray-100 text-gray-800'
+    default: return 'bg-surface-2 text-[#FAFAFA]'
   }
 }
 
 function getVisibilityColor(visibility: string) {
   switch (visibility) {
-    case 'free': return 'bg-green-100 text-green-800'
-    case 'subscribers': return 'bg-brand-100 text-brand-800'
+    case 'free': return 'bg-emerald-500/15 text-green-800'
+    case 'subscribers': return 'bg-brand-500/15 text-brand-800'
     case 'paid': return 'bg-purple-100 text-purple-800'
-    default: return 'bg-gray-100 text-gray-800'
+    default: return 'bg-surface-2 text-[#FAFAFA]'
   }
 }
 
@@ -85,7 +85,7 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-1">
       <PageHeader
         title="Article details"
         actions={(
@@ -113,9 +113,9 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
           <div className="lg:col-span-2">
             {/* Article Header */}
             <div className="mb-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{article.title}</h1>
+              <h1 className="text-4xl font-bold text-[#FAFAFA] mb-4">{article.title}</h1>
               
-              <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+              <div className="flex items-center gap-4 text-sm text-white/50 mb-4">
                 <div className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   <span>Created {formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })}</span>
@@ -136,7 +136,7 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
                   {article.visibility}
                 </span>
                 {article.currentArtifact && (
-                  <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                  <span className="px-3 py-1 rounded-full text-sm font-medium bg-surface-2 text-[#FAFAFA]">
                     Version {article.currentArtifact.version}
                   </span>
                 )}
@@ -144,10 +144,10 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
 
               {article.tags && article.tags.length > 0 && (
                 <div className="flex items-center gap-2">
-                  <Tag className="w-4 h-4 text-gray-400" />
+                  <Tag className="w-4 h-4 text-white/30" />
                   <div className="flex gap-2">
                     {Array.isArray(article.tags) && article.tags.map((tag: string) => (
-                      <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded">
+                      <span key={tag} className="px-2 py-1 bg-surface-2 text-white/60 text-sm rounded">
                         #{tag.trim()}
                       </span>
                     ))}
@@ -168,17 +168,17 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
             )}
 
             {/* Content Preview */}
-            <div className="border border-gray-200 rounded-lg p-6">
+            <div className="border border-white/[0.06] rounded-lg p-6">
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-gray-600" />
-                <h3 className="font-semibold text-gray-900">Content Preview</h3>
+                <FileText className="w-5 h-5 text-white/50" />
+                <h3 className="font-semibold text-[#FAFAFA]">Content Preview</h3>
               </div>
               <div className="prose prose-sm max-w-none">
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <p className="text-gray-700 leading-relaxed break-words">
+                <div className="bg-surface-0 p-4 rounded-lg border border-white/[0.06]">
+                  <p className="text-white/60 leading-relaxed break-words">
                     {(article.bodyMarkdown || '').substring(0, 200)}
                     {(article.bodyMarkdown || '').length > 200 && (
-                      <span className="text-gray-400">...</span>
+                      <span className="text-white/30">...</span>
                     )}
                   </p>
                 </div>
@@ -190,26 +190,26 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
           <div className="lg:col-span-1">
             <div className="space-y-6">
               {/* Publishing Info */}
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Publishing info</h3>
+              <div className="border border-white/[0.06] rounded-lg p-6">
+                <h3 className="font-semibold text-[#FAFAFA] mb-4">Publishing info</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Status</span>
+                    <span className="text-sm text-white/50">Status</span>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(article.status)}`}>
                       {article.status}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Visibility</span>
+                    <span className="text-sm text-white/50">Visibility</span>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getVisibilityColor(article.visibility)}`}>
                       {article.visibility}
                     </span>
                   </div>
                   {article.pricing && typeof article.pricing === 'object' && 'USD' in article.pricing && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Price</span>
+                      <span className="text-sm text-white/50">Price</span>
                       <div className="flex items-center gap-1">
-                        <DollarSign className="w-4 h-4 text-gray-400" />
+                        <DollarSign className="w-4 h-4 text-white/30" />
                         <span className="font-medium">${(article.pricing as any).USD}</span>
                       </div>
                     </div>
@@ -218,18 +218,18 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
               </div>
 
               {/* Timestamps */}
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Timestamps</h3>
+              <div className="border border-white/[0.06] rounded-lg p-6">
+                <h3 className="font-semibold text-[#FAFAFA] mb-4">Timestamps</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Created</span>
+                    <span className="text-sm text-white/50">Created</span>
                     <span className="text-sm font-medium">
                       {formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })}
                     </span>
                   </div>
                   {article.publishedAt && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Published</span>
+                      <span className="text-sm text-white/50">Published</span>
                       <span className="text-sm font-medium">
                         {formatDistanceToNow(new Date(article.publishedAt), { addSuffix: true })}
                       </span>
@@ -237,7 +237,7 @@ async function ArticleEditPage({ params }: { params: { id: string } }) {
                   )}
                   {article.currentArtifact && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Version</span>
+                      <span className="text-sm text-white/50">Version</span>
                       <span className="text-sm font-medium">{article.currentArtifact.version}</span>
                     </div>
                   )}

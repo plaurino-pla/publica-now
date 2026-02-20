@@ -160,7 +160,7 @@ export default function NewTextPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-1">
       <PageHeader title="New Text Article" subtitle="Create a new text-based article" />
 
       {/* Main Content */}
@@ -206,7 +206,7 @@ export default function NewTextPage() {
                     <img 
                       src={coverPreview} 
                       alt="Cover preview" 
-                      className="w-full max-w-md h-48 object-cover rounded-lg border border-gray-200"
+                      className="w-full max-w-md h-48 object-cover rounded-lg border border-white/[0.06]"
                     />
                     <Button
                       type="button"
@@ -218,16 +218,16 @@ export default function NewTextPage() {
                       Remove
                     </Button>
                   </div>
-                  <p className="text-sm text-green-600">✓ Cover image uploaded</p>
+                  <p className="text-sm text-green-400">✓ Cover image uploaded</p>
                 </div>
               ) : (
                 <div className="space-y-3">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600 mb-2">
+                  <div className="border-2 border-dashed border-white/[0.08] rounded-lg p-6 text-center">
+                    <Upload className="w-8 h-8 text-white/30 mx-auto mb-2" />
+                    <p className="text-sm text-white/50 mb-2">
                       Click to upload cover image
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-white/40">
                       Recommended: 800x1200px, JPG or PNG
                     </p>
                     <input
@@ -247,7 +247,7 @@ export default function NewTextPage() {
                     </Button>
                   </div>
                   {userHeaderImage && (
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-white/50">
                       <p>📷 Fallback: Your account header image will be used if no cover is uploaded</p>
                     </div>
                   )}
@@ -313,7 +313,7 @@ export default function NewTextPage() {
 
               {visibility === 'paid' && (
                 <div className="flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-gray-500" />
+                  <DollarSign className="w-5 h-5 text-white/40" />
                   <Input
                     type="number"
                     step="0.01"
@@ -323,7 +323,7 @@ export default function NewTextPage() {
                     onChange={(e) => setPriceUSD(e.target.value)}
                     className="w-32"
                   />
-                  <span className="text-sm text-gray-600">USD</span>
+                  <span className="text-sm text-white/50">USD</span>
                 </div>
               )}
             </CardContent>
@@ -345,10 +345,10 @@ export default function NewTextPage() {
           {message && (
             <div className={`p-4 rounded-lg ${
               message.includes('successfully') 
-                ? 'bg-green-50 text-green-800 border border-green-200' 
+                ? 'bg-emerald-500/10 text-green-800 border border-green-200' 
                 : message.includes('failed') 
-                ? 'bg-red-50 text-red-800 border border-red-200'
-                : 'bg-brand-50 text-brand-800 border border-brand-200'
+                ? 'bg-red-500/10 text-red-800 border border-red-200'
+                : 'bg-brand-500/10 text-brand-800 border border-brand-200'
             }`}>
               {message}
             </div>

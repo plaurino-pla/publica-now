@@ -5,14 +5,14 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  Search, 
-  Users, 
-  Filter, 
-  Globe, 
-  FileText, 
-  Play, 
-  Image as ImageIcon, 
+import {
+  Search,
+  Users,
+  Filter,
+  Globe,
+  FileText,
+  Play,
+  Image as ImageIcon,
   Video,
   Star,
   TrendingUp,
@@ -65,28 +65,20 @@ export default function CreatorsPage() {
 
   const fetchCreators = async () => {
     try {
-      console.log('Fetching creators...')
       const response = await fetch('/api/creators')
-      console.log('Response status:', response.status)
-      
+
       if (response.ok) {
         const data = await response.json()
-        console.log('Creators API response:', data)
-        
+
         if (data.creators && Array.isArray(data.creators)) {
           setCreators(data.creators)
-          console.log('Set creators:', data.creators.length)
         } else {
-          console.error('Invalid creators data structure:', data)
           setCreators([])
         }
       } else {
-        const errorText = await response.text()
-        console.error('Creators API error:', response.status, errorText)
         setCreators([])
       }
     } catch (error) {
-      console.error('Error fetching creators:', error)
       setCreators([])
     } finally {
       setIsLoading(false)
@@ -97,7 +89,7 @@ export default function CreatorsPage() {
     let filtered = creators.filter(creator => {
       const branding = creator.branding && typeof creator.branding === 'object' ? creator.branding as any : {}
       const description = branding.description || ''
-      
+
       return (
         creator.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         creator.slug.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -136,68 +128,68 @@ export default function CreatorsPage() {
     if (!creator.branding) {
       return 'Independent creator publishing on publica.now'
     }
-    
+
     const branding = creator.branding && typeof creator.branding === 'object' ? creator.branding as any : {}
     return branding.description || 'Independent creator publishing on publica.now'
   }
 
   const getCreatorImage = (creator: Creator) => {
     if (!creator.branding) return null
-    
+
     const branding = creator.branding && typeof creator.branding === 'object' ? creator.branding as any : {}
     return branding.profileImage || null
   }
 
   const getCreatorColor = (creator: Creator) => {
     if (!creator.branding) return '#3B82F6'
-    
+
     const branding = creator.branding && typeof creator.branding === 'object' ? creator.branding as any : {}
     return branding.mainColor || '#3B82F6'
   }
 
   if (isLoading) {
     return (
-      <PageSection background="muted">
-        <Container className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading creators...</p>
+      <div className="min-h-screen bg-[#0a0a0a]">
+        <Container className="text-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-400 mx-auto"></div>
+          <p className="mt-4 text-white/50">Loading creators...</p>
         </Container>
-      </PageSection>
+      </div>
     )
   }
 
   if (creators.length === 0) {
     return (
-      <PageSection background="muted">
-        <Container className="text-center">
-          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-4" />
-          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">No Creators Found</h2>
-          <p className="text-gray-600 mb-6 text-sm sm:text-base">It looks like there are no creators with published content yet.</p>
+      <div className="min-h-screen bg-[#0a0a0a]">
+        <Container className="text-center py-20">
+          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-white/30 mx-auto mb-4" />
+          <h2 className="text-xl sm:text-2xl font-semibold font-heading text-[#FAFAFA] mb-2">No Creators Found</h2>
+          <p className="text-white/50 mb-6 text-sm sm:text-base">It looks like there are no creators with published content yet.</p>
           <Button onClick={fetchCreators} variant="outline">
             Refresh
           </Button>
         </Container>
-      </PageSection>
+      </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#0a0a0a]">
       {/* Header */}
-      <PageSection background="white">
+      <div className="bg-surface-0 py-12 sm:py-16">
         <Container>
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold font-heading text-[#FAFAFA] mb-4">
               Discover Amazing Creators
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto">
-              Explore independent creators, writers, podcasters, and content makers 
+            <p className="text-lg sm:text-xl text-white/50 mb-6 sm:mb-8 max-w-3xl mx-auto">
+              Explore independent creators, writers, podcasters, and content makers
               who are building meaningful communities on publica.now
             </p>
-            
+
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30 w-5 h-5" />
               <Input
                 type="text"
                 placeholder="Search creators by name, handle, or description..."
@@ -208,24 +200,24 @@ export default function CreatorsPage() {
             </div>
           </div>
         </Container>
-      </PageSection>
+      </div>
 
       {/* Filters and Stats */}
-      <PageSection background="white" className="py-6 border-y border-gray-200">
+      <div className="bg-surface-0 py-6 border-y border-white/[0.06]">
         <Container>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-white/50">
                 {filteredCreators.length} creator{filteredCreators.length !== 1 ? 's' : ''} found
               </span>
-              
+
               {/* Sort Options */}
               <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4 text-gray-400" />
+                <Filter className="w-4 h-4 text-white/30" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as 'recent' | 'popular' | 'name')}
-                  className="text-sm border border-gray-300 rounded-md px-3 py-2 bg-white"
+                  className="text-sm border border-white/[0.08] rounded-md px-3 py-2 bg-surface-2 text-white/80"
                 >
                   <option value="recent">Recently Added</option>
                   <option value="popular">Most Popular</option>
@@ -233,29 +225,29 @@ export default function CreatorsPage() {
                 </select>
               </div>
             </div>
-            
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-sm text-gray-600">
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-sm text-white/50">
               <div className="flex items-center gap-2"><Users className="w-4 h-4" /><span>{creators.length} total creators</span></div>
               <div className="flex items-center gap-2"><FileText className="w-4 h-4" /><span>{creators.reduce((sum, c) => sum + c.totalArticles, 0)} total posts</span></div>
               <div className="flex items-center gap-2"><Sparkles className="w-4 h-4" /><span>{creators.filter(c => c.isNewCreator).length} new creators</span></div>
             </div>
           </div>
         </Container>
-      </PageSection>
+      </div>
 
       {/* Creators Grid */}
-      <PageSection background="muted">
+      <div className="bg-surface-0 py-12 sm:py-16">
         <Container>
           {filteredCreators.length === 0 ? (
             <div className="text-center py-8 sm:py-12">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-surface-2 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-6 h-6 sm:w-8 sm:h-8 text-white/30" />
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No creators found</h3>
-              <p className="text-gray-600 mb-6 text-sm sm:text-base">
+              <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No creators found</h3>
+              <p className="text-white/50 mb-6 text-sm sm:text-base">
                 Try adjusting your search terms or browse all creators
               </p>
-              <Button 
+              <Button
                 onClick={() => setSearchTerm('')}
                 variant="outline"
               >
@@ -269,21 +261,21 @@ export default function CreatorsPage() {
                 const creatorImage = getCreatorImage(creator)
                 const creatorColor = getCreatorColor(creator)
                 const stats = getContentTypeStats(creator)
-                
+
                 return (
-                  <Card key={creator.id} className="hover:shadow-lg transition-shadow cursor-pointer">
+                  <Card key={creator.id} className="hover:border-white/[0.15] transition-colors cursor-pointer">
                     <CardHeader className="pb-4">
                       <div className="flex items-start gap-3 sm:gap-4">
                         {/* Creator Avatar */}
                         <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
                           {creatorImage ? (
-                            <img 
-                              src={creatorImage} 
+                            <img
+                              src={creatorImage}
                               alt={creator.name}
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div 
+                            <div
                               className="w-full h-full flex items-center justify-center"
                               style={{ backgroundColor: creatorColor }}
                             >
@@ -293,7 +285,7 @@ export default function CreatorsPage() {
                             </div>
                           )}
                         </div>
-                        
+
                         {/* Creator Info */}
                         <div className="flex-1 min-w-0">
                           <CardTitle className="text-base sm:text-lg mb-1 truncate">
@@ -302,23 +294,23 @@ export default function CreatorsPage() {
                           <CardDescription className="text-xs sm:text-sm mb-2">
                             @{creator.slug}
                           </CardDescription>
-                          <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+                          <p className="text-xs sm:text-sm text-white/50 line-clamp-2">
                             {description}
                           </p>
                           {creator.isNewCreator && (
-                            <p className="text-xs text-brand-600 mt-1">
+                            <p className="text-xs text-brand-400 mt-1">
                               ✨ Just getting started - be the first to discover them!
                             </p>
                           )}
                         </div>
                       </div>
                     </CardHeader>
-                    
+
                     <CardContent className="pt-0">
                       {/* Content Type Stats */}
-                      <div className="flex items-center gap-3 sm:gap-4 mb-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-3 sm:gap-4 mb-4 text-xs text-white/40">
                         {creator.isNewCreator ? (
-                          <div className="flex items-center gap-1 text-brand-600">
+                          <div className="flex items-center gap-1 text-brand-400">
                             <Sparkles className="w-3 h-3" />
                             <span>New Creator</span>
                           </div>
@@ -351,23 +343,23 @@ export default function CreatorsPage() {
                           </>
                         )}
                       </div>
-                      
+
                       {/* Total Posts */}
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs sm:text-sm text-gray-600">
+                        <span className="text-xs sm:text-sm text-white/50">
                           {creator.isNewCreator ? 'No posts yet' : `${creator._count.articles} total posts`}
                         </span>
-                        <div className="flex items-center gap-1 text-yellow-500">
+                        <div className="flex items-center gap-1 text-amber-400">
                           <Star className="w-3 h-3 fill-current" />
                           <span className="text-xs">
                             {creator.isNewCreator ? 'New' : 'Active'}
                           </span>
                         </div>
                       </div>
-                      
+
                       {/* Action Button */}
-                      <Button 
-                        asChild 
+                      <Button
+                        asChild
                         className="w-full h-12 sm:h-14 text-sm sm:text-base"
                         style={{ backgroundColor: creatorColor }}
                       >
@@ -383,23 +375,23 @@ export default function CreatorsPage() {
             </div>
           )}
         </Container>
-      </PageSection>
+      </div>
 
       {/* CTA Section */}
-      <PageSection background="white" className="border-t border-gray-200">
+      <div className="bg-surface-0 py-12 sm:py-16 border-t border-white/[0.06]">
         <Container className="text-center">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl sm:text-2xl font-bold font-heading text-[#FAFAFA] mb-4">
             Ready to Start Your Creator Journey?
           </h2>
-          <p className="text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="text-white/50 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base">
             Join thousands of creators who are building their audience and monetizing their content on publica.now
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-brand-600 hover:bg-brand-700 w-full sm:w-auto h-12 sm:h-14"><Link href="/auth/signup">Start Creating Today</Link></Button>
+            <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 w-full sm:w-auto h-12 sm:h-14"><Link href="/auth/signup">Start Creating Today</Link></Button>
             <Button asChild size="lg" variant="outline" className="w-full sm:w-auto h-12 sm:h-14"><Link href="/how-it-works">Learn How It Works</Link></Button>
           </div>
         </Container>
-      </PageSection>
+      </div>
     </div>
   )
 }

@@ -64,21 +64,21 @@ async function getArticle(articleId: string, userId: string) {
 
 function getStatusColor(status: string) {
   switch (status) {
-    case 'published': return 'bg-green-100 text-green-800'
-    case 'draft': return 'bg-gray-100 text-gray-800'
-    case 'ready': return 'bg-brand-100 text-brand-800'
+    case 'published': return 'bg-emerald-500/15 text-green-800'
+    case 'draft': return 'bg-surface-2 text-[#FAFAFA]'
+    case 'ready': return 'bg-brand-500/15 text-brand-800'
     case 'publishing': return 'bg-yellow-100 text-yellow-800'
     case 'failed': return 'bg-red-100 text-red-800'
-    default: return 'bg-gray-100 text-gray-800'
+    default: return 'bg-surface-2 text-[#FAFAFA]'
   }
 }
 
 function getVisibilityColor(visibility: string) {
   switch (visibility) {
-    case 'free': return 'bg-green-100 text-green-800'
-    case 'subscribers': return 'bg-brand-100 text-brand-800'
+    case 'free': return 'bg-emerald-500/15 text-green-800'
+    case 'subscribers': return 'bg-brand-500/15 text-brand-800'
     case 'paid': return 'bg-purple-100 text-purple-800'
-    default: return 'bg-gray-100 text-gray-800'
+    default: return 'bg-surface-2 text-[#FAFAFA]'
   }
 }
 
@@ -97,9 +97,9 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-1">
       {/* Header */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-6 py-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -107,7 +107,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                 variant="ghost" 
                 size="sm" 
                 asChild
-                className="text-gray-600 hover:text-gray-900"
+                className="text-white/50 hover:text-[#FAFAFA]"
               >
                 <Link href="/dashboard/articles">
                   <ArrowLeft className="w-4 h-4 mr-2" />
@@ -115,7 +115,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                 </Link>
               </Button>
               <div className="h-6 w-px bg-gray-300" />
-              <span className="text-sm text-gray-500">Preview</span>
+              <span className="text-sm text-white/40">Preview</span>
             </div>
             
             <div className="flex items-center gap-3">
@@ -143,9 +143,9 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
           <div className="lg:col-span-2">
             {/* Article Header */}
             <div className="mb-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{article.title}</h1>
+              <h1 className="text-4xl font-bold text-[#FAFAFA] mb-4">{article.title}</h1>
               
-              <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+              <div className="flex items-center gap-4 text-sm text-white/50 mb-4">
                 <div className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   <span>Created {formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })}</span>
@@ -166,7 +166,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                   {article.visibility}
                 </span>
                 {article.currentArtifact && (
-                  <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                  <span className="px-3 py-1 rounded-full text-sm font-medium bg-surface-2 text-[#FAFAFA]">
                     Version {article.currentArtifact.version}
                   </span>
                 )}
@@ -174,10 +174,10 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
 
               {article.tags && article.tags.length > 0 && (
                 <div className="flex items-center gap-2">
-                  <Tag className="w-4 h-4 text-gray-400" />
+                  <Tag className="w-4 h-4 text-white/30" />
                   <div className="flex gap-2">
                     {article.tags && typeof article.tags === 'string' && article.tags.split(',').map((tag: string) => (
-                      <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded">
+                      <span key={tag} className="px-2 py-1 bg-surface-2 text-white/60 text-sm rounded">
                         #{tag.trim()}
                       </span>
                     ))}
@@ -200,10 +200,10 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
             {/* Audio Player for Audio Posts */}
             {article.contentType === 'audio' && article.audioUrl && (
               <div className="mb-8">
-                <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-0">
                   <div className="flex items-center gap-2 mb-4">
-                    <Play className="w-5 h-5 text-gray-600" />
-                    <h3 className="text-lg font-medium text-gray-900">Audio Content</h3>
+                    <Play className="w-5 h-5 text-white/50" />
+                    <h3 className="text-lg font-medium text-[#FAFAFA]">Audio Content</h3>
                   </div>
                   
                   {/* Check if we have publica.la reader URL for embedded player */}
@@ -224,8 +224,8 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                           style={{ minHeight: '600px' }}
                         />
                       </div>
-                      <p className="text-sm text-gray-500 mt-2 text-center">
-                        Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
+                      <p className="text-sm text-white/40 mt-2 text-center">
+                        Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">Publica.la</a>
                       </p>
                     </div>
                   ) : (
@@ -236,8 +236,8 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                         controls
                         className="w-full"
                       />
-                      <p className="text-sm text-gray-500 mt-2 text-center">
-                        Basic audio player - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Upgrade to Publica.la</a> for enhanced features
+                      <p className="text-sm text-white/40 mt-2 text-center">
+                        Basic audio player - <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">Upgrade to Publica.la</a> for enhanced features
                       </p>
                     </div>
                   )}
@@ -248,12 +248,12 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
             {/* Video Embed for Video Posts */}
             {article.contentType === 'video' && article.videoId && (
               <div className="mb-8">
-                <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-0">
                   <div className="flex items-center gap-2 mb-4">
-                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <h3 className="text-lg font-medium text-gray-900">Video Content</h3>
+                    <h3 className="text-lg font-medium text-[#FAFAFA]">Video Content</h3>
                   </div>
                   <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                     <iframe
@@ -277,10 +277,10 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
             {/* Image Reader for Image Posts via publica.la */}
             {article.contentType === 'image' && article.pricing && typeof article.pricing === 'object' && 'publica' in article.pricing && (article.pricing as any).publica?.readerUrl && (
               <div className="mb-8">
-                <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                <div className="border border-white/[0.06] rounded-lg p-6 bg-surface-0">
                   <div className="flex items-center gap-2 mb-4">
-                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                    <h3 className="text-lg font-medium text-gray-900">Image PDF</h3>
+                    <svg className="w-5 h-5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    <h3 className="text-lg font-medium text-[#FAFAFA]">Image PDF</h3>
                   </div>
                   <div className="relative w-full" style={{ paddingBottom: '75%' }}>
                     <iframe
@@ -292,8 +292,8 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
                       sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
                     />
                   </div>
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                    Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Publica.la</a>
+                  <p className="text-sm text-white/40 mt-2 text-center">
+                    Powered by <a href="https://plaurino.publica.la" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">Publica.la</a>
                   </p>
                 </div>
               </div>
@@ -303,7 +303,7 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
             {article.bodyMarkdown && article.bodyMarkdown.trim() && article.contentType !== 'text' && (
               <div className="prose prose-lg max-w-none">
                 <div 
-                  className="text-gray-900 leading-relaxed"
+                  className="text-[#FAFAFA] leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: renderContent(article.bodyMarkdown) }}
                 />
               </div>
@@ -314,26 +314,26 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
           <div className="lg:col-span-1">
             <div className="space-y-6">
               {/* Publishing Info */}
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Publishing info</h3>
+              <div className="border border-white/[0.06] rounded-lg p-6">
+                <h3 className="font-semibold text-[#FAFAFA] mb-4">Publishing info</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Status</span>
+                    <span className="text-sm text-white/50">Status</span>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(article.status)}`}>
                       {article.status}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Visibility</span>
+                    <span className="text-sm text-white/50">Visibility</span>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getVisibilityColor(article.visibility)}`}>
                       {article.visibility}
                     </span>
                   </div>
                   {article.pricing && typeof article.pricing === 'object' && 'USD' in article.pricing && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Price</span>
+                      <span className="text-sm text-white/50">Price</span>
                       <div className="flex items-center gap-1">
-                        <DollarSign className="w-4 h-4 text-gray-400" />
+                        <DollarSign className="w-4 h-4 text-white/30" />
                         <span className="font-medium">${(article.pricing as any).USD}</span>
                       </div>
                     </div>
@@ -342,11 +342,11 @@ async function ArticleViewPage({ params }: { params: { id: string } }) {
               </div>
 
               {/* Public URL */}
-              <div className="border border-gray-200 rounded-lg p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Public URL</h3>
+              <div className="border border-white/[0.06] rounded-lg p-6">
+                <h3 className="font-semibold text-[#FAFAFA] mb-4">Public URL</h3>
                 <div className="space-y-3">
-                  <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                    <div className="font-mono text-xs text-gray-600 break-all">
+                  <div className="bg-surface-0 p-3 rounded-lg border border-white/[0.06]">
+                    <div className="font-mono text-xs text-white/50 break-all">
                       {`http://localhost:3000/${article.creator.slug}/content/${article.slug}`}
                     </div>
                   </div>

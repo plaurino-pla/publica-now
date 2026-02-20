@@ -56,8 +56,8 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
   return (
     <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>
-        <Button 
-          size="lg" 
+        <Button
+          size="lg"
           className="text-white"
           style={{ backgroundColor: mainColor }}
           onClick={() => setShowModal(true)}
@@ -72,15 +72,15 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
             Get unlimited access to all content and support the creator
           </DialogDescription>
         </DialogHeader>
-        
+
         <div className="space-y-4">
           {/* Pricing Card */}
-          <Card className="border-2 border-brand-200 bg-brand-50">
+          <Card className="border-2 border-brand-500/20 bg-brand-500/10">
             <CardHeader className="text-center pb-2">
-              <CardTitle className="text-2xl text-brand-900">
+              <CardTitle className="text-2xl text-brand-300">
                 {formatPrice(subscriptionPrice)}/month
               </CardTitle>
-              <CardDescription className="text-brand-700">
+              <CardDescription className="text-brand-400">
                 Cancel anytime • No hidden fees
               </CardDescription>
             </CardHeader>
@@ -88,30 +88,30 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
 
           {/* Benefits */}
           <div className="space-y-3">
-            <h4 className="font-semibold text-gray-900">What's included:</h4>
+            <h4 className="font-semibold text-[#FAFAFA]">What's included:</h4>
             <div className="space-y-2">
               <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-gray-700">Access to all subscriber-only content</span>
+                <Check className="w-5 h-5 text-emerald-400" />
+                <span className="text-white/60">Access to all subscriber-only content</span>
               </div>
               <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-gray-700">Early access to new releases</span>
+                <Check className="w-5 h-5 text-emerald-400" />
+                <span className="text-white/60">Early access to new releases</span>
               </div>
               <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-gray-700">Support the creator directly</span>
+                <Check className="w-5 h-5 text-emerald-400" />
+                <span className="text-white/60">Support the creator directly</span>
               </div>
               <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-green-600" />
-                <span className="text-gray-700">Cancel or change plan anytime</span>
+                <Check className="w-5 h-5 text-emerald-400" />
+                <span className="text-white/60">Cancel or change plan anytime</span>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-4">
-            <Button 
+            <Button
               onClick={handleSubscribe}
               disabled={isLoading}
               className="flex-1"
@@ -119,8 +119,8 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
             >
               {isLoading ? 'Processing...' : `Subscribe for ${formatPrice(subscriptionPrice)}/month`}
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => setShowModal(false)}
               className="flex-1"
             >
@@ -129,12 +129,12 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
           </div>
 
           {error && (
-            <p className="text-sm text-red-600 text-center bg-red-50 p-2 rounded-md">
+            <p className="text-sm text-red-400 text-center bg-red-500/10 p-2 rounded-md">
               {error}
             </p>
           )}
 
-          <p className="text-xs text-gray-500 text-center">
+          <p className="text-xs text-white/40 text-center">
             You'll be redirected to Stripe to complete your subscription securely
           </p>
         </div>

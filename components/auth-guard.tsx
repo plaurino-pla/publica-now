@@ -27,7 +27,7 @@ export default function AuthGuard({ children, fallback }: AuthGuardProps) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-white/50">Loading...</p>
         </div>
       </div>
     )
@@ -35,11 +35,11 @@ export default function AuthGuard({ children, fallback }: AuthGuardProps) {
 
   if (!session) {
     return fallback || (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-surface-0">
         <div className="max-w-md w-full space-y-8 p-6">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Authentication Required</h2>
-            <p className="text-gray-600 mb-6">Please sign in to access this page</p>
+            <h2 className="text-3xl font-bold text-[#FAFAFA] mb-2">Authentication Required</h2>
+            <p className="text-white/50 mb-6">Please sign in to access this page</p>
           </div>
           <div className="space-y-4">
             <Button asChild className="w-full">

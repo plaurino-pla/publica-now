@@ -41,9 +41,9 @@ export default function SetupDatabasePage() {
 
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-gray-50">
-        <PageHeader 
-          title="Database Setup" 
+      <div className="min-h-screen bg-surface-0">
+        <PageHeader
+          title="Database Setup"
           subtitle="Create missing database tables for likes, reading list, and other features"
         />
 
@@ -60,14 +60,14 @@ export default function SetupDatabasePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
+              <div className="bg-brand-500/10 border border-brand-500/20 rounded-lg p-4">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center">
-                    <span className="text-brand-600 text-xs font-medium">i</span>
+                  <div className="w-6 h-6 bg-brand-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-brand-400 text-xs font-medium">i</span>
                   </div>
-                  <h4 className="font-medium text-brand-900">What will be created?</h4>
+                  <h4 className="font-medium text-brand-300">What will be created?</h4>
                 </div>
-                <ul className="text-sm text-brand-800 space-y-1">
+                <ul className="text-sm text-brand-400 space-y-1">
                   <li>• <strong>likes</strong> table - for article likes</li>
                   <li>• <strong>readingListItems</strong> table - for saved articles</li>
                   <li>• <strong>subscriptions</strong> table - for creator subscriptions</li>
@@ -76,7 +76,7 @@ export default function SetupDatabasePage() {
                 </ul>
               </div>
 
-              <Button 
+              <Button
                 onClick={setupDatabase}
                 disabled={isLoading}
                 className="w-full"
@@ -96,24 +96,24 @@ export default function SetupDatabasePage() {
               </Button>
 
               {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
                   <div className="flex items-center gap-2">
-                    <XCircle className="w-5 h-5 text-red-600" />
-                    <span className="font-medium text-red-900">Error</span>
+                    <XCircle className="w-5 h-5 text-red-400" />
+                    <span className="font-medium text-red-300">Error</span>
                   </div>
-                  <p className="text-red-700 mt-1">{error}</p>
+                  <p className="text-red-400 mt-1">{error}</p>
                 </div>
               )}
 
               {results.length > 0 && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="font-medium text-green-900">Setup Results</span>
+                    <CheckCircle className="w-5 h-5 text-emerald-400" />
+                    <span className="font-medium text-emerald-300">Setup Results</span>
                   </div>
                   <div className="space-y-2">
                     {results.map((result, index) => (
-                      <div key={index} className="text-sm text-green-800">
+                      <div key={index} className="text-sm text-emerald-400">
                         {result}
                       </div>
                     ))}
@@ -121,7 +121,7 @@ export default function SetupDatabasePage() {
                 </div>
               )}
 
-              <div className="text-xs text-gray-500 text-center">
+              <div className="text-xs text-white/40 text-center">
                 <p>This operation is safe and will not affect existing data.</p>
                 <p>Tables will only be created if they don't already exist.</p>
               </div>

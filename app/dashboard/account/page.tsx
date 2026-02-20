@@ -365,19 +365,19 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-surface-0">
       <PageHeader title="My Account" subtitle="Manage your profile and account settings" />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Error and Success Messages */}
         {error && (
-          <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <div className="mb-6 bg-red-500/10 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
             {error}
           </div>
         )}
         {success && (
-          <div className="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+          <div className="mb-6 bg-emerald-500/10 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
             {success}
           </div>
         )}
@@ -386,10 +386,10 @@ export default function AccountPage() {
           {/* Main Content Area */}
           <div className="lg:col-span-2 space-y-8">
             {/* Creator Profile */}
-            <Card className="border-gray-200 shadow-sm">
+            <Card className="border-white/[0.06] ">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
-                  <User className="w-6 h-6 text-gray-600" />
+                  <User className="w-6 h-6 text-white/50" />
                   Creator Profile
                 </CardTitle>
                 <CardDescription>
@@ -400,7 +400,7 @@ export default function AccountPage() {
                 <CardContent className="space-y-6">
                 {/* Creator Name */}
                 <div>
-                  <label htmlFor="creatorName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="creatorName" className="block text-sm font-medium text-white/60 mb-2">
                     Creator Name <span className="text-red-500">*</span>
                   </label>
                   <Input
@@ -410,15 +410,15 @@ export default function AccountPage() {
                     value={formData.creatorName}
                     onChange={(e) => setFormData(prev => ({ ...prev, creatorName: e.target.value }))}
                     placeholder="Enter your creator name"
-                    className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                    className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                     required
                   />
-                  <p className="text-xs text-gray-500 mt-1">This is how readers will know you. Choose a memorable name that reflects your brand.</p>
+                  <p className="text-xs text-white/40 mt-1">This is how readers will know you. Choose a memorable name that reflects your brand.</p>
                 </div>
 
                 {/* Description */}
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="description" className="block text-sm font-medium text-white/60 mb-2">
                     Bio Description <span className="text-brand-500">★</span>
                   </label>
                   <Textarea
@@ -428,16 +428,16 @@ export default function AccountPage() {
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                     placeholder="Tell your audience about yourself and your content"
                     rows={4}
-                    className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                    className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    <span className="text-brand-600 font-medium">Recommended:</span> A compelling bio helps readers understand your expertise and what to expect from your content.
+                  <p className="text-xs text-white/40 mt-1">
+                    <span className="text-brand-400 font-medium">Recommended:</span> A compelling bio helps readers understand your expertise and what to expect from your content.
                   </p>
                 </div>
 
                 {/* Main Color */}
                 <div>
-                  <label htmlFor="mainColor" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="mainColor" className="block text-sm font-medium text-white/60 mb-2">
                     Brand Color <span className="text-brand-500">★</span>
                   </label>
                   <div className="flex items-center gap-3">
@@ -447,7 +447,7 @@ export default function AccountPage() {
                       name="mainColor"
                       value={formData.mainColor}
                       onChange={(e) => setFormData(prev => ({ ...prev, mainColor: e.target.value }))}
-                      className="w-12 h-12 rounded border border-gray-300 cursor-pointer"
+                      className="w-12 h-12 rounded border border-white/[0.08] cursor-pointer"
                     />
                     <Input
                       type="text"
@@ -457,18 +457,18 @@ export default function AccountPage() {
                       className="flex-1"
                     />
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">
-                    <span className="text-brand-600 font-medium">Recommended:</span> Choose a color that represents your brand and will be used across your profile and content.
+                  <p className="text-xs text-white/40 mt-1">
+                    <span className="text-brand-400 font-medium">Recommended:</span> Choose a color that represents your brand and will be used across your profile and content.
                   </p>
                 </div>
 
                 {/* Profile Picture */}
                 <div>
-                  <label htmlFor="profilePicture" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="profilePicture" className="block text-sm font-medium text-white/60 mb-2">
                     Profile Picture <span className="text-brand-500">★</span>
                   </label>
                   <div className="flex items-center gap-4">
-                    <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-gray-300 flex items-center justify-center overflow-hidden">
+                    <div className="w-20 h-20 rounded-full bg-surface-2 border-2 border-white/[0.08] flex items-center justify-center overflow-hidden">
                       {formData.profilePicture ? (
                         <img 
                           src={formData.profilePicture} 
@@ -476,7 +476,7 @@ export default function AccountPage() {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <Camera className="w-8 h-8 text-gray-400" />
+                        <Camera className="w-8 h-8 text-white/30" />
                       )}
                     </div>
                     <div className="flex-1">
@@ -485,10 +485,10 @@ export default function AccountPage() {
                         id="profilePicture"
                         accept="image/*"
                         onChange={handleProfilePictureChange}
-                        className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                        className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                       />
-                      <p className="text-xs text-gray-500 mt-1">
-                        <span className="text-brand-600 font-medium">Recommended:</span> Use a high-quality, professional image (square format, at least 400x400px).
+                      <p className="text-xs text-white/40 mt-1">
+                        <span className="text-brand-400 font-medium">Recommended:</span> Use a high-quality, professional image (square format, at least 400x400px).
                       </p>
                     </div>
                   </div>
@@ -496,11 +496,11 @@ export default function AccountPage() {
 
                 {/* Header Image */}
                 <div>
-                  <label htmlFor="headerImage" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="headerImage" className="block text-sm font-medium text-white/60 mb-2">
                     Header Image <span className="text-brand-500">★</span>
                   </label>
                   <div className="space-y-3">
-                    <div className="w-full h-32 rounded-lg bg-gray-100 border-2 border-gray-300 flex items-center justify-center overflow-hidden">
+                    <div className="w-full h-32 rounded-lg bg-surface-2 border-2 border-white/[0.08] flex items-center justify-center overflow-hidden">
                       {formData.headerImage ? (
                         <img 
                           src={formData.headerImage} 
@@ -509,8 +509,8 @@ export default function AccountPage() {
                         />
                       ) : (
                         <div className="text-center">
-                          <ImageIcon className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-sm text-gray-500">No header image selected</p>
+                          <ImageIcon className="w-8 h-8 text-white/30 mx-auto mb-2" />
+                          <p className="text-sm text-white/40">No header image selected</p>
                         </div>
                       )}
                     </div>
@@ -519,35 +519,35 @@ export default function AccountPage() {
                       id="headerImage"
                       accept="image/*"
                       onChange={handleHeaderImageChange}
-                      className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                      className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                     />
-                    <p className="text-xs text-gray-500">
-                      <span className="text-brand-600 font-medium">Recommended:</span> Use a wide banner image (1200x400px) that showcases your brand or content theme.
+                    <p className="text-xs text-white/40">
+                      <span className="text-brand-400 font-medium">Recommended:</span> Use a wide banner image (1200x400px) that showcases your brand or content theme.
                     </p>
                   </div>
                 </div>
 
                 {/* Profile Completion Indicator */}
-                <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
+                <div className="bg-brand-500/10 border border-brand-200 rounded-lg p-4">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center">
-                      <span className="text-brand-600 text-xs font-medium">i</span>
+                    <div className="w-6 h-6 bg-brand-500/15 rounded-full flex items-center justify-center">
+                      <span className="text-brand-400 text-xs font-medium">i</span>
                     </div>
                     <h4 className="font-medium text-brand-900">Profile Completion</h4>
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-brand-800">Required fields</span>
-                      <span className="text-brand-600 font-medium">1/1</span>
+                      <span className="text-brand-400 font-medium">1/1</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-brand-800">Recommended fields</span>
-                      <span className="text-brand-600 font-medium">4/4</span>
+                      <span className="text-brand-400 font-medium">4/4</span>
                     </div>
                     <div className="w-full bg-brand-200 rounded-full h-2">
                       <div className="bg-brand-600 h-2 rounded-full" style={{ width: '100%' }}></div>
                     </div>
-                    <p className="text-xs text-brand-700">
+                    <p className="text-xs text-brand-400">
                       Complete your profile to improve discoverability and build trust with your audience.
                     </p>
                   </div>
@@ -578,10 +578,10 @@ export default function AccountPage() {
             </Card>
 
             {/* Personal Information */}
-            <Card className="border-gray-200 shadow-sm">
+            <Card className="border-white/[0.06] ">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
-                  <Mail className="w-6 h-6 text-gray-600" />
+                  <Mail className="w-6 h-6 text-white/50" />
                   Personal Information
                 </CardTitle>
                 <CardDescription>
@@ -591,7 +591,7 @@ export default function AccountPage() {
               <CardContent className="space-y-6">
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white/60 mb-2">
                     Email Address
                   </label>
                   <Input
@@ -601,16 +601,16 @@ export default function AccountPage() {
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="Enter your email address"
-                    className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                    className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                   />
                 </div>
 
                 {/* Password Change */}
                 <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-gray-700">Change Password</h4>
+                  <h4 className="text-sm font-medium text-white/60">Change Password</h4>
                   
                   <div>
-                    <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="currentPassword" className="block text-sm font-medium text-white/60 mb-2">
                       Current Password
                     </label>
                     <div className="relative">
@@ -621,7 +621,7 @@ export default function AccountPage() {
                         value={formData.currentPassword}
                         onChange={(e) => setFormData(prev => ({ ...prev, currentPassword: e.target.value }))}
                         placeholder="Enter current password"
-                        className="border-gray-300 focus:border-gray-400 focus:ring-gray-400 pr-10"
+                        className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400 pr-10"
                       />
                       <button
                         type="button"
@@ -629,16 +629,16 @@ export default function AccountPage() {
                         className="absolute inset-y-0 right-0 pr-3 flex items-center"
                       >
                         {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-gray-400" />
+                          <EyeOff className="h-4 w-4 text-white/30" />
                         ) : (
-                          <Eye className="h-4 w-4 text-gray-400" />
+                          <Eye className="h-4 w-4 text-white/30" />
                         )}
                       </button>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="newPassword" className="block text-sm font-medium text-white/60 mb-2">
                       New Password
                     </label>
                     <Input
@@ -648,12 +648,12 @@ export default function AccountPage() {
                       value={formData.newPassword}
                       onChange={(e) => setFormData(prev => ({ ...prev, newPassword: e.target.value }))}
                       placeholder="Enter new password"
-                      className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                      className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-white/60 mb-2">
                       Confirm New Password
                     </label>
                     <Input
@@ -663,7 +663,7 @@ export default function AccountPage() {
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
                       placeholder="Confirm new password"
-                      className="border-gray-300 focus:border-gray-400 focus:ring-gray-400"
+                      className="border-white/[0.08] focus:border-gray-400 focus:ring-gray-400"
                     />
                   </div>
 
@@ -673,7 +673,7 @@ export default function AccountPage() {
                       onClick={handlePasswordSubmit}
                       disabled={isLoading}
                       variant="outline"
-                      className="w-full border-gray-300 hover:border-gray-400"
+                      className="w-full border-white/[0.08] hover:border-gray-400"
                     >
                       {isLoading ? (
                         <>
@@ -696,53 +696,53 @@ export default function AccountPage() {
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
             {/* Profile Preview */}
-            <Card className="border-gray-200 shadow-sm">
+            <Card className="border-white/[0.06] ">
               <CardHeader>
                 <CardTitle className="text-lg">Profile Preview</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-gray-300 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 rounded-full bg-surface-2 border-2 border-white/[0.08] flex items-center justify-center mx-auto mb-4">
                     {profilePreview ? (
                       <img src={profilePreview} alt="Profile preview" className="w-full h-full object-cover rounded-full" />
                     ) : (
-                      <User className="w-8 h-8 text-gray-400" />
+                      <User className="w-8 h-8 text-white/30" />
                     )}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{formData.creatorName || 'Your Name'}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{formData.description || 'No description yet'}</p>
+                  <h3 className="font-semibold text-[#FAFAFA] mb-2">{formData.creatorName || 'Your Name'}</h3>
+                  <p className="text-white/50 text-sm mb-4">{formData.description || 'No description yet'}</p>
                   <div className="flex items-center justify-center gap-2">
                     <div 
-                      className="w-4 h-4 rounded-full border border-gray-300"
+                      className="w-4 h-4 rounded-full border border-white/[0.08]"
                       style={{ backgroundColor: formData.mainColor }}
                     ></div>
-                    <span className="text-xs text-gray-500">Brand color</span>
+                    <span className="text-xs text-white/40">Brand color</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Account Info */}
-            <Card className="border-gray-200 shadow-sm">
+            <Card className="border-white/[0.06] ">
               <CardHeader>
                 <CardTitle className="text-lg">Account Info</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Member since</span>
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-sm text-white/50">Member since</span>
+                  <span className="text-sm font-medium text-[#FAFAFA]">
                     {creator?.createdAt ? new Date(creator.createdAt).toLocaleDateString() : 'N/A'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Last updated</span>
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-sm text-white/50">Last updated</span>
+                  <span className="text-sm font-medium text-[#FAFAFA]">
                     {creator?.updatedAt ? new Date(creator.updatedAt).toLocaleDateString() : 'N/A'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Creator slug</span>
-                  <span className="text-sm font-medium text-gray-900 font-mono">{creator?.slug || 'N/A'}</span>
+                  <span className="text-sm text-white/50">Creator slug</span>
+                  <span className="text-sm font-medium text-[#FAFAFA] font-mono">{creator?.slug || 'N/A'}</span>
                 </div>
               </CardContent>
             </Card>

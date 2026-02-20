@@ -187,7 +187,7 @@ export default function ImagePostForm() {
         <Card className="p-6">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Title *
               </label>
               <Input
@@ -201,21 +201,21 @@ export default function ImagePostForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Description *
               </label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your images..."
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 rows={4}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Cover Image URL (optional)
               </label>
               <Input
@@ -232,7 +232,7 @@ export default function ImagePostForm() {
         <Card className="p-6">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Images * (up to 5)
               </label>
               
@@ -248,7 +248,7 @@ export default function ImagePostForm() {
                       <button
                         type="button"
                         onClick={() => removeImage(index)}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-2 right-2 bg-red-500/100 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                       >
                         <X size={16} />
                       </button>
@@ -260,13 +260,13 @@ export default function ImagePostForm() {
               {images.length < 5 && (
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-gray-400 transition-colors"
+                  className="border-2 border-dashed border-white/[0.08] rounded-lg p-8 text-center cursor-pointer hover:border-gray-400 transition-colors"
                 >
-                  <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                  <p className="text-sm text-gray-600 mb-2">
+                  <Upload className="mx-auto h-12 w-12 text-white/30 mb-4" />
+                  <p className="text-sm text-white/50 mb-2">
                     Click to upload images
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-white/40">
                     PNG, JPG, GIF up to 10MB each
                   </p>
                 </div>
@@ -287,13 +287,13 @@ export default function ImagePostForm() {
         <Card className="p-6">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Visibility
               </label>
               <select
                 value={visibility}
                 onChange={(e) => setVisibility(e.target.value as any)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="free">Free</option>
                 <option value="paid">Paid</option>
@@ -303,7 +303,7 @@ export default function ImagePostForm() {
 
             {visibility === 'paid' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-white/60 mb-2">
                   Price (USD)
                 </label>
                 <Input
@@ -322,8 +322,8 @@ export default function ImagePostForm() {
         {message && (
           <div className={`p-4 rounded-md ${
             message.includes('🎉') 
-              ? 'bg-green-50 text-green-800 border border-green-200' 
-              : 'bg-red-50 text-red-800 border border-red-200'
+              ? 'bg-emerald-500/10 text-green-800 border border-green-200' 
+              : 'bg-red-500/10 text-red-800 border border-red-200'
           }`}>
             {message}
           </div>

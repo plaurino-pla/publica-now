@@ -186,7 +186,7 @@ export default function ArticleInteractions({
     return (
       <div className="flex flex-wrap gap-3 justify-center mb-8">
         <div className="text-center">
-          <p className="text-sm text-gray-600 mb-2">Sign in to interact with this content</p>
+          <p className="text-sm text-white/50 mb-2">Sign in to interact with this content</p>
           <Link href="/auth/signin">
             <Button size="sm" variant="outline">
               Sign In
@@ -209,7 +209,7 @@ export default function ArticleInteractions({
           className={`flex items-center gap-2 ${
             liked
               ? 'bg-red-500 hover:bg-red-600 text-white'
-              : 'hover:bg-red-50 hover:text-red-600 hover:border-red-200'
+              : 'hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20'
           }`}
         >
           <Heart className={`w-4 h-4 ${liked ? 'fill-current' : ''}`} />
@@ -225,7 +225,7 @@ export default function ArticleInteractions({
           className={`flex items-center gap-2 ${
             subscribed
               ? 'bg-green-500 hover:bg-green-600 text-white'
-              : 'hover:bg-green-50 hover:text-green-600 hover:border-green-200'
+              : 'hover:bg-emerald-500/10 hover:text-emerald-400 hover:border-emerald-500/20'
           }`}
         >
           <UserPlus className={`w-4 h-4 ${subscribed ? 'fill-current' : ''}`} />
@@ -241,7 +241,7 @@ export default function ArticleInteractions({
           className={`flex items-center gap-2 ${
             saved
               ? 'bg-brand-500 hover:bg-brand-600 text-white'
-              : 'hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200'
+              : 'hover:bg-brand-500/10 hover:text-brand-400 hover:border-brand-500/20'
           }`}
         >
           <Bookmark className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />
@@ -253,11 +253,11 @@ export default function ArticleInteractions({
           variant="outline"
           size="sm"
           onClick={handleShare}
-          className="hover:bg-gray-50 hover:text-gray-900 hover:border-gray-200"
+          className="hover:bg-white/[0.06] hover:text-white hover:border-white/[0.1]"
         >
           {copied ? (
             <>
-              <CheckCircle className="w-4 h-4 text-green-600" />
+              <CheckCircle className="w-4 h-4 text-emerald-400" />
               <span>Copied!</span>
             </>
           ) : (
@@ -271,7 +271,7 @@ export default function ArticleInteractions({
 
       {/* Status message */}
       {statusMessage && (
-        <p className="text-sm text-red-600 text-center bg-red-50 py-2 px-3 rounded-md">
+        <p className="text-sm text-red-400 text-center bg-red-500/10 py-2 px-3 rounded-md">
           {statusMessage}
         </p>
       )}

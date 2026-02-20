@@ -18,15 +18,15 @@ export function PageSection({
 }: PageSectionProps) {
   const bg =
     background === 'muted'
-      ? 'bg-gray-50'
+      ? 'bg-surface-1'
       : background === 'brand'
       ? 'bg-brand-600'
       : background === 'white'
-      ? 'bg-white'
+      ? 'bg-surface-0'
       : ''
 
   return (
-    <section className={clsx('py-16 sm:py-20', bg, className)} {...props}>
+    <section className={clsx('py-24 sm:py-32', bg, className)} {...props}>
       <Container className={innerClassName} fluid={bleed}>
         {children}
       </Container>

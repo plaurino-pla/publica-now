@@ -187,10 +187,10 @@ export default function VideoPostForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <Card className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
+          <h3 className="text-lg font-semibold text-[#FAFAFA] mb-4">Basic Information</h3>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Title *
               </label>
               <Input
@@ -204,21 +204,21 @@ export default function VideoPostForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Description *
               </label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your video content..."
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
+                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
                 rows={4}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Cover Image URL (optional)
               </label>
               <Input
@@ -234,8 +234,8 @@ export default function VideoPostForm() {
 
         {/* Video Source Selection */}
         <Card className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Video Source</h3>
-          <p className="text-sm text-gray-600 mb-6">Choose how you want to add your video content</p>
+          <h3 className="text-lg font-semibold text-[#FAFAFA] mb-4">Video Source</h3>
+          <p className="text-sm text-white/50 mb-6">Choose how you want to add your video content</p>
           
           {/* Source Selection Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -248,14 +248,14 @@ export default function VideoPostForm() {
               }}
               className={`p-6 border-2 rounded-lg transition-all ${
                 videoSource === 'youtube'
-                  ? 'border-red-500 bg-red-50'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-red-500 bg-red-500/10'
+                  : 'border-white/[0.06] hover:border-white/[0.08]'
               }`}
             >
               <div className="flex flex-col items-center text-center">
-                <Youtube className={`w-8 h-8 mb-3 ${videoSource === 'youtube' ? 'text-red-500' : 'text-gray-400'}`} />
-                <h4 className="font-medium text-gray-900 mb-2">YouTube Video</h4>
-                <p className="text-sm text-gray-600">Link to an existing YouTube video</p>
+                <Youtube className={`w-8 h-8 mb-3 ${videoSource === 'youtube' ? 'text-red-500' : 'text-white/30'}`} />
+                <h4 className="font-medium text-[#FAFAFA] mb-2">YouTube Video</h4>
+                <p className="text-sm text-white/50">Link to an existing YouTube video</p>
               </div>
             </button>
             
@@ -267,14 +267,14 @@ export default function VideoPostForm() {
               }}
               className={`p-6 border-2 rounded-lg transition-all ${
                 videoSource === 'upload'
-                  ? 'border-brand-500 bg-brand-50'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-brand-500 bg-brand-500/10'
+                  : 'border-white/[0.06] hover:border-white/[0.08]'
               }`}
             >
               <div className="flex flex-col items-center text-center">
-                <Upload className={`w-8 h-8 mb-3 ${videoSource === 'upload' ? 'text-brand-500' : 'text-gray-400'}`} />
-                <h4 className="font-medium text-gray-900 mb-2">Upload Video</h4>
-                <p className="text-sm text-gray-600">Upload your own MP4 file (max 200MB)</p>
+                <Upload className={`w-8 h-8 mb-3 ${videoSource === 'upload' ? 'text-brand-500' : 'text-white/30'}`} />
+                <h4 className="font-medium text-[#FAFAFA] mb-2">Upload Video</h4>
+                <p className="text-sm text-white/50">Upload your own MP4 file (max 200MB)</p>
               </div>
             </button>
           </div>
@@ -283,7 +283,7 @@ export default function VideoPostForm() {
           {videoSource === 'youtube' && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-white/60 mb-2">
                   YouTube Video URL
                 </label>
                 <div className="flex gap-2">
@@ -306,17 +306,17 @@ export default function VideoPostForm() {
                   </Button>
                 </div>
                 {youtubeUrl && videoId && (
-                  <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-md">
+                  <div className="mt-3 p-3 bg-emerald-500/10 border border-green-200 rounded-md">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600" />
+                      <CheckCircle className="w-4 h-4 text-green-400" />
                       <span className="text-sm text-green-800">Valid YouTube URL detected</span>
                     </div>
                   </div>
                 )}
                 {youtubeUrl && !videoId && (
-                  <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
+                  <div className="mt-3 p-3 bg-red-500/10 border border-red-200 rounded-md">
                     <div className="flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 text-red-600" />
+                      <AlertCircle className="w-4 h-4 text-red-400" />
                       <span className="text-sm text-red-800">Invalid YouTube URL</span>
                     </div>
                   </div>
@@ -325,7 +325,7 @@ export default function VideoPostForm() {
 
               {embedUrl && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-white/60 mb-2">
                     Video Preview
                   </label>
                   <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
@@ -348,14 +348,14 @@ export default function VideoPostForm() {
             <div className="space-y-6">
               {/* Always show this prominently */}
               <div className="text-center">
-                <div className="border-2 border-dashed border-brand-300 rounded-lg p-8 bg-brand-50">
+                <div className="border-2 border-dashed border-brand-300 rounded-lg p-8 bg-brand-500/10">
                   <Upload className="mx-auto h-16 w-16 text-brand-500 mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload Your Video</h3>
+                  <h3 className="text-xl font-semibold text-[#FAFAFA] mb-4">Upload Your Video</h3>
                   
                   {/* Step 1: Get Upload URL if needed */}
                   {!nativeUploadUrl && (
                     <div className="space-y-4">
-                      <p className="text-gray-600 mb-4">First, prepare the upload process</p>
+                      <p className="text-white/50 mb-4">First, prepare the upload process</p>
                       <Button 
                         type="button" 
                         size="lg"
@@ -372,8 +372,8 @@ export default function VideoPostForm() {
                   {/* Step 2: File Selection - ALWAYS SHOW IF URL EXISTS */}
                   {nativeUploadUrl && (
                     <div className="space-y-4">
-                      <p className="text-green-600 font-medium">✓ Upload ready! Now select your video file:</p>
-                      <div className="bg-white border-2 border-gray-300 rounded-lg p-4">
+                      <p className="text-green-400 font-medium">✓ Upload ready! Now select your video file:</p>
+                      <div className="bg-surface-0 border-2 border-white/[0.08] rounded-lg p-4">
                         <input
                           type="file"
                           accept="video/mp4,video/webm"
@@ -388,7 +388,7 @@ export default function VideoPostForm() {
                               }
                             }
                           }}
-                          className="block w-full text-lg text-gray-900 bg-gray-50 border border-gray-300 rounded-lg p-4 cursor-pointer
+                          className="block w-full text-lg text-[#FAFAFA] bg-surface-0 border border-white/[0.08] rounded-lg p-4 cursor-pointer
                             file:mr-4 file:py-3 file:px-6
                             file:rounded-lg file:border-0
                             file:text-lg file:font-semibold
@@ -396,7 +396,7 @@ export default function VideoPostForm() {
                             hover:file:bg-brand-700"
                         />
                       </div>
-                      <p className="text-sm text-gray-600">Select an MP4 or WebM file (max 200MB)</p>
+                      <p className="text-sm text-white/50">Select an MP4 or WebM file (max 200MB)</p>
                       
                       {/* Debug what's preventing file input */}
                       <div className="text-xs bg-red-100 p-2 rounded">
@@ -412,13 +412,13 @@ export default function VideoPostForm() {
                   {/* Step 3: Upload Progress */}
                   {isUploading && (
                     <div className="space-y-4">
-                      <p className="text-brand-600 font-medium">Uploading your video...</p>
+                      <p className="text-brand-400 font-medium">Uploading your video...</p>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span>Progress</span>
                           <span>{uploadProgress}%</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div className="w-full bg-surface-2 rounded-full h-3">
                           <div 
                             className="bg-brand-600 h-3 rounded-full transition-all duration-300" 
                             style={{ width: `${uploadProgress}%` }}
@@ -434,7 +434,7 @@ export default function VideoPostForm() {
                       <div className="text-center">
                         <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
                         <h4 className="text-lg font-semibold text-green-800">Upload Successful!</h4>
-                        <p className="text-green-600">Your video is ready. You can now publish your post.</p>
+                        <p className="text-green-400">Your video is ready. You can now publish your post.</p>
                       </div>
                       <Button
                         type="button"
@@ -455,7 +455,7 @@ export default function VideoPostForm() {
               </div>
 
               {/* Debug - always visible */}
-              <div className="p-3 bg-yellow-50 border border-yellow-200 rounded text-xs">
+              <div className="p-3 bg-amber-500/10 border border-yellow-200 rounded text-xs">
                 <strong>Debug:</strong> URL: {nativeUploadUrl ? '✓' : '✗'} | UID: {nativeUploadUid ? '✓' : '✗'} | Uploading: {isUploading ? '✓' : '✗'}
               </div>
             </div>
@@ -464,16 +464,16 @@ export default function VideoPostForm() {
 
         {/* Publishing Settings */}
         <Card className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Publishing Settings</h3>
+          <h3 className="text-lg font-semibold text-[#FAFAFA] mb-4">Publishing Settings</h3>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white/60 mb-2">
                 Visibility
               </label>
               <select
                 value={visibility}
                 onChange={(e) => setVisibility(e.target.value as any)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="free">Free - Anyone can watch</option>
                 <option value="subscribers">Subscribers Only</option>
@@ -483,7 +483,7 @@ export default function VideoPostForm() {
 
             {visibility === 'paid' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-white/60 mb-2">
                   Price (USD)
                 </label>
                 <Input
@@ -495,7 +495,7 @@ export default function VideoPostForm() {
                   className="w-full"
                   placeholder="9.99"
                 />
-                <p className="text-xs text-gray-500 mt-1">Price for one-time access or subscription requirement</p>
+                <p className="text-xs text-white/40 mt-1">Price for one-time access or subscription requirement</p>
               </div>
             )}
           </div>
@@ -522,8 +522,8 @@ export default function VideoPostForm() {
         <Card className="p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h4 className="font-medium text-gray-900">Ready to publish?</h4>
-              <p className="text-sm text-gray-600 mt-1">
+              <h4 className="font-medium text-[#FAFAFA]">Ready to publish?</h4>
+              <p className="text-sm text-white/50 mt-1">
                 {!canSubmit() 
                   ? 'Complete all required fields to publish your video post'
                   : 'Your video post is ready to be published'

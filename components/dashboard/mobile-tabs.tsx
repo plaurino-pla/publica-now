@@ -15,7 +15,7 @@ export function DashboardMobileTabs() {
     { href: '/dashboard/new', icon: Plus, label: 'New' },
   ]
   return (
-    <nav className="lg:hidden sticky top-[64px] z-30 bg-white border-b border-gray-200 overflow-x-auto" aria-label="Dashboard tabs">
+    <nav className="lg:hidden sticky top-[64px] z-30 bg-surface-0 border-b border-white/[0.06] overflow-x-auto" aria-label="Dashboard tabs">
       <div className="flex gap-2 px-4 py-2">
         {items.map((item) => (
           <Link
@@ -24,7 +24,7 @@ export function DashboardMobileTabs() {
             aria-current={(item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)) ? 'page' : undefined}
             className={cn(
               'inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600',
-              (item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)) ? 'bg-brand-50 text-brand-700' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+              (item.href === '/dashboard' ? pathname === item.href : pathname.startsWith(item.href)) ? 'bg-brand-500/15 text-brand-400' : 'text-white/50 hover:bg-white/[0.06] hover:text-white'
             )}
           >
             <item.icon className="w-4 h-4" />

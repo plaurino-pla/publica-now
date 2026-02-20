@@ -27,11 +27,11 @@ export default function LibraryPage() {
     <PageSection background="white">
       <Container className="space-y-4">
         <h1 className="text-3xl font-bold">Your Library</h1>
-        <p className="text-gray-600">After a purchase, click Read Now to enter Publica Reader.</p>
+        <p className="text-white/50">After a purchase, click Read Now to enter Publica Reader.</p>
         <div>
           <Button onClick={() => readNow('demo-creator')} disabled={loading}>{loading ? 'Opening…' : 'Read Now'}</Button>
         </div>
-        {error && <div className="text-red-600">{error}</div>}
+        {error && <div className="text-red-400">{error}</div>}
       </Container>
     </PageSection>
   )
