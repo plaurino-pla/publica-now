@@ -16,7 +16,6 @@ export default function SignInPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeMethod, setActiveMethod] = useState<'credentials' | 'magic'>('credentials')
-  const [isCheckingAuth, setIsCheckingAuth] = useState(false) // Temporarily disabled
   const [isEmailConfigured, setIsEmailConfigured] = useState(true) // Assume true initially
   const router = useRouter()
 
@@ -38,41 +37,6 @@ export default function SignInPage() {
     checkEmailConfig()
   }, [])
 
-  // Temporarily disabled authentication check to prevent infinite loading
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     try {
-  //       const response = await fetch('/api/auth/me')
-  //       if (response.ok) {
-  //         const userData = await response.json()
-  //         if (userData.user) {
-  //           router.push('/dashboard')
-  //           return
-  //         }
-  //       }
-  //       // If we get here, user is not authenticated - this is normal
-  //       setIsCheckingAuth(false)
-  //     } catch (error) {
-  //       console.log('Auth check failed, user not logged in')
-  //       setIsCheckingAuth(false)
-  //     }
-  //   }
-    
-  //   // Add a small delay to prevent rapid reloading
-  //   const timer = setTimeout(checkAuth, 100)
-  //   return () => clearTimeout(timer)
-  // }, [router])
-
-  if (isCheckingAuth) {
-    return (
-      <PageSection background="muted" className="min-h-[60vh] flex items-center">
-        <Container className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Checking authentication...</p>
-        </Container>
-      </PageSection>
-    )
-  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -136,7 +100,7 @@ export default function SignInPage() {
   }
 
   return (
-    <PageSection background="muted" className="min-h-[60vh] py-16 sm:py-20">
+    <PageSection className="min-h-[60vh] py-16 sm:py-20 bg-gradient-to-br from-brand-50/50 to-white">
       <Container className="max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
@@ -215,7 +179,7 @@ export default function SignInPage() {
                     {error}
                   </div>
                 )}
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button type="submit" variant="gradient" className="w-full" disabled={isLoading}>
                   {isLoading ? 'Signing in...' : 'Sign in'}
                 </Button>
               </form>
@@ -253,7 +217,7 @@ export default function SignInPage() {
                     {success}
                   </div>
                 )}
-                <Button type="submit" className="w-full" disabled={isLoading || !isEmailConfigured}>
+                <Button type="submit" variant="gradient" className="w-full" disabled={isLoading || !isEmailConfigured}>
                   {isLoading ? 'Sending...' : 'Send magic link'}
                 </Button>
               </form>
