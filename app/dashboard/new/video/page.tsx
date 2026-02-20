@@ -211,7 +211,7 @@ export default function VideoPostForm() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your video content..."
-                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
+                className="w-full p-3 bg-surface-2 border border-white/[0.08] rounded-md text-white/90 placeholder:text-white/25 focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
                 rows={4}
                 required
               />
@@ -473,7 +473,7 @@ export default function VideoPostForm() {
               <select
                 value={visibility}
                 onChange={(e) => setVisibility(e.target.value as any)}
-                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                className="w-full p-3 bg-surface-2 border border-white/[0.08] rounded-md text-white/90 focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="free">Free - Anyone can watch</option>
                 <option value="subscribers">Subscribers Only</option>

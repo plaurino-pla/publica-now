@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
         ${data.bodyMarkdown}, 
         ${data.contentType}, 
         ${data.audioUrl || null}, 
-        ${data.imageUrls ? data.imageUrls : []}, 
+        ${data.imageUrls ? JSON.stringify(data.imageUrls) : '[]'}::jsonb,
         ${data.videoUrl || null}, 
         ${data.videoId || null}, 
         'ready', 

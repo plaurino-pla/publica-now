@@ -208,7 +208,7 @@ export default function ImagePostForm() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your images..."
-                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                className="w-full p-3 bg-surface-2 border border-white/[0.08] rounded-md text-white/90 placeholder:text-white/25 focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 rows={4}
                 required
               />
@@ -293,7 +293,7 @@ export default function ImagePostForm() {
               <select
                 value={visibility}
                 onChange={(e) => setVisibility(e.target.value as any)}
-                className="w-full p-3 border border-white/[0.08] rounded-md focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                className="w-full p-3 bg-surface-2 border border-white/[0.08] rounded-md text-white/90 focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="free">Free</option>
                 <option value="paid">Paid</option>
@@ -321,9 +321,9 @@ export default function ImagePostForm() {
 
         {message && (
           <div className={`p-4 rounded-md ${
-            message.includes('🎉') 
-              ? 'bg-emerald-500/10 text-green-800 border border-green-200' 
-              : 'bg-red-500/10 text-red-800 border border-red-200'
+            message.includes('🎉')
+              ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20'
+              : 'bg-red-500/10 text-red-300 border border-red-500/20'
           }`}>
             {message}
           </div>
