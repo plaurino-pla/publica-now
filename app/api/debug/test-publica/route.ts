@@ -9,12 +9,6 @@ export async function GET(req: NextRequest) {
     const globalApiToken = process.env.PUBLICA_API_TOKEN || 'api-b058d4d5-26c5-41ac-8f41-ed0bfe5fa696'
     const globalStoreDomain = process.env.PUBLICA_STORE_DOMAIN || 'plaurino.publica.la'
 
-    console.log('Testing publica.la configuration:', {
-      apiToken: globalApiToken ? '***' + globalApiToken.slice(-4) : 'NOT_SET',
-      storeDomain: globalStoreDomain,
-      fullUrl: `https://${globalStoreDomain}`
-    })
-
     if (!globalApiToken || !globalStoreDomain) {
       return NextResponse.json({ 
         error: 'Publica.la configuration not found',
@@ -25,12 +19,9 @@ export async function GET(req: NextRequest) {
     const publica = new PublicaClient(globalStoreDomain, globalApiToken)
 
     // Test basic connection by trying to get content
-    console.log('Testing publica.la API connection...')
-    
     try {
       const contentResponse = await publica.getContent({ per_page: 1 })
-      console.log('Publica API test successful:', contentResponse)
-      
+
       return NextResponse.json({ 
         success: true, 
         message: 'Publica.la API connection successful',

@@ -3,8 +3,6 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST() {
   try {
-    console.log('Creating demo creators and content...')
-
     // Demo Creator 1: Sarah Chen - Tech Writer
     const sarah = await prisma.creator.upsert({
       where: { slug: 'sarah-chen-tech' },
@@ -206,7 +204,6 @@ Remember: monetization should enhance your content, not compromise it.`,
       }
     })
 
-    console.log('✅ Demo creators created successfully')
     return NextResponse.json({ 
       success: true, 
       message: 'Demo creators created successfully',

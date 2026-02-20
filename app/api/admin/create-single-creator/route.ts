@@ -3,8 +3,6 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST() {
   try {
-    console.log('Creating single demo creator...')
-
     // Create just one creator for testing using raw SQL
     const creatorResult = await prisma.$queryRaw`
       INSERT INTO creators (
@@ -24,7 +22,6 @@ export async function POST() {
     `
 
     const creator = (creatorResult as any[])[0]
-    console.log('✅ Creator created:', creator)
 
     // Create a simple article for this creator using raw SQL
     const articleResult = await prisma.$queryRaw`
@@ -39,7 +36,6 @@ export async function POST() {
     `
 
     const article = (articleResult as any[])[0]
-    console.log('✅ Article created:', article)
 
     // Verify the creator exists using raw SQL
     const verifyCreators = await prisma.$queryRaw`
@@ -53,8 +49,6 @@ export async function POST() {
     `
 
     const verifyCreator = (verifyCreators as any[])[0]
-
-    console.log('✅ Verification result:', verifyCreator)
 
     return NextResponse.json({
       success: true,

@@ -63,13 +63,6 @@ export async function POST(req: NextRequest) {
     const publica = new PublicaClient(storeDomain, apiToken)
     const externalId = `video-${article.id}-${Date.now()}`
 
-    console.log('Sending video to publica.la:', {
-      name: data.title,
-      external_id: externalId,
-      file_url: data.videoUrl,
-      storeDomain,
-    })
-
     const publicaResponse = await publica.createContent({
       name: data.title,
       publication_date: new Date().toISOString().slice(0, 10),
@@ -83,8 +76,6 @@ export async function POST(req: NextRequest) {
       keyword: ['video', 'publica-now'],
       free: !data.pricing || !data.pricing.USD,
     })
-
-    console.log('Publica.la response:', publicaResponse)
 
     if (!publicaResponse || !publicaResponse.id || !publicaResponse.reader_url) {
       throw new Error('Invalid response from publica.la API - missing ID or reader URL')

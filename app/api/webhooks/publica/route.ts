@@ -18,15 +18,12 @@ export async function POST(request: NextRequest) {
 
 async function handleSaleApproved(data: any) {
   // TODO: Implement when Order model is added to schema
-  console.log('Sale approved:', data)
 }
 
 async function handleSubscriptionCreated(data: any) {
   // Handle new subscription creation
-  console.log('Subscription created:', data)
 }
 
 async function handleSubscriptionRenewed(data: any) {
   // Handle subscription renewal
-  console.log('Subscription renewed:', data)
 }

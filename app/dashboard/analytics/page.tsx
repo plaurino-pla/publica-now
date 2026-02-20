@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { PageHeader } from '@/components/dashboard/page-header'
-import { BarChart, LineChart, TrendingUp, Users, Eye, Download, FileText, DollarSign } from 'lucide-react'
+import { BarChart, TrendingUp, Users, FileText, DollarSign } from 'lucide-react'
 import Link from 'next/link'
 
 interface AnalyticsData {
@@ -11,16 +11,13 @@ interface AnalyticsData {
   publishedArticles: number
   paidArticles: number
   totalSubscribers: number
-  totalViews: number
   totalRevenue: number
   monthlyData: Array<{
     month: string
     articles: number
-    views: number
     revenue: number
   }>
   lastUpdated: string
-  note: string
 }
 
 export default function AnalyticsPage() {
@@ -65,7 +62,7 @@ export default function AnalyticsPage() {
       <div className="min-h-screen bg-surface-0 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <BarChart className="w-8 h-8 text-amber-400" />
             </div>
             <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No analytics data yet</h3>
@@ -112,19 +109,6 @@ export default function AnalyticsPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Views</CardTitle>
-              <Eye className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{analytics.totalViews.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">
-                Content engagement
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Subscribers</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
@@ -132,6 +116,19 @@ export default function AnalyticsPage() {
               <div className="text-2xl font-bold">{analytics.totalSubscribers}</div>
               <p className="text-xs text-muted-foreground">
                 Community members
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Paid Articles</CardTitle>
+              <FileText className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{analytics.paidArticles}</div>
+              <p className="text-xs text-muted-foreground">
+                Premium content
               </p>
             </CardContent>
           </Card>
@@ -149,18 +146,6 @@ export default function AnalyticsPage() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Note about placeholder data */}
-        {analytics.note && (
-          <div className="mb-8 p-4 bg-amber-500/10 border border-yellow-200 rounded-lg">
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 bg-yellow-100 rounded-full flex items-center justify-center">
-                <span className="text-amber-400 text-xs">ℹ</span>
-              </div>
-              <p className="text-sm text-yellow-800">{analytics.note}</p>
-            </div>
-          </div>
-        )}
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

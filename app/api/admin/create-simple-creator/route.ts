@@ -3,9 +3,6 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST() {
   try {
-    console.log('=== CREATE SIMPLE CREATOR ROUTE CALLED ===')
-    console.log('Creating simple demo creator...')
-
     // Create a very basic creator with minimal fields
     const creator = await prisma.creator.upsert({
       where: { slug: 'demo-creator' },
@@ -50,7 +47,6 @@ This is a demo article to show how the platform works.
       }
     })
 
-    console.log('✅ Simple demo creator created successfully')
     return NextResponse.json({ 
       success: true, 
       message: 'Simple demo creator created successfully',

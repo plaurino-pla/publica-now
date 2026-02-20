@@ -56,10 +56,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json()
-    console.log('Creator update request body:', body)
-    
     const validatedData = updateCreatorSchema.parse(body)
-    console.log('Validated data:', validatedData)
 
     // Find the creator associated with this user using raw SQL
     const creators = await prisma.$queryRaw`
@@ -78,8 +75,6 @@ export async function PUT(request: NextRequest) {
     if (!creator) {
       return NextResponse.json({ error: 'Creator not found' }, { status: 404 })
     }
-
-    console.log('Found creator:', { id: creator.id, name: creator.name })
 
     // Update the creator using raw SQL
     const updatedCreators = await prisma.$queryRaw`

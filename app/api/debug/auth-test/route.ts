@@ -6,8 +6,6 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json()
     
-    console.log('Debug auth test for:', email)
-    
     // Test database connection
     const users = await prisma.$queryRaw`
       SELECT id, email, "passwordHash"
@@ -15,8 +13,6 @@ export async function POST(request: NextRequest) {
       WHERE email = ${email}
       LIMIT 1
     `
-    
-    console.log('Database query result:', users)
     
     const user = (users as any[])[0]
     if (!user || !user.passwordHash) {
@@ -29,8 +25,6 @@ export async function POST(request: NextRequest) {
     
     // Test password verification
     const isValidPassword = await verify(user.passwordHash, password)
-    
-    console.log('Password verification result:', isValidPassword)
     
     return NextResponse.json({
       success: true,

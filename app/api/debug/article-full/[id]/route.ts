@@ -8,8 +8,6 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    console.log('Debugging article:', params.id)
-
     // Get full article data using raw SQL
     const articles = await prisma.$queryRaw`
       SELECT 
@@ -37,18 +35,6 @@ export async function GET(
     `
 
     const currentArtifact = (artifacts as any[])[0] || null
-
-    console.log('Article found:', {
-      id: article.id,
-      title: article.title,
-      slug: article.slug,
-      bodyMarkdown: article.bodyMarkdown ? `${article.bodyMarkdown.substring(0, 100)}...` : 'NULL',
-      contentType: article.contentType,
-      status: article.status,
-      pricing: article.pricing,
-      hasCreator: !!article.creatorName,
-      creatorName: article.creatorName
-    })
 
     // Check if bodyMarkdown is actually null or just empty
     const bodyMarkdownStatus = article.bodyMarkdown 

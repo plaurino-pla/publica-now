@@ -3,8 +3,6 @@ import { prisma } from '@/lib/prisma'
 
 export async function GET() {
   try {
-    console.log('=== NEW CREATORS API ROUTE CALLED ===')
-    
     // Use raw SQL query to avoid Prisma schema validation issues
     const creators = await prisma.$queryRaw`
       SELECT 
@@ -16,8 +14,6 @@ export async function GET() {
       FROM creators 
       ORDER BY "createdAt" DESC
     `
-
-    console.log('Raw SQL query successful. Found creators:', (creators as any[]).length)
 
     // Count articles for each creator
     const creatorsWithCounts = await Promise.all(

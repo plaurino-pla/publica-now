@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
         break
 
       default:
-        console.log(`Unhandled event type: ${event.type}`)
+        break
     }
 
     return NextResponse.json({ received: true })

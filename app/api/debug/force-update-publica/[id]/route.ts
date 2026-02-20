@@ -43,14 +43,6 @@ export async function POST(
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
-    console.log('Updating article:', {
-      id: article.id,
-      slug: article.slug,
-      title: article.title,
-      publicaId: publicaId,
-      readerUrl: readerUrl
-    })
-
     // Update the article with the publica.la ID and reader URL using raw SQL
     const currentPricing = article.pricing || {}
     const updatedPricing = {

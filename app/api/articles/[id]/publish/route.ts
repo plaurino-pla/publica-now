@@ -16,7 +16,6 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   const article = await prisma.article.findUnique({ where: { id: params.id } })
   if (!article) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
-  console.log('Generating EPUB for article:', article.title, 'Cover URL:', article.coverUrl)
   const buffer = await generateEpubBuffer({ title: article.title, bodyMarkdown: article.bodyMarkdown || '', coverUrl: article.coverUrl || undefined })
 
   return new NextResponse(buffer as any, {

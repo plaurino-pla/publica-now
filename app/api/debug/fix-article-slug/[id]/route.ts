@@ -16,8 +16,6 @@ export async function POST(
       return NextResponse.json({ error: 'Article not found' }, { status: 404 })
     }
 
-    console.log('Found article:', article)
-
     // Generate slug from title if missing
     if (!article.slug) {
       const newSlug = article.title
@@ -27,16 +25,12 @@ export async function POST(
         .replace(/-+/g, '-')
         .trim()
 
-      console.log('Generated slug:', newSlug)
-
       // Update article with new slug
       const updatedArticle = await prisma.article.update({
         where: { id: params.id },
         data: { slug: newSlug },
         select: { id: true, title: true, slug: true, contentType: true }
       })
-
-      console.log('Updated article:', updatedArticle)
 
       return NextResponse.json({
         success: true,

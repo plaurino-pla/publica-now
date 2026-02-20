@@ -3,8 +3,6 @@ import { prisma } from '@/lib/prisma'
 
 export async function GET() {
   try {
-    console.log('=== WORKING CREATORS API CALLED ===')
-    
     // Simply return empty array for now to unblock the frontend
     const mockCreators = [
       {

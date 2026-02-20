@@ -43,14 +43,6 @@ export async function POST(
     const publica = new PublicaClient(globalStoreDomain, globalApiToken)
     const externalId = `audio-${article.id}-${Date.now()}`
 
-    console.log('Manually sending audio to publica.la:', { 
-      name: article.title, 
-      external_id: externalId, 
-      file_url: article.audioUrl, 
-      description: (article.bodyMarkdown || '').substring(0, 200),
-      storeDomain: globalStoreDomain
-    })
-
     const publicaResponse = await publica.createContent({
       name: article.title,
       publication_date: new Date().toISOString().slice(0, 10),
@@ -65,8 +57,6 @@ export async function POST(
       author: [creator.name],
       keyword: ['audio', 'podcast', 'publica-now'],
     })
-
-    console.log('Publica.la response:', publicaResponse)
 
     await prisma.article.update({
       where: { id: params.id },

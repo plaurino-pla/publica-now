@@ -61,7 +61,7 @@ export default function EarningsPage() {
       <div className="min-h-screen bg-surface-0 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <DollarSign className="w-8 h-8 text-amber-400" />
             </div>
             <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No earnings data yet</h3>
@@ -225,27 +225,25 @@ export default function EarningsPage() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-4 bg-brand-500/10 rounded-lg">
-                <h4 className="font-medium text-brand-900 mb-2">Available Balance</h4>
-                <p className="text-2xl font-bold text-brand-900">${earnings.pendingPayout.toFixed(2)}</p>
-                <p className="text-sm text-brand-400 mt-1">Ready for withdrawal</p>
+                <h4 className="font-medium text-brand-300 mb-2">Available Balance</h4>
+                <p className="text-2xl font-bold text-brand-400">${earnings.pendingPayout.toFixed(2)}</p>
+                <p className="text-sm text-brand-400/60 mt-1">Ready for withdrawal</p>
               </div>
               <div className="p-4 bg-emerald-500/10 rounded-lg">
-                <h4 className="font-medium text-green-900 mb-2">Minimum Payout</h4>
-                <p className="text-2xl font-bold text-green-900">$50.00</p>
-                <p className="text-sm text-green-700 mt-1">Required to withdraw</p>
+                <h4 className="font-medium text-emerald-300 mb-2">Minimum Payout</h4>
+                <p className="text-2xl font-bold text-emerald-400">$50.00</p>
+                <p className="text-sm text-emerald-400/60 mt-1">Required to withdraw</p>
               </div>
             </div>
             <div className="text-center">
-              <button 
-                disabled={earnings.pendingPayout < 50}
-                className={`px-6 py-3 rounded-lg font-medium ${
-                  earnings.pendingPayout >= 50
-                    ? 'bg-brand-600 text-white hover:bg-brand-700'
-                    : 'bg-gray-300 text-white/40 cursor-not-allowed'
-                }`}
+              <button
+                disabled
+                className="px-6 py-3 rounded-lg font-medium bg-surface-2 text-white/40 cursor-not-allowed"
+                title="Payouts coming soon"
               >
-                {earnings.pendingPayout >= 50 ? 'Request Payout' : 'Minimum $50 required'}
+                {earnings.pendingPayout >= 50 ? 'Payouts Coming Soon' : 'Minimum $50 required'}
               </button>
+              <p className="text-xs text-white/30 mt-2">Payout functionality is coming soon</p>
             </div>
           </CardContent>
         </Card>

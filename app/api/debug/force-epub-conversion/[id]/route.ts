@@ -9,8 +9,6 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    console.log('Force EPUB conversion for article:', params.id)
-
     // Find the article
     const article = await prisma.article.findUnique({
       where: { id: params.id },
@@ -25,12 +23,6 @@ export async function POST(
       return NextResponse.json({ error: 'Article is not a text article' }, { status: 400 })
     }
 
-    console.log('Article found:', {
-      title: article.title,
-      creator: article.creator.name,
-      contentLength: article.bodyMarkdown?.length || 0
-    })
-
     // Use global publica.la configuration
     const globalApiToken = process.env.PUBLICA_API_TOKEN || 'api-b058d4d5-26c5-41ac-8f41-ed0bfe5fa696'
     const globalStoreDomain = process.env.PUBLICA_STORE_DOMAIN || 'plaurino.publica.la'
@@ -40,7 +32,6 @@ export async function POST(
     }
 
     // Generate EPUB
-    console.log('Generating EPUB...')
     const epubGenerator = new EpubGenerator()
     const epubBlob = await epubGenerator.generateEpub({
       title: article.title,
@@ -52,8 +43,6 @@ export async function POST(
       coverImage: undefined // No cover image for now
     })
 
-    console.log('EPUB generated, uploading to Vercel Blob...')
-
     // Upload EPUB to Vercel Blob
     const timestamp = Date.now()
     const filename = `epubs/debug/${article.id}/${timestamp}.epub`
@@ -63,13 +52,10 @@ export async function POST(
       addRandomSuffix: false,
     })
 
-    console.log('EPUB uploaded to Blob:', blob.url)
-
     // Send to publica.la API
     const publica = new PublicaClient(globalStoreDomain, globalApiToken)
     const externalId = `text-${article.id}-${Date.now()}`
 
-    console.log('Sending to publica.la...')
     const publicaResponse = await publica.createContent({
       name: article.title,
       external_id: externalId,
@@ -79,8 +65,6 @@ export async function POST(
       publication_date: new Date().toISOString().slice(0, 10),
       prices: (article.pricing && typeof article.pricing === 'object' && 'USD' in article.pricing) ? { USD: (article.pricing as any).USD } : undefined
     })
-
-    console.log('Publica.la response:', publicaResponse)
 
     if (!publicaResponse || !publicaResponse.id) {
       throw new Error('Invalid response from publica.la')
@@ -104,8 +88,6 @@ export async function POST(
         publishedAt: new Date()
       }
     })
-
-    console.log('Article updated successfully')
 
     return NextResponse.json({
       success: true,

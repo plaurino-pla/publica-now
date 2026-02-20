@@ -35,8 +35,6 @@ function sanitizeCoverUrl(value?: string | null): string | undefined {
 async function notifyPublicaLa(article: any) {
   if (process.env.PUBLICA_API_URL && process.env.PUBLICA_API_TOKEN && article.contentType === 'audio') {
     try {
-      console.log('Notifying publica.la about new audio post:', article.id)
-      
       const webhookResponse = await fetch(`${process.env.PUBLICA_API_URL}/webhooks/content-created`, {
         method: 'POST',
         headers: {
@@ -56,7 +54,6 @@ async function notifyPublicaLa(article: any) {
       })
       
       if (webhookResponse.ok) {
-        console.log('Successfully notified publica.la')
         return true
       } else {
         console.error('Failed to notify publica.la:', await webhookResponse.text())
@@ -85,7 +82,6 @@ export async function POST(req: NextRequest) {
         LIMIT 1
       `
     } catch (error) {
-      console.log('Memberships table not found, creating it and setting up creator account')
       // Create memberships table if it doesn't exist
       await prisma.$executeRawUnsafe(`
         CREATE TABLE IF NOT EXISTS memberships (
@@ -105,8 +101,6 @@ export async function POST(req: NextRequest) {
     
     // If user doesn't have a creator account, create one automatically
     if (!membership) {
-      console.log('User does not have creator account, creating one automatically')
-      
       // Get user info
       const users = await prisma.$queryRaw`
         SELECT email FROM users WHERE id = ${session.user.id} LIMIT 1
@@ -147,7 +141,6 @@ export async function POST(req: NextRequest) {
       `
       
       membership = { creatorId: creator.id }
-      console.log('✅ Created creator account for user:', session.user.id)
     }
 
     let body: any
@@ -157,12 +150,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
     }
 
-    console.log('Request body:', body)
     const data = articleSchema.parse(body)
-
-    // Debug: log the parsed data
-    console.log('Parsed data:', data)
-    console.log('Tags before processing:', data.tags)
 
     // Create article using raw SQL
     const articleResult = await prisma.$queryRaw`

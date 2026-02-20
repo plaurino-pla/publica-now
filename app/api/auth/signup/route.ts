@@ -21,8 +21,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { email, password, name, creatorName, creatorHandle, description } = signupSchema.parse(body)
 
-    console.log('Signup attempt for:', { email, hasPassword: !!password, name, creatorName, creatorHandle })
-
     // Check if user already exists using raw SQL
     const existingUsers = await prisma.$queryRaw`
       SELECT id FROM users WHERE email = ${email}
@@ -64,7 +62,6 @@ export async function POST(request: NextRequest) {
     `
 
     const user = (userResult as any[])[0]
-    console.log('User created successfully:', user.id)
 
     let creator = null
     let membership = null
@@ -93,7 +90,6 @@ export async function POST(request: NextRequest) {
           RETURNING id
         `
 
-        console.log('Creator and membership created successfully')
       } catch (creatorError) {
         console.error('Failed to create creator:', creatorError)
         // Continue without creator - user account was created successfully

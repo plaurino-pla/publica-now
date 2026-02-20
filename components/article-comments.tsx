@@ -2,57 +2,16 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { MessageCircle, Send, User } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import { useSession } from 'next-auth/react'
-
-interface Comment {
-  id: string
-  content: string
-  author: {
-    name: string
-    email: string
-  }
-  createdAt: string
-}
 
 interface ArticleCommentsProps {
   articleId: string
-  initialComments?: Comment[]
 }
 
-export default function ArticleComments({ articleId, initialComments = [] }: ArticleCommentsProps) {
+export default function ArticleComments({ articleId }: ArticleCommentsProps) {
   const { data: session } = useSession()
-  const [comments, setComments] = useState<Comment[]>(initialComments)
-  const [newComment, setNewComment] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [showComments, setShowComments] = useState(false)
-
-  const handleSubmitComment = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!newComment.trim() || !session?.user) return
-
-    setIsSubmitting(true)
-    try {
-      // TODO: Implement comment submission API
-      const comment: Comment = {
-        id: Date.now().toString(),
-        content: newComment.trim(),
-        author: {
-          name: session.user.name || 'Anonymous',
-          email: session.user.email || ''
-        },
-        createdAt: new Date().toISOString()
-      }
-
-      setComments(prev => [comment, ...prev])
-      setNewComment('')
-    } catch {
-      // Comment submission failed silently — TODO: implement API
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   if (!session?.user) {
     return (
@@ -72,7 +31,7 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-semibold text-[#FAFAFA] flex items-center gap-2">
           <MessageCircle className="w-5 h-5" />
-          Comments ({comments.length})
+          Comments
         </h3>
         <Button
           variant="outline"
@@ -84,60 +43,11 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
       </div>
 
       {showComments && (
-        <>
-          {/* Comment Form */}
-          <div className="mb-6">
-            <form onSubmit={handleSubmitComment} className="space-y-3">
-              <Textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Share your thoughts..."
-                rows={3}
-                className="w-full"
-                disabled={isSubmitting}
-              />
-              <div className="flex justify-end">
-                <Button
-                  type="submit"
-                  disabled={!newComment.trim() || isSubmitting}
-                  size="sm"
-                >
-                  <Send className="w-4 h-4 mr-2" />
-                  {isSubmitting ? 'Posting...' : 'Post Comment'}
-                </Button>
-              </div>
-            </form>
-          </div>
-
-          {/* Comments List */}
-          <div className="space-y-4">
-            {comments.length === 0 ? (
-              <div className="text-center py-8 text-white/40">
-                <MessageCircle className="w-8 h-8 mx-auto mb-2" />
-                <p>No comments yet. Be the first to share your thoughts!</p>
-              </div>
-            ) : (
-              comments.map((comment) => (
-                <div key={comment.id} className="border border-white/[0.06] rounded-lg p-4 bg-surface-1">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-brand-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-brand-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium text-[#FAFAFA]">{comment.author.name}</span>
-                        <span className="text-sm text-white/40">
-                          {new Date(comment.createdAt).toLocaleDateString()}
-                        </span>
-                      </div>
-                      <p className="text-white/60">{comment.content}</p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </>
+        <div className="text-center py-8 text-white/40">
+          <MessageCircle className="w-8 h-8 mx-auto mb-2" />
+          <p className="mb-1">Comments are coming soon.</p>
+          <p className="text-sm text-white/30">We're building a thoughtful discussion space for readers and creators.</p>
+        </div>
       )}
     </div>
   )

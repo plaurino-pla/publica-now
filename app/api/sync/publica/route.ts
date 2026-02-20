@@ -41,8 +41,6 @@ export async function POST(req: NextRequest) {
 
     for (const post of audioPosts) {
       try {
-        console.log(`Syncing audio post: ${post.title} (${post.id})`)
-        
         // Try to send to publica.la
         const response = await fetch(`${process.env.PUBLICA_API_URL}/webhooks/content-created`, {
           method: 'POST',
@@ -71,7 +69,6 @@ export async function POST(req: NextRequest) {
             status: 'success',
             message: 'Successfully synced to publica.la'
           })
-          console.log(`Successfully synced: ${post.title}`)
         } else {
           const errorText = await response.text()
           results.push({

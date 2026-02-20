@@ -6,9 +6,6 @@ export async function GET() {
   const BUILD_TIME = new Date().toISOString()
   
   try {
-    console.log('=== REAL CREATORS API ===')
-    console.log(`Version: ${VERSION}, Build: ${BUILD_TIME}`)
-    
     // Use raw SQL to query only fields that exist in production database
     const creators = await prisma.$queryRaw`
       SELECT 
@@ -21,8 +18,6 @@ export async function GET() {
       FROM creators 
       ORDER BY "createdAt" DESC
     `
-
-    console.log('Raw SQL query successful. Found creators:', (creators as any[]).length)
 
     // Count articles for each creator using raw SQL
     const creatorsWithCounts = await Promise.all(
@@ -46,8 +41,6 @@ export async function GET() {
         }
       })
     )
-
-    console.log('Processing complete. Returning real creators data.')
 
     return NextResponse.json({ 
       creators: creatorsWithCounts,

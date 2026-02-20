@@ -31,7 +31,6 @@ export async function POST(req: NextRequest) {
 
     // Validate file name exists
     if (!file.name || typeof file.name !== 'string') {
-      console.log('Image upload: Invalid file name:', file.name)
       return NextResponse.json({ error: 'Invalid file name. Please try uploading again.' }, { status: 400 })
     }
 

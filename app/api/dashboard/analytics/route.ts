@@ -69,7 +69,6 @@ export async function GET() {
       monthlyData.push({
         month: monthStart.toLocaleDateString('en-US', { month: 'short' }),
         articles: monthArticles.length,
-        views: Math.floor(Math.random() * 100) + 50, // Placeholder - will need real analytics tracking
         revenue: monthArticles
           .filter(a => a.visibility === 'paid' && a.pricing)
           .reduce((sum, a) => {
@@ -88,11 +87,9 @@ export async function GET() {
       publishedArticles,
       paidArticles,
       totalSubscribers,
-      totalViews: monthlyData.reduce((sum, m) => sum + m.views, 0), // Placeholder - will need real analytics tracking
       totalRevenue: monthlyData.reduce((sum, m) => sum + m.revenue, 0),
       monthlyData,
-      lastUpdated: new Date().toISOString(),
-      note: "Views data is currently placeholder - real analytics tracking will be implemented soon"
+      lastUpdated: new Date().toISOString()
     }
 
     return NextResponse.json(analyticsData)

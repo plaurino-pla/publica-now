@@ -63,15 +63,6 @@ export async function POST(req: NextRequest) {
     const publica = new PublicaClient(globalStoreDomain, globalApiToken)
     const externalId = `audio-${article.id}-${Date.now()}`
 
-    console.log('Sending audio to publica.la:', { 
-      name: data.title, 
-      external_id: externalId, 
-      file_url: data.audioUrl, 
-      description: data.description,
-      storeDomain: globalStoreDomain,
-      apiToken: globalApiToken ? '***' + globalApiToken.slice(-4) : 'NOT_SET'
-    })
-
     const publicaResponse = await publica.createContent({
       name: data.title,
       publication_date: new Date().toISOString().slice(0, 10),
@@ -85,8 +76,6 @@ export async function POST(req: NextRequest) {
       keyword: ['audio', 'podcast', 'publica-now'],
       free: !data.pricing || !data.pricing.USD, // Only free if no pricing or USD is 0/null
     })
-
-    console.log('Publica.la response:', publicaResponse)
 
     if (!publicaResponse || !publicaResponse.id || !publicaResponse.reader_url) {
       throw new Error('Invalid response from publica.la API - missing ID or reader URL')
@@ -110,13 +99,6 @@ export async function POST(req: NextRequest) {
         sentAt: new Date().toISOString()
       }
     }), data.articleId)
-
-    console.log('Article updated with publica.la metadata:', {
-      articleId: data.articleId,
-      publicaId: publicaResponse.id,
-      externalId: publicaResponse.external_id,
-      readerUrl: publicaResponse.reader_url
-    })
 
     return NextResponse.json({ 
       success: true, 

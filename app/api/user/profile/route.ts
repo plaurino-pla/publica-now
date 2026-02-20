@@ -54,7 +54,6 @@ export async function GET() {
         WHERE m."userId" = ${session.user.id}
       `
     } catch (error) {
-      console.log('Memberships table not found, creating it and setting up creator account')
       // Create memberships table if it doesn't exist
       await prisma.$executeRawUnsafe(`
         CREATE TABLE IF NOT EXISTS memberships (
@@ -77,8 +76,6 @@ export async function GET() {
       `
       
       if ((existingMemberships as any[]).length === 0) {
-        console.log('Auto-creating creator account for user:', session.user.id)
-        
         // Create a creator account for the user
         const creatorResult = await prisma.$queryRaw`
           INSERT INTO creators (
@@ -126,7 +123,6 @@ export async function GET() {
           WHERE m."userId" = ${session.user.id}
         `
         
-        console.log('✅ Auto-created creator account for user:', session.user.id)
       }
     }
 
@@ -144,7 +140,6 @@ export async function GET() {
         WHERE s."userId" = ${session.user.id}
       `
     } catch (error) {
-      console.log('Subscriptions table not found, using empty array')
       subscriptions = []
     }
 
@@ -164,7 +159,6 @@ export async function GET() {
         WHERE l.user_id = ${session.user.id}
       `
     } catch (error) {
-      console.log('Likes table not found, using empty array')
       likes = []
     }
 
@@ -184,7 +178,6 @@ export async function GET() {
         WHERE r.user_id = ${session.user.id}
       `
     } catch (error) {
-      console.log('ReadingListItems table not found, using empty array')
       readingList = []
     }
 

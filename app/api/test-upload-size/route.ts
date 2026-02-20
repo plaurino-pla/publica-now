@@ -7,12 +7,6 @@ export async function POST(req: NextRequest) {
     const contentLength = req.headers.get('content-length')
     const sizeInMB = contentLength ? parseInt(contentLength) / (1024 * 1024) : 0
     
-    console.log('Test upload size endpoint:', {
-      contentLength,
-      sizeInMB: sizeInMB.toFixed(2) + 'MB',
-      headers: Object.fromEntries(req.headers.entries())
-    })
-
     // Try to parse form data to see if it works
     let formData
     try {

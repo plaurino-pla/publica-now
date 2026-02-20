@@ -50,14 +50,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No images found for this article' }, { status: 400 })
     }
 
-    console.log('=== IMAGE PDF GENERATION START ===')
-    console.log('Article ID:', data.articleId)
-    console.log('Image URLs found:', article.imageUrls)
-    console.log('Number of images:', article.imageUrls.length)
-    console.log('Image URLs type:', typeof article.imageUrls)
-    console.log('Image URLs is array:', Array.isArray(article.imageUrls))
-    console.log('Raw imageUrls data:', JSON.stringify(article.imageUrls, null, 2))
-
     // Ensure imageUrls is properly formatted as an array
     let imageUrlsArray: string[] = []
     if (Array.isArray(article.imageUrls)) {
@@ -66,7 +58,6 @@ export async function POST(req: NextRequest) {
       // Handle case where imageUrls might be stored as a JSON string
       try {
         imageUrlsArray = JSON.parse(article.imageUrls)
-        console.log('Parsed imageUrls from JSON string:', imageUrlsArray)
       } catch (e) {
         console.error('Failed to parse imageUrls as JSON:', e)
         imageUrlsArray = [article.imageUrls] // Treat as single image
@@ -75,9 +66,6 @@ export async function POST(req: NextRequest) {
       console.error('Unexpected imageUrls format:', article.imageUrls)
       return NextResponse.json({ error: 'Invalid imageUrls format' }, { status: 400 })
     }
-
-    console.log('Final imageUrlsArray:', imageUrlsArray)
-    console.log('Final array length:', imageUrlsArray.length)
 
     if (imageUrlsArray.length === 0) {
       return NextResponse.json({ error: 'No valid image URLs found' }, { status: 400 })
@@ -92,8 +80,7 @@ export async function POST(req: NextRequest) {
 
     for (let i = 0; i < imageUrlsArray.length; i++) {
       const url = imageUrlsArray[i]
-      console.log(`Processing image ${i + 1}/${imageUrlsArray.length}:`, url)
-      
+
       try {
         const res = await fetch(url)
         if (!res.ok) {
@@ -103,24 +90,19 @@ export async function POST(req: NextRequest) {
         }
         
         const arr = new Uint8Array(await res.arrayBuffer())
-        console.log(`Image ${i + 1} fetched successfully, size:`, arr.length, 'bytes')
-        
+
         let img
         if (url.toLowerCase().endsWith('.png')) {
           img = await pdfDoc.embedPng(arr)
-          console.log(`Image ${i + 1} embedded as PNG`)
         } else {
           img = await pdfDoc.embedJpg(arr)
-          console.log(`Image ${i + 1} embedded as JPG`)
         }
         
         const { width, height } = img.size()
-        console.log(`Image ${i + 1} dimensions:`, width, 'x', height)
-        
+
         const page = pdfDoc.addPage([width, height])
         page.drawImage(img, { x: 0, y: 0, width, height })
-        console.log(`Image ${i + 1} added to PDF page ${i + 1}`)
-        
+
         processedImages++
       } catch (e) {
         console.error(`Error processing image ${i + 1}:`, url, e)
@@ -128,15 +110,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    console.log(`PDF generation completed. Processed: ${processedImages}, Failed: ${failedImages}`)
-    console.log(`Total PDF pages: ${pdfDoc.getPageCount()}`)
-
     if (processedImages === 0) {
       return NextResponse.json({ error: 'Failed to process any images for PDF generation' }, { status: 500 })
     }
 
     const pdfBytes = await pdfDoc.save()
-    console.log('PDF saved, size:', pdfBytes.length, 'bytes')
 
     // Upload PDF to temporary/public storage to obtain a URL
     const fileUrl = await uploadBufferToTempService(`images-${article.id}.pdf`, Buffer.from(pdfBytes))

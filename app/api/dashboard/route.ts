@@ -7,21 +7,15 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    console.log('Dashboard API: Starting request')
-    
     const session = await getServerSession(authOptions)
-    console.log('Dashboard API: Session check result:', !!session?.user?.id)
-    
+
     if (!session?.user?.id) {
-      console.log('Dashboard API: Unauthorized - no session')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const userId = session.user.id
-    console.log('Dashboard API: User ID:', userId)
 
     // Fetch real dashboard data
-    console.log('Dashboard API: Fetching real dashboard data')
     
     // Get user's creator spaces
     const creatorMemberships = await prisma.$queryRaw`
@@ -133,7 +127,6 @@ export async function GET() {
       }
     }
 
-    console.log('Dashboard API: Success - returning data')
     return NextResponse.json(dashboardData)
 
   } catch (error) {

@@ -145,7 +145,7 @@ function DashboardContent() {
   return (
     <div className="min-h-screen bg-surface-0">
       {statusMessage && (
-        <div className="bg-brand-500/10 border-b border-brand-200 px-4 py-3 text-sm text-brand-800 text-center">
+        <div className="bg-brand-500/10 border-b border-brand-500/20 px-4 py-3 text-sm text-brand-400 text-center">
           {statusMessage}
         </div>
       )}
@@ -242,7 +242,7 @@ function DashboardContent() {
             <div className="xl:col-span-2 space-y-6 lg:space-y-8">
               {/* Quick Actions */}
               <div className="bg-surface-1 rounded-xl  border border-white/[0.06] overflow-hidden">
-                <div className="px-6 py-5 border-b border-gray-100">
+                <div className="px-6 py-5 border-b border-white/[0.06]">
                   <h2 className="text-lg font-semibold text-[#FAFAFA]">Quick Actions</h2>
                   <p className="text-sm text-white/50 mt-1">Get started with common tasks</p>
                 </div>
@@ -250,14 +250,14 @@ function DashboardContent() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {dashboardData.user.isCreator ? (
                       <Link href="/dashboard/articles" className="group">
-                        <div className="border border-white/[0.06] rounded-lg p-5 hover:border-brand-300 hover:border-white/[0.12] transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
+                        <div className="border border-white/[0.06] rounded-lg p-5 hover:border-white/[0.12] transition-all duration-200 bg-surface-0 group-hover:bg-brand-500/5">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-brand-500/15 rounded-lg flex items-center justify-center  flex-shrink-0 group-hover:bg-brand-200 transition-colors">
+                              <div className="w-12 h-12 bg-brand-500/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand-500/20 transition-colors">
                                 <FileText className="w-6 h-6 text-brand-400" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-[#FAFAFA] group-hover:text-brand-900 transition-colors">Manage Posts</h3>
+                                <h3 className="font-semibold text-[#FAFAFA] group-hover:text-brand-400 transition-colors">Manage Posts</h3>
                                 <p className="text-white/50 text-sm mt-1">Edit, publish, or delete your content</p>
                               </div>
                             </div>
@@ -267,14 +267,14 @@ function DashboardContent() {
                       </Link>
                     ) : (
                       <Link href="/creators" className="group">
-                        <div className="border border-white/[0.06] rounded-lg p-5 hover:border-brand-300 hover:border-white/[0.12] transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white">
+                        <div className="border border-white/[0.06] rounded-lg p-5 hover:border-white/[0.12] transition-all duration-200 bg-surface-0 group-hover:bg-brand-500/5">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-brand-500/15 rounded-lg flex items-center justify-center  flex-shrink-0 group-hover:bg-brand-200 transition-colors">
+                              <div className="w-12 h-12 bg-brand-500/15 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand-500/20 transition-colors">
                                 <Search className="w-6 h-6 text-brand-400" />
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-[#FAFAFA] group-hover:text-brand-900 transition-colors">Discover Creators</h3>
+                                <h3 className="font-semibold text-[#FAFAFA] group-hover:text-brand-400 transition-colors">Discover Creators</h3>
                                 <p className="text-white/50 text-sm mt-1">Find and subscribe to new creators</p>
                               </div>
                             </div>
@@ -285,10 +285,10 @@ function DashboardContent() {
                     )}
 
                     <Link href="/dashboard/account" className="group">
-                      <div className="border border-white/[0.06] rounded-lg p-5 hover:border-white/[0.08] hover:border-white/[0.12] transition-all duration-200 bg-gradient-to-br from-gray-50 to-white group-hover:from-gray-100 group-hover:to-white">
+                      <div className="border border-white/[0.06] rounded-lg p-5 hover:border-white/[0.12] transition-all duration-200 bg-surface-0 group-hover:bg-surface-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-surface-2 rounded-lg flex items-center justify-center  flex-shrink-0 group-hover:bg-surface-2 transition-colors">
+                            <div className="w-12 h-12 bg-surface-2 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-surface-3 transition-colors">
                               <Settings className="w-6 h-6 text-white/50" />
                             </div>
                             <div className="min-w-0 flex-1">
@@ -306,7 +306,7 @@ function DashboardContent() {
 
               {/* Recent Activity */}
               <div className="bg-surface-1 rounded-xl  border border-white/[0.06] overflow-hidden">
-                <div className="px-6 py-5 border-b border-gray-100">
+                <div className="px-6 py-5 border-b border-white/[0.06]">
                   <h2 className="text-lg font-semibold text-[#FAFAFA]">Recent Activity</h2>
                   <p className="text-sm text-white/50 mt-1">Your latest interactions and content</p>
                 </div>
@@ -331,7 +331,7 @@ function DashboardContent() {
                       {dashboardData.likedArticles.slice(0, 3).map((article) => (
                         <div key={article.id} className="flex items-center justify-between p-4 bg-surface-0 rounded-lg hover:bg-surface-2 transition-colors">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div className="w-8 h-8 bg-red-500/15 rounded-lg flex items-center justify-center flex-shrink-0">
                               <Heart className="w-4 h-4 text-red-400" />
                             </div>
                             <div className="min-w-0 flex-1">
@@ -356,14 +356,14 @@ function DashboardContent() {
             <div className="xl:col-span-1 space-y-6">
               {/* Creator Tools */}
               {dashboardData.user.isCreator && (
-                <div className="bg-gradient-to-br from-brand-50 to-indigo-50 rounded-xl p-6 border border-brand-200">
+                <div className="bg-brand-500/10 rounded-xl p-6 border border-brand-500/20">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
                       <Plus className="w-5 h-5 text-brand-400" />
                     </div>
-                    <h3 className="font-semibold text-brand-900">Creator Tools</h3>
+                    <h3 className="font-semibold text-brand-300">Creator Tools</h3>
                   </div>
-                  <p className="text-brand-800 text-sm mb-6 leading-relaxed">
+                  <p className="text-brand-400 text-sm mb-6 leading-relaxed">
                     Manage your content and grow your audience with powerful tools.
                   </p>
                   <div className="space-y-3">

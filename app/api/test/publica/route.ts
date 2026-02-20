@@ -6,8 +6,6 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
   try {
-    console.log('=== PUBLICA.LA API TEST ===')
-    
     const session = await getServerSession(authOptions)
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -19,8 +17,6 @@ export async function GET(req: NextRequest) {
       PUBLICA_API_TOKEN: process.env.PUBLICA_API_TOKEN ? 'SET' : 'NOT_SET',
       PUBLICA_TENANT_URL: process.env.PUBLICA_TENANT_URL || 'NOT_SET'
     }
-
-    console.log('Environment variables:', envCheck)
 
     if (!process.env.PUBLICA_API_URL || !process.env.PUBLICA_API_TOKEN) {
       return NextResponse.json({
@@ -43,8 +39,6 @@ export async function GET(req: NextRequest) {
 
     for (const endpoint of testEndpoints) {
       try {
-        console.log(`Testing endpoint: ${endpoint}`)
-        
         const response = await fetch(`${process.env.PUBLICA_API_URL}${endpoint}`, {
           method: 'GET',
           headers: {
@@ -60,7 +54,6 @@ export async function GET(req: NextRequest) {
           statusText: response.statusText
         })
 
-        console.log(`✅ ${endpoint}: ${response.status}`)
       } catch (error) {
         results.push({
           endpoint,
@@ -68,7 +61,6 @@ export async function GET(req: NextRequest) {
           ok: false,
           error: error instanceof Error ? error.message : 'Unknown error'
         })
-        console.log(`❌ ${endpoint}: ${error instanceof Error ? error.message : 'Unknown error'}`)
       }
     }
 
