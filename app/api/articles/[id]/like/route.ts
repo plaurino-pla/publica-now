@@ -43,9 +43,15 @@ export async function POST(
         DELETE FROM likes WHERE id = ${existingLike.id}
       `
 
-      return NextResponse.json({ 
+      const countResult = await prisma.$queryRaw`
+        SELECT COUNT(*) as count FROM likes WHERE article_id = ${articleId}
+      `
+      const likesCount = Number((countResult as any[])[0]?.count || 0)
+
+      return NextResponse.json({
         message: 'Article unliked',
-        liked: false 
+        liked: false,
+        likesCount
       })
     } else {
       // Like the article using raw SQL
@@ -54,9 +60,15 @@ export async function POST(
         VALUES (${session.user.id}, ${articleId}, NOW())
       `
 
-      return NextResponse.json({ 
+      const countResult = await prisma.$queryRaw`
+        SELECT COUNT(*) as count FROM likes WHERE article_id = ${articleId}
+      `
+      const likesCount = Number((countResult as any[])[0]?.count || 0)
+
+      return NextResponse.json({
         message: 'Article liked',
-        liked: true 
+        liked: true,
+        likesCount
       })
     }
 

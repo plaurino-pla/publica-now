@@ -118,11 +118,9 @@ export default function AccountPage() {
         // Load existing profile and header images
         if (branding.profileImage) {
           setProfilePreview(branding.profileImage)
-          console.log('Loaded existing profile image:', branding.profileImage)
         }
         if (branding.headerImage) {
           setHeaderPreview(branding.headerImage)
-          console.log('Loaded existing header image:', branding.headerImage)
         }
       }
 
@@ -146,18 +144,9 @@ export default function AccountPage() {
   }
 
   const handleFileChange = async (file: File | null, type: 'profile' | 'header') => {
-    console.log('handleFileChange called:', { file, type })
-    
     if (!file) {
-      console.log('No file selected')
       return
     }
-
-    console.log('File details:', {
-      name: file.name,
-      size: file.size,
-      type: file.type
-    })
 
     if (file.size > 5 * 1024 * 1024) { // 5MB limit
       setError('File size must be less than 5MB')
@@ -167,16 +156,13 @@ export default function AccountPage() {
     const reader = new FileReader()
     reader.onload = (e) => {
       const result = e.target?.result as string
-      console.log('File read successfully, result length:', result.length)
-      
+
       if (type === 'profile') {
         setProfileImage(file)
         setProfilePreview(result)
-        console.log('Profile image set')
       } else {
         setHeaderImage(file)
         setHeaderPreview(result)
-        console.log('Header image set')
       }
     }
     
@@ -231,7 +217,6 @@ export default function AccountPage() {
           if (uploadRes.ok) {
             const data = await uploadRes.json()
             profileImageUrl = data.url
-            console.log('Profile image uploaded successfully:', data.url)
           } else {
             const errorData = await uploadRes.json()
             throw new Error(`Profile image upload failed: ${errorData.error || 'Unknown error'}`)
@@ -254,7 +239,6 @@ export default function AccountPage() {
           if (uploadRes.ok) {
             const data = await uploadRes.json()
             headerImageUrl = data.url
-            console.log('Header image uploaded successfully:', data.url)
           } else {
             const errorData = await uploadRes.json()
             throw new Error(`Header image upload failed: ${errorData.error || 'Unknown error'}`)
@@ -306,7 +290,6 @@ export default function AccountPage() {
         }
         
         // Don't call fetchProfile() to avoid page refresh
-        console.log('Profile updated successfully, local state updated')
       } else {
         const errorData = await creatorRes.json()
         setError(errorData.error || 'Failed to update creator profile')
@@ -372,12 +355,12 @@ export default function AccountPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Error and Success Messages */}
         {error && (
-          <div className="mb-6 bg-red-500/10 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <div className="mb-6 bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg">
             {error}
           </div>
         )}
         {success && (
-          <div className="mb-6 bg-emerald-500/10 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+          <div className="mb-6 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-4 py-3 rounded-lg">
             {success}
           </div>
         )}
@@ -528,23 +511,23 @@ export default function AccountPage() {
                 </div>
 
                 {/* Profile Completion Indicator */}
-                <div className="bg-brand-500/10 border border-brand-200 rounded-lg p-4">
+                <div className="bg-brand-500/10 border border-brand-500/20 rounded-lg p-4">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-6 h-6 bg-brand-500/15 rounded-full flex items-center justify-center">
                       <span className="text-brand-400 text-xs font-medium">i</span>
                     </div>
-                    <h4 className="font-medium text-brand-900">Profile Completion</h4>
+                    <h4 className="font-medium text-brand-300">Profile Completion</h4>
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-brand-800">Required fields</span>
+                      <span className="text-brand-400">Required fields</span>
                       <span className="text-brand-400 font-medium">1/1</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-brand-800">Recommended fields</span>
+                      <span className="text-brand-400">Recommended fields</span>
                       <span className="text-brand-400 font-medium">4/4</span>
                     </div>
-                    <div className="w-full bg-brand-200 rounded-full h-2">
+                    <div className="w-full bg-brand-900 rounded-full h-2">
                       <div className="bg-brand-600 h-2 rounded-full" style={{ width: '100%' }}></div>
                     </div>
                     <p className="text-xs text-brand-400">
@@ -702,7 +685,17 @@ export default function AccountPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-surface-2 border-2 border-white/[0.08] flex items-center justify-center mx-auto mb-4">
+                  {/* Header Image Preview */}
+                  <div className="w-full h-20 rounded-lg bg-surface-2 border border-white/[0.08] overflow-hidden mb-4">
+                    {headerPreview ? (
+                      <img src={headerPreview} alt="Header preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <ImageIcon className="w-5 h-5 text-white/20" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-20 h-20 rounded-full bg-surface-2 border-2 border-white/[0.08] flex items-center justify-center mx-auto mb-4 -mt-14 relative z-10">
                     {profilePreview ? (
                       <img src={profilePreview} alt="Profile preview" className="w-full h-full object-cover rounded-full" />
                     ) : (
@@ -712,7 +705,7 @@ export default function AccountPage() {
                   <h3 className="font-semibold text-[#FAFAFA] mb-2">{formData.creatorName || 'Your Name'}</h3>
                   <p className="text-white/50 text-sm mb-4">{formData.description || 'No description yet'}</p>
                   <div className="flex items-center justify-center gap-2">
-                    <div 
+                    <div
                       className="w-4 h-4 rounded-full border border-white/[0.08]"
                       style={{ backgroundColor: formData.mainColor }}
                     ></div>

@@ -6,16 +6,14 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Badge from '@/components/ui/badge'
 import Chip from '@/components/ui/chip'
-import Skeleton from '@/components/ui/skeleton'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { formatDistanceToNow } from 'date-fns'
-import { Bookmark, Heart, MessageCircle, Share2, Play, Image as ImageIcon, Video, Lock, Star, MoreHorizontal, RotateCcw, Upload } from 'lucide-react'
+import { Play, Image as ImageIcon, Video, Lock, Star, MoreHorizontal, Users } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-import TextArticleContent from '@/components/text-article-content'
 import SubscriptionButton from '@/components/subscription-button'
+import ArticleCardEngagement from '@/components/article-card-engagement'
 
 interface CreatorPageProps {
   params: { creator: string }
@@ -139,6 +137,29 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
     isSubscribed = (subscriptionResult as any[]).length > 0
   }
 
+  // Get subscriber count
+  const subscriberCountResult = await prisma.$queryRaw`
+    SELECT COUNT(*) as count FROM memberships
+    WHERE "creatorId" = ${creator.id}
+    AND role = 'subscriber'
+  `
+  const subscriberCount = Number((subscriberCountResult as any[])[0]?.count || 0)
+
+  // Batch-fetch like counts for all displayed articles
+  const articleIds = publishedArticles.map((a: any) => a.id)
+  let likesMap: Record<string, number> = {}
+  if (articleIds.length > 0) {
+    const likesCounts = await prisma.$queryRaw`
+      SELECT article_id, COUNT(*) as count
+      FROM likes
+      WHERE article_id = ANY(${articleIds}::text[])
+      GROUP BY article_id
+    `
+    for (const row of likesCounts as any[]) {
+      likesMap[row.article_id] = Number(row.count)
+    }
+  }
+
   const getContentTypeIcon = (contentType: string) => {
     switch (contentType) {
       case 'audio': return Play
@@ -245,11 +266,19 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
               <div className="flex items-center gap-6 text-sm text-white/50 mb-6">
                 <span>{publishedArticles.length} posts</span>
                 <span>•</span>
+                <span>{subscriberCount} subscribers</span>
+                <span>•</span>
                 <span>{publishedArticles.filter((a: any) => a.visibility === 'free').length} free</span>
                 {publishedArticles.filter((a: any) => a.visibility === 'paid').length > 0 && (
                   <>
                     <span>•</span>
                     <span>{publishedArticles.filter((a: any) => a.visibility === 'paid').length} premium</span>
+                  </>
+                )}
+                {publishedArticles.filter((a: any) => a.visibility === 'subscribers').length > 0 && (
+                  <>
+                    <span>•</span>
+                    <span>{publishedArticles.filter((a: any) => a.visibility === 'subscribers').length} subscribers-only</span>
                   </>
                 )}
               </div>
@@ -330,265 +359,183 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
               const IconComponent = getContentTypeIcon(article.contentType)
               const pricing = getPricingDisplay(article.pricing)
               const isPaid = article.visibility === 'paid'
-              
+              const isSubscribers = article.visibility === 'subscribers'
+              const isGated = isPaid || isSubscribers
+
               return (
-                <article key={article.id} className={`border-b border-white/[0.06] last:border-b-0 ${isPaid ? 'bg-surface-1 rounded-xl p-6 mb-8 border border-white/[0.06]' : 'pb-8'}`}>
-                  {/* Article Header */}
-                  <div className="flex items-start gap-4 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <span className="text-lg font-bold text-white">
-                        {creator.name.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1 leading-none">
-                        <span className="font-semibold text-[#FAFAFA] text-sm md:text-base">{creator.name}</span>
-                        <span className="text-white/40">•</span>
-                        <span className="text-white/40 text-sm">
-                          {article.publishedAt 
-                            ? formatDistanceToNow(new Date(article.publishedAt), { addSuffix: true })
-                            : formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })
-                          }
-                        </span>
-                        {isPaid ? (
-                          <Badge variant="info" className="flex items-center gap-1"><Lock className="w-3 h-3" /> Premium</Badge>
-                        ) : (
-                          <Badge variant="success">Free</Badge>
-                        )}
-                        {isPaid && pricing && (
-                          <Badge variant="warning">{pricing}</Badge>
-                        )}
+                <article key={article.id} className={`border-b border-white/[0.06] last:border-b-0 ${isGated ? 'bg-surface-1 rounded-xl p-6 mb-8 border border-white/[0.06]' : 'pb-8'}`}>
+                  {/* Metadata row */}
+                  <div className="flex items-center flex-wrap gap-2 mb-3 text-sm">
+                    <span className="text-white/40">
+                      {article.publishedAt
+                        ? formatDistanceToNow(new Date(article.publishedAt), { addSuffix: true })
+                        : formatDistanceToNow(new Date(article.createdAt), { addSuffix: true })
+                      }
+                    </span>
+                    {/* Three-tier visibility badges */}
+                    {isSubscribers ? (
+                      <Badge variant="info" className="flex items-center gap-1"><Users className="w-3 h-3" /> Subscribers Only</Badge>
+                    ) : isPaid ? (
+                      <Badge variant="warning" className="flex items-center gap-1"><Lock className="w-3 h-3" /> {pricing ? `Paid ${pricing}` : 'Paid'}</Badge>
+                    ) : (
+                      <Badge variant="success">Free</Badge>
+                    )}
+                    {/* Content Type Chip */}
+                    {IconComponent && (
+                      <Chip size="sm" variant="neutral" leadingIcon={<IconComponent className="w-4 h-4" />}>
+                        <span className="capitalize">{article.contentType}</span>
+                      </Chip>
+                    )}
+                  </div>
+
+                  {/* Article Title — above content */}
+                  <h2 className="text-xl md:text-2xl font-bold text-[#FAFAFA] mb-3 leading-tight">
+                    <Link href={`/${creator.slug}/content/${article.slug}`} className="hover:underline">
+                      {article.title}
+                    </Link>
+                  </h2>
+
+                  {/* Cover Image */}
+                  {article.coverUrl && (
+                    <div className="mb-4 relative rounded-lg overflow-hidden">
+                      <div className="relative w-full max-w-2xl aspect-[16/9]">
+                        <Image
+                          src={article.coverUrl}
+                          alt={article.title}
+                          fill
+                          className={`object-cover ${isGated ? 'blur-sm' : ''}`}
+                          sizes="(max-width: 768px) 100vw, 768px"
+                          unoptimized
+                        />
                       </div>
-                      
-                      {/* Content Type Badge */}
-                      {IconComponent && (
-                        <div className="mt-1 mb-2">
-                          <Chip size="sm" variant="neutral" leadingIcon={<IconComponent className="w-4 h-4" /> }>
-                            <span className="capitalize">{article.contentType}</span>
-                          </Chip>
+                      {isGated && (
+                        <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg flex items-center justify-center">
+                          <Lock className="w-8 h-8 text-white" />
                         </div>
                       )}
                     </div>
-                  </div>
+                  )}
 
-                  {/* Article Content */}
-                  <div className="ml-16">
-                    {/* Cover Image */}
-                    {article.coverUrl && (
-                      <div className="mb-4 relative rounded-lg overflow-hidden">
-                        <div className="relative w-full max-w-2xl aspect-[16/9]">
-                          <Image 
-                            src={article.coverUrl} 
-                            alt={article.title}
-                            fill
-                            className={`object-cover ${isPaid ? 'blur-sm' : ''}`}
-                            sizes="(max-width: 768px) 100vw, 768px"
-                            unoptimized
-                          />
-                        </div>
-                        {isPaid && (
-                          <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg flex items-center justify-center">
-                            <Lock className="w-8 h-8 text-white" />
+                  {/* Image Grid for Image Posts */}
+                  {article.contentType === 'image' && article.imageUrls && (
+                    <div className="mb-4">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-w-2xl mb-3">
+                        {article.imageUrls.slice(0, 3).map((url: string, imgIdx: number) => (
+                          <div key={imgIdx} className="aspect-square bg-surface-2 rounded-lg overflow-hidden">
+                            <img
+                              src={url}
+                              alt={`Image ${imgIdx + 1}`}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Image Grid for Image Posts */}
-                    {article.contentType === 'image' && article.imageUrls && (
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-purple-500/10 text-purple-400 rounded-md text-xs font-medium">
-                            <ImageIcon className="w-3 h-3" />
-                            <span>Image Gallery</span>
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-w-2xl mb-3">
-                          {article.imageUrls.slice(0, 3).map((url: string, index: number) => (
-                            <div key={index} className="aspect-square bg-surface-2 rounded-lg overflow-hidden">
-                              <img 
-                                src={url} 
-                                alt={`Image ${index + 1}`}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                        
-                        {/* Show "View Images" button for image articles */}
-                        <Button 
-                          asChild 
-                          variant="outline" 
-                          size="sm"
-                          className="text-sm"
-                        >
-                          <Link href={`/${params.creator}/content/${article.slug}`}>
-                            View Images
-                          </Link>
-                        </Button>
-                      </div>
-                    )}
-
-                    {/* Video Content for Video Posts */}
-                    {article.contentType === 'video' && (
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-red-500/10 text-red-400 rounded-md text-xs font-medium">
-                            <Video className="w-3 h-3" />
-                            <span>Video Content</span>
-                          </div>
-                        </div>
-                        
-                        {/* Show excerpt only, not the video player */}
-                        <div className="text-white/60 leading-relaxed mb-3">
-                          {article.bodyMarkdown 
-                            ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
-                            : 'Video content available'
-                          }
-                        </div>
-                        
-                        {/* Show "Watch Video" button for video articles */}
-                        <Button 
-                          asChild 
-                          variant="outline" 
-                          size="sm"
-                          className="text-sm"
-                        >
-                          <Link href={`/${params.creator}/content/${article.slug}`}>
-                            Watch Video
-                          </Link>
-                        </Button>
-                      </div>
-                    )}
-
-                    {/* Text Content for Text Articles */}
-                    {article.contentType === 'text' && (
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-brand-500/10 text-brand-400 rounded-md text-xs font-medium">
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span>Text Article</span>
-                          </div>
-                        </div>
-                        
-                        {/* Show excerpt only, not full content */}
-                        <div className="text-white/60 leading-relaxed mb-3">
-                          {article.bodyMarkdown 
-                            ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
-                            : 'No description available'
-                          }
-                        </div>
-                        
-                        {/* Show "Read More" button for text articles */}
-                        <Button 
-                          asChild 
-                          variant="outline" 
-                          size="sm"
-                          className="text-sm"
-                        >
-                          <Link href={`/${params.creator}/content/${article.slug}`}>
-                            Read Full Article
-                          </Link>
-                        </Button>
-                      </div>
-                    )}
-
-                    {/* Audio Content for Audio Posts */}
-                    {article.contentType === 'audio' && (
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="flex items-center gap-2 px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded-md text-xs font-medium">
-                            <Play className="w-3 h-3" />
-                            <span>Audio Content</span>
-                          </div>
-                        </div>
-                        
-                        {/* Show excerpt only, not the audio player */}
-                        <div className="text-white/60 leading-relaxed mb-3">
-                          {article.bodyMarkdown 
-                            ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
-                            : 'Audio content available'
-                          }
-                        </div>
-                        
-                        {/* Show "Listen to Audio" button for audio articles */}
-                        <Button 
-                          asChild 
-                          variant="outline" 
-                          size="sm"
-                          className="text-sm"
-                        >
-                          <Link href={`/${params.creator}/content/${article.slug}`}>
-                            Listen to Audio
-                          </Link>
-                        </Button>
-                      </div>
-                    )}
-
-                    {/* Article Title and Content */}
-                    <div className="mb-2">
-                      <h2 className="text-xl md:text-2xl font-bold text-[#FAFAFA] mb-1 leading-tight">{article.title}</h2>
-                      {/* Content excerpt is now handled in the content type specific sections above */}
-                    </div>
-
-                    {/* Tags */}
-                    {article.tags && typeof article.tags === 'string' && article.tags.trim() && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {article.tags.split(',').slice(0, 3).map((tag: string) => (
-                          <Badge key={tag} variant="outline">#{tag.trim()}</Badge>
                         ))}
                       </div>
-                    )}
-
-                    {/* Paywall CTA for Paid Articles */}
-                    {isPaid && (
-                      <div className="bg-surface-1 border border-white/[0.08] rounded-lg p-4 mb-4">
-                        <div className="text-center">
-                          <Lock className="w-8 h-8 text-white/30 mx-auto mb-2" />
-                          <h3 className="text-lg font-semibold text-[#FAFAFA] mb-2">Subscribe to unlock this content</h3>
-                          <p className="text-white/50 mb-4">
-                            Get access to all premium content from {creator.name} and support independent creators.
-                          </p>
-                          <SubscriptionButton creatorId={creator.id} mainColor="#dc2626" />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Engagement and Actions */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-sm text-white/40">
-                        <button aria-label="Like" className="flex items-center gap-1 hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
-                          <Heart className="w-4 h-4" />
-                          <span>3</span>
-                        </button>
-                        <button aria-label="Comment" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
-                          <MessageCircle className="w-4 h-4" />
-                          <span>1</span>
-                        </button>
-                        <button aria-label="Repost" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
-                          <RotateCcw className="w-4 h-4" />
-                          <span>1</span>
-                        </button>
-                        <button aria-label="Share" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
-                          <Upload className="w-4 h-4" />
-                        </button>
-                        <button aria-label="Save" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
-                          <Bookmark className="w-4 h-4" />
-                        </button>
-                        <button aria-label="More options" className="flex items-center gap-1 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">
-                          <MoreHorizontal className="w-4 h-4" />
-                        </button>
-                      </div>
-                      
-                      <Button asChild variant="outline" size="sm">
-                        <Link href={`/${creator.slug}/content/${article.slug}`}>
-                          {isPaid ? 'Read more' : 'Read full post'}
-                        </Link>
+                      <Button asChild variant="outline" size="sm" className="text-sm">
+                        <Link href={`/${params.creator}/content/${article.slug}`}>View Images</Link>
                       </Button>
                     </div>
+                  )}
+
+                  {/* Video Content */}
+                  {article.contentType === 'video' && (
+                    <div className="mb-4">
+                      <div className="text-white/60 leading-relaxed mb-3">
+                        {article.bodyMarkdown
+                          ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
+                          : 'Video content available'
+                        }
+                      </div>
+                      <Button asChild variant="outline" size="sm" className="text-sm">
+                        <Link href={`/${params.creator}/content/${article.slug}`}>Watch Video</Link>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Text Content */}
+                  {article.contentType === 'text' && (
+                    <div className="mb-4">
+                      <div className="text-white/60 leading-relaxed mb-3">
+                        {article.bodyMarkdown
+                          ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
+                          : 'No description available'
+                        }
+                      </div>
+                      <Button asChild variant="outline" size="sm" className="text-sm">
+                        <Link href={`/${params.creator}/content/${article.slug}`}>Read Full Article</Link>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Audio Content */}
+                  {article.contentType === 'audio' && (
+                    <div className="mb-4">
+                      <div className="text-white/60 leading-relaxed mb-3">
+                        {article.bodyMarkdown
+                          ? `${(article.bodyMarkdown || '').substring(0, 150)}...`
+                          : 'Audio content available'
+                        }
+                      </div>
+                      <Button asChild variant="outline" size="sm" className="text-sm">
+                        <Link href={`/${params.creator}/content/${article.slug}`}>Listen to Audio</Link>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Tags */}
+                  {article.tags && typeof article.tags === 'string' && article.tags.trim() && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {article.tags.split(',').slice(0, 3).map((tag: string) => (
+                        <Badge key={tag} variant="outline">#{tag.trim()}</Badge>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Paywall CTA for Gated Articles */}
+                  {isGated && (
+                    <div className="bg-surface-1 border border-white/[0.08] rounded-lg p-4 mb-4">
+                      <div className="text-center">
+                        {isSubscribers ? (
+                          <Users className="w-8 h-8 text-white/30 mx-auto mb-2" />
+                        ) : (
+                          <Lock className="w-8 h-8 text-white/30 mx-auto mb-2" />
+                        )}
+                        <h3 className="text-lg font-semibold text-[#FAFAFA] mb-2">
+                          {isSubscribers ? 'Subscribe to access' : 'Unlock this content'}
+                        </h3>
+                        <p className="text-white/50 mb-4">
+                          {isSubscribers
+                            ? `This content is available exclusively to ${creator.name}'s subscribers.`
+                            : `Get access to all premium content from ${creator.name} and support independent creators.`
+                          }
+                        </p>
+                        <div className="flex items-center justify-center gap-3">
+                          <SubscriptionButton creatorId={creator.id} mainColor={mainColor} />
+                          {isPaid && pricing && (
+                            <Button asChild variant="outline" size="lg">
+                              <Link href={`/${creator.slug}/content/${article.slug}`}>
+                                Buy for {pricing}
+                              </Link>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Engagement and Actions */}
+                  <div className="flex items-center justify-between">
+                    <ArticleCardEngagement
+                      articleId={article.id}
+                      initialLikesCount={likesMap[article.id] || 0}
+                      creatorSlug={creator.slug}
+                      articleSlug={article.slug}
+                    />
+
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={`/${creator.slug}/content/${article.slug}`}>
+                        {isGated ? 'Read more' : 'Read full post'}
+                      </Link>
+                    </Button>
                   </div>
                 </article>
               )
