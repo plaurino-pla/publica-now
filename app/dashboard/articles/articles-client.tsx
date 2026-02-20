@@ -73,6 +73,7 @@ interface ArticlesClientProps {
 export default function ArticlesClient({ articles }: ArticlesClientProps) {
   const router = useRouter()
   const [deletingArticleId, setDeletingArticleId] = useState<string | null>(null)
+  const [deleteError, setDeleteError] = useState('')
 
   const handleDelete = async (articleId: string) => {
     if (!confirm('Are you sure you want to delete this article? This action cannot be undone.')) {
@@ -80,30 +81,38 @@ export default function ArticlesClient({ articles }: ArticlesClientProps) {
     }
 
     setDeletingArticleId(articleId)
-    
+    setDeleteError('')
+
     try {
       const response = await fetch(`/api/articles/${articleId}/delete`, {
         method: 'DELETE',
       })
 
       if (response.ok) {
-        // Refresh the page to show updated article list
         router.refresh()
       } else {
         const error = await response.json()
-        alert(`Failed to delete article: ${error.error}`)
+        setDeleteError(error.error || 'Failed to delete article')
       }
-    } catch (error) {
-      console.error('Error deleting article:', error)
-      alert('Failed to delete article. Please try again.')
+    } catch {
+      setDeleteError('Failed to delete article. Please try again.')
     } finally {
       setDeletingArticleId(null)
     }
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-stone-50">
       <PageHeader title="Posts" subtitle="Manage your published content" actions={<NewPostDropdown />} />
+
+      {/* Delete Error */}
+      {deleteError && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <p className="text-sm text-red-600 bg-red-50 p-3 rounded-md text-center">
+            {deleteError}
+          </p>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

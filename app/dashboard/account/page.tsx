@@ -365,7 +365,7 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-stone-50">
       <PageHeader title="My Account" subtitle="Manage your profile and account settings" />
 
       {/* Main Content */}

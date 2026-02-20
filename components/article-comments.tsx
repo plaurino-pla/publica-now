@@ -47,8 +47,8 @@ export default function ArticleComments({ articleId, initialComments = [] }: Art
 
       setComments(prev => [comment, ...prev])
       setNewComment('')
-    } catch (error) {
-      console.error('Failed to submit comment:', error)
+    } catch {
+      // Comment submission failed silently — TODO: implement API
     } finally {
       setIsSubmitting(false)
     }

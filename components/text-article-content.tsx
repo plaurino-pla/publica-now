@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { useSession } from 'next-auth/react'
 
@@ -20,16 +21,66 @@ interface TextArticleContentProps {
   locked?: boolean
 }
 
-export default function TextArticleContent({ 
-  article, 
+function SubscribeAction({ creatorId }: { creatorId?: string }) {
+  const { data: session } = useSession()
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubscribe = async () => {
+    if (!session?.user) {
+      window.location.href = '/auth/signin'
+      return
+    }
+
+    setIsLoading(true)
+    setError('')
+    try {
+      const response = await fetch('/api/stripe/checkout/subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ creatorId })
+      })
+
+      if (response.ok) {
+        const { url } = await response.json()
+        if (url) window.location.href = url
+      } else {
+        const errorData = await response.json()
+        setError(errorData.error || 'Failed to start checkout')
+      }
+    } catch {
+      setError('Failed to start checkout. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <>
+      <Button
+        size="lg"
+        className="bg-brand-600 hover:bg-brand-700"
+        onClick={handleSubscribe}
+        disabled={isLoading}
+      >
+        {isLoading ? 'Processing...' : 'Subscribe'}
+      </Button>
+      {error && (
+        <p className="text-sm text-red-600 mt-2">{error}</p>
+      )}
+    </>
+  )
+}
+
+export default function TextArticleContent({
+  article,
   compact = false,
   locked = false,
   renderContent,
 }: TextArticleContentProps) {
-  const { data: session } = useSession()
-  const hasPublicaIntegration = article.pricing && 
-    typeof article.pricing === 'object' && 
-    'publica' in article.pricing && 
+  const hasPublicaIntegration = article.pricing &&
+    typeof article.pricing === 'object' &&
+    'publica' in article.pricing &&
     (article.pricing as any).publica?.readerUrl
 
   if (compact) {
@@ -43,10 +94,8 @@ export default function TextArticleContent({
             <span className="text-sm text-gray-600">Text Article</span>
           </div>
         </div>
-        
-        {/* Embedded reader when available and not locked */}
+
         {hasPublicaIntegration && !locked ? (
-          // Use Publica.la embedded reader
           <div className="w-full">
             <div className="relative w-full" style={{ paddingBottom: '60%' }}>
               <iframe
@@ -67,42 +116,13 @@ export default function TextArticleContent({
           <div className="w-full text-center py-6">
             <p className="text-sm text-gray-600 mb-3">This content is for subscribers only.</p>
             <div className="flex items-center justify-center gap-3">
-              <Button 
-                size="sm" 
-                className="bg-brand-600 hover:bg-brand-700"
-                onClick={async () => {
-                  if (!session?.user) {
-                    window.location.href = '/auth/signin'
-                    return
-                  }
-                  
-                  try {
-                    const response = await fetch('/api/stripe/checkout/subscription', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ creatorId: article.creatorId })
-                    })
-                    
-                    if (response.ok) {
-                      const { url } = await response.json()
-                      if (url) window.location.href = url
-                    } else {
-                      const error = await response.json()
-                      alert(`Error: ${error.error}`)
-                    }
-                  } catch (error) {
-                    console.error('Checkout error:', error)
-                    alert('Failed to start checkout. Please try again.')
-                  }
-                }}
-              >
-                Subscribe
+              <SubscribeAction creatorId={article.creatorId} />
+              <Button size="sm" variant="outline" asChild>
+                <a href="/auth/signin">Sign in</a>
               </Button>
-              <Button size="sm" variant="outline">Sign in</Button>
             </div>
           </div>
         ) : (
-          // Fallback to basic text preview if no publica.la reader
           <div className="w-full">
             <div className="text-sm text-gray-600 line-clamp-3">
               {(renderContent ? renderContent(article.bodyMarkdown || '') : (article.bodyMarkdown || '')).substring(0, 150)}...
@@ -126,12 +146,10 @@ export default function TextArticleContent({
             </svg>
             <h3 className="text-lg font-medium text-gray-900">{article.title}</h3>
           </div>
-          
+
         </div>
-        
-        {/* Embedded reader when available and not locked */}
+
         {hasPublicaIntegration && !locked ? (
-          // Use Publica.la embedded reader
           <div className="w-full">
             <div className="relative w-full" style={{ paddingBottom: '75%' }}>
               <iframe
@@ -158,45 +176,16 @@ export default function TextArticleContent({
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Subscribers Only</h3>
             <p className="text-gray-600 mb-6">Subscribe to access this content.</p>
             <div className="flex items-center justify-center gap-3">
-              <Button 
-                size="lg" 
-                className="bg-brand-600 hover:bg-brand-700"
-                onClick={async () => {
-                  if (!session?.user) {
-                    window.location.href = '/auth/signin'
-                    return
-                  }
-                  
-                  try {
-                    const response = await fetch('/api/stripe/checkout/subscription', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ creatorId: article.creatorId })
-                    })
-                    
-                    if (response.ok) {
-                      const { url } = await response.json()
-                      if (url) window.location.href = url
-                    } else {
-                      const error = await response.json()
-                      alert(`Error: ${error.error}`)
-                    }
-                  } catch (error) {
-                    console.error('Checkout error:', error)
-                    alert('Failed to start checkout. Please try again.')
-                  }
-                }}
-              >
-                Subscribe
+              <SubscribeAction creatorId={article.creatorId} />
+              <Button size="lg" variant="outline" asChild>
+                <a href="/auth/signin">Sign in</a>
               </Button>
-              <Button size="lg" variant="outline">Sign in</Button>
             </div>
           </div>
         ) : (
-          // Fallback to basic text display if no publica.la reader
           <div className="w-full">
             <div className="prose prose-lg max-w-none">
-              <div 
+              <div
                 dangerouslySetInnerHTML={{ __html: renderContent ? renderContent(article.bodyMarkdown || '') : (article.bodyMarkdown || '') }}
               />
             </div>

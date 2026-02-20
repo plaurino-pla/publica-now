@@ -18,6 +18,7 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
   const { data: session } = useSession()
   const [isLoading, setIsLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubscribe = async () => {
     if (!session?.user) {
@@ -26,26 +27,25 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
     }
 
     setIsLoading(true)
+    setError('')
     try {
       const response = await fetch('/api/stripe/checkout/subscription', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ creatorId })
       })
-      
+
       if (response.ok) {
         const { url } = await response.json()
         if (url) window.location.href = url
       } else {
-        const error = await response.json()
-        alert(`Error: ${error.error}`)
+        const errorData = await response.json()
+        setError(errorData.error || 'Failed to start checkout')
       }
-    } catch (error) {
-      console.error('Checkout error:', error)
-      alert('Failed to start checkout. Please try again.')
+    } catch {
+      setError('Failed to start checkout. Please try again.')
     } finally {
       setIsLoading(false)
-      setShowModal(false)
     }
   }
 
@@ -127,6 +127,12 @@ export default function SubscriptionButton({ creatorId, mainColor, creatorName =
               Maybe Later
             </Button>
           </div>
+
+          {error && (
+            <p className="text-sm text-red-600 text-center bg-red-50 p-2 rounded-md">
+              {error}
+            </p>
+          )}
 
           <p className="text-xs text-gray-500 text-center">
             You'll be redirected to Stripe to complete your subscription securely
