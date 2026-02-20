@@ -150,14 +150,18 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
   const articleIds = publishedArticles.map((a: any) => a.id)
   let likesMap: Record<string, number> = {}
   if (articleIds.length > 0) {
-    const likesCounts = await prisma.$queryRaw`
-      SELECT article_id, COUNT(*)::int as count
-      FROM likes
-      WHERE article_id IN (${Prisma.join(articleIds)})
-      GROUP BY article_id
-    `
-    for (const row of likesCounts as any[]) {
-      likesMap[row.article_id] = Number(row.count)
+    try {
+      const likesCounts = await prisma.$queryRaw`
+        SELECT article_id, COUNT(*)::int as count
+        FROM likes
+        WHERE article_id IN (${Prisma.join(articleIds)})
+        GROUP BY article_id
+      `
+      for (const row of likesCounts as any[]) {
+        likesMap[row.article_id] = Number(row.count)
+      }
+    } catch (e) {
+      console.error('Failed to batch-fetch like counts:', e)
     }
   }
 
