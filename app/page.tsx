@@ -22,7 +22,7 @@ export default function HomePage() {
         <Container className="relative z-10 font-body">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end">
             <div className="lg:col-span-8">
-              <span className="inline-block uppercase tracking-[0.2em] text-xs font-mono text-white/40 mb-8 border border-white/10 px-3 py-1.5">
+              <span className="inline-block uppercase tracking-[0.2em] text-xs font-mono text-brand-400 mb-8 border border-brand-500/20 bg-brand-500/5 px-3 py-1.5">
                 The new creator standard
               </span>
               <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-heading text-[#F2F2F0] leading-[0.9] tracking-tight mb-8">
@@ -50,10 +50,13 @@ export default function HomePage() {
             </div>
           </div>
         </Container>
+
+        {/* Hero Background Accent */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
       </section>
 
       {/* Media Types Grid: Architectural & Asymmetrical */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.03]">
+      <section className="py-24 sm:py-32 border-b border-white/[0.03] relative">
         <Container>
           <div className="flex justify-between items-end mb-16 border-b border-white/[0.05] pb-10">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-[#FAFAFA] leading-none tracking-tight">
@@ -61,61 +64,61 @@ export default function HomePage() {
               <span className="italic text-white/40">every format.</span>
             </h2>
             <div className="hidden md:block text-right">
-              <span className="font-mono text-xs text-white/30 uppercase tracking-widest">[ Capabilities ]</span>
+              <span className="font-mono text-xs text-brand-400/50 uppercase tracking-widest">[ Capabilities ]</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/[0.05]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/[0.05] relative z-10">
             {/* Text: Large Cell */}
-            <div className="md:col-span-7 bg-[#080808] p-10 group glow-card">
+            <div className="md:col-span-7 bg-[#080808] p-10 group hover:bg-amber-500/[0.02] transition-colors border-t-2 border-transparent hover:border-amber-500/50">
               <div className="flex justify-between items-start mb-24">
-                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
-                  <FileText className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                <div className="w-12 h-12 bg-amber-500/5 border border-amber-500/20 flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-amber-500/60 group-hover:text-amber-400 transition-colors" />
                 </div>
-                <span className="font-mono text-xs text-white/30">01</span>
+                <span className="font-mono text-xs text-amber-500/30">01</span>
               </div>
-              <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Editorial & Text</h3>
+              <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4 group-hover:text-amber-400 transition-colors">Editorial & Text</h3>
               <p className="text-white/50 text-lg">In-depth articles, serialized fiction, and premium newsletters rendered in beautiful typography.</p>
             </div>
 
             {/* Audio: Medium Cell */}
-            <div className="md:col-span-5 bg-[#080808] p-10 group glow-card">
+            <div className="md:col-span-5 bg-[#080808] p-10 group hover:bg-emerald-500/[0.02] transition-colors border-t-2 border-transparent hover:border-emerald-500/50">
               <div className="flex justify-between items-start mb-24">
-                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
-                  <Mic className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                <div className="w-12 h-12 bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-center">
+                  <Mic className="w-5 h-5 text-emerald-500/60 group-hover:text-emerald-400 transition-colors" />
                 </div>
-                <span className="font-mono text-xs text-white/30">02</span>
+                <span className="font-mono text-xs text-emerald-500/30">02</span>
               </div>
-              <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Podcasts & Audio</h3>
+              <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4 group-hover:text-emerald-400 transition-colors">Podcasts & Audio</h3>
               <p className="text-white/50 text-lg">High-fidelity audio delivery with built-in premium playback.</p>
             </div>
 
             {/* Video: Wide Bottom Cell */}
-            <div className="md:col-span-8 bg-[#080808] p-10 group glow-card">
+            <div className="md:col-span-8 bg-[#080808] p-10 group hover:bg-purple-500/[0.02] transition-colors border-b-2 border-transparent hover:border-purple-500/50">
               <div className="flex justify-between items-start mb-16">
-                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
-                  <Video className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                <div className="w-12 h-12 bg-purple-500/5 border border-purple-500/20 flex items-center justify-center">
+                  <Video className="w-5 h-5 text-purple-500/60 group-hover:text-purple-400 transition-colors" />
                 </div>
-                <span className="font-mono text-xs text-white/30">03</span>
+                <span className="font-mono text-xs text-purple-500/30">03</span>
               </div>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Premium Video</h3>
+                  <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4 group-hover:text-purple-400 transition-colors">Premium Video</h3>
                   <p className="text-white/50 text-lg">Sell masterclasses and exclusive clips with secure streaming, protecting your IP.</p>
                 </div>
               </div>
             </div>
 
             {/* Images: Small Corner Cell */}
-            <div className="md:col-span-4 bg-[#080808] p-10 group glow-card flex flex-col justify-between">
+            <div className="md:col-span-4 bg-[#080808] p-10 group hover:bg-blue-500/[0.02] transition-colors border-b-2 border-transparent hover:border-blue-500/50 flex flex-col justify-between">
               <div className="flex justify-between items-start mb-12">
-                <div className="w-12 h-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
-                  <ImageIcon className="w-5 h-5 text-white/60 group-hover:text-brand-400 transition-colors" />
+                <div className="w-12 h-12 bg-blue-500/5 border border-blue-500/20 flex items-center justify-center">
+                  <ImageIcon className="w-5 h-5 text-blue-500/60 group-hover:text-blue-400 transition-colors" />
                 </div>
-                <span className="font-mono text-xs text-white/30">04</span>
+                <span className="font-mono text-xs text-blue-500/30">04</span>
               </div>
               <div>
-                <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4">Photography</h3>
+                <h3 className="text-3xl font-heading text-[#FAFAFA] mb-4 group-hover:text-blue-400 transition-colors">Photography</h3>
                 <p className="text-white/50 text-lg">High-res galleries & collections.</p>
               </div>
             </div>

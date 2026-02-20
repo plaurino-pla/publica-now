@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
-import { PageSection } from '@/components/ui/page-section'
+import { PenTool, Repeat, Share2, Disc3, ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'How It Works - publica.now',
@@ -11,68 +11,151 @@ export const metadata: Metadata = {
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#080808]">
       {/* Hero Section */}
-      <PageSection background="muted">
-        <Container className="text-center">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-[#FAFAFA] mb-6">How It Works</h1>
-          <p className="text-xl md:text-2xl text-white/50 mb-8 max-w-3xl mx-auto">From idea to income in four simple steps. No complex setup, no waiting periods.</p>
-          <Button asChild size="lg" className="text-lg px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 glow-brand hover:from-brand-600 hover:to-brand-700 hover:shadow-xl transition-all duration-300"><Link href="/dashboard/new">Get Started Now</Link></Button>
-        </Container>
-      </PageSection>
-
-      {/* Step-by-Step Process */}
-      <PageSection background="white">
-        <Container>
-          <div className="text-center mb-16"><h2 className="font-heading text-4xl md:text-5xl font-bold text-[#FAFAFA] mb-6">The Complete Journey</h2><p className="text-xl text-white/50 max-w-2xl mx-auto">See how creators go from writing to earning in minutes</p></div>
-          <div className="max-w-6xl mx-auto">
-            {/* Steps unchanged, only containerized */}
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-20"><div className="order-2 md:order-1"><div className="flex items-center mb-6"><div className="w-16 h-16 bg-brand-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6">1</div><h3 className="font-heading text-3xl font-bold text-[#FAFAFA]">Write & Create</h3></div><p className="text-lg text-white/50 mb-6">Start with our intuitive, Substack-style editor. Write your content with rich formatting, add images, and organize your thoughts. Everything saves automatically as you work.</p><ul className="text-white/50 space-y-3"><li className="flex items-center"><span className="w-2 h-2 bg-brand-500 rounded-full mr-3"></span>Rich text editor with Markdown support</li><li className="flex items-center"><span className="w-2 h-2 bg-brand-500 rounded-full mr-3"></span>Real-time preview and formatting</li><li className="flex items-center"><span className="w-2 h-2 bg-brand-500 rounded-full mr-3"></span>Automatic draft saving</li><li className="flex items-center"><span className="w-2 h-2 bg-brand-500 rounded-full mr-3"></span>Cover image and tag management</li></ul></div><div className="order-1 md:order-2 text-center"><div className="w-80 h-80 bg-gradient-to-br from-brand-500/15 to-indigo-500/15 rounded-3xl flex items-center justify-center mx-auto"><span className="text-8xl">✍️</span></div></div></div>
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-20"><div className="text-center"><div className="w-80 h-80 bg-gradient-to-br from-emerald-500/15 to-emerald-500/10 rounded-3xl flex items-center justify-center mx-auto"><span className="text-8xl">🔄</span></div></div><div><div className="flex items-center mb-6"><div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6">2</div><h3 className="font-heading text-3xl font-bold text-[#FAFAFA]">Publish & Convert</h3></div><p className="text-lg text-white/50 mb-6">Click publish and watch the magic happen. Your content automatically converts to professional EPUB and audio formats, ready for distribution worldwide.</p><ul className="text-white/50 space-y-3"><li className="flex items-center"><span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>One-click publishing</li><li className="flex items-center"><span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>Automatic EPUB generation</li><li className="flex items-center"><span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>Professional formatting</li><li className="flex items-center"><span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>Cover image embedding</li></ul></div></div>
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-20"><div className="order-2 md:order-1"><div className="flex items-center mb-6"><div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6">3</div><h3 className="font-heading text-3xl font-bold text-[#FAFAFA]">Share & Engage</h3></div><p className="text-lg text-white/50 mb-6">Your content gets a beautiful, branded creator page automatically. Share it with your audience, and they can read, listen, and engage with your work seamlessly.</p><ul className="text-white/50 space-y-3"><li className="flex items-center"><span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Auto-generated creator pages</li><li className="flex items-center"><span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Custom branding and themes</li><li className="flex items-center"><span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Mobile-optimized experience</li><li className="flex items-center"><span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Social sharing integration</li></ul></div><div className="order-1 md:order-2 text-center"><div className="w-80 h-80 bg-gradient-to-br from-purple-500/15 to-pink-500/10 rounded-3xl flex items-center justify-center mx-auto"><span className="text-8xl">📱</span></div></div></div>
-            <div className="grid md:grid-cols-2 gap-12 items-center"><div className="text-center"><div className="w-80 h-80 bg-gradient-to-br from-orange-500/15 to-red-500/10 rounded-3xl flex items-center justify-center mx-auto"><span className="text-8xl">💰</span></div></div><div><div className="flex items-center mb-6"><div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6">4</div><h3 className="font-heading text-3xl font-bold text-[#FAFAFA]">Monetize & Grow</h3></div><p className="text-lg text-white/50 mb-6">Start earning immediately with flexible monetization options. Choose between subscriptions, one-time sales, or free content to build your audience.</p><ul className="text-white/50 space-y-3"><li className="flex items-center"><span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>Subscription plans</li><li className="flex items-center"><span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>One-time purchases</li><li className="flex items-center"><span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>Instant payouts</li><li className="flex items-center"><span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>Audience analytics</li></ul></div></div>
+      <section className="relative pt-40 pb-32 border-b border-white/[0.03] overflow-hidden">
+        <Container className="relative z-10 text-center md:text-left">
+          <div className="max-w-4xl">
+            <span className="inline-block font-mono text-xs uppercase tracking-[0.2em] text-white/40 mb-8 border border-white/10 px-3 py-1.5">
+              Operation Manual
+            </span>
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-heading font-bold text-[#FAFAFA] leading-[0.9] tracking-tight mb-8">
+              Sequential <br className="hidden md:block" />
+              <span className="italic font-serif text-white/40">Protocol.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-white/50 mb-12 max-w-2xl leading-relaxed">
+              Ascending from draft to secure financial capture via four uncompromising stages. No bloat. No delays.
+            </p>
+            <Button asChild size="lg" className="rounded-none bg-[#FAFAFA] text-[#080808] hover:bg-white/90 h-16 px-10 text-sm font-mono uppercase tracking-widest font-semibold group w-full sm:w-auto">
+              <Link href="/auth/signup" aria-label="Start executing">
+                Initiate Sequence <ArrowRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
           </div>
         </Container>
-      </PageSection>
+      </section>
 
-      {/* Timeline Section */}
-      <PageSection background="muted">
-        <Container>
-          <div className="text-center mb-16"><h2 className="font-heading text-4xl md:text-5xl font-bold text-[#FAFAFA] mb-6">Timeline to Success</h2><p className="text-xl text-white/50 max-w-2xl mx-auto">See how quickly you can go from zero to published</p></div>
-          <div className="max-w-4xl mx-auto"><div className="grid md:grid-cols-3 gap-8"><div className="text-center p-6"><div className="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">5</div><h3 className="font-heading text-xl font-bold text-[#FAFAFA] mb-2">Minutes</h3><p className="text-white/50">Sign up and create your creator space</p></div><div className="text-center p-6"><div className="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">15</div><h3 className="font-heading text-xl font-bold text-[#FAFAFA] mb-2">Minutes</h3><p className="text-white/50">Write and publish your first piece</p></div><div className="text-center p-6"><div className="w-20 h-20 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">Now</div><h3 className="font-heading text-xl font-bold text-[#FAFAFA] mb-2">Start Earning</h3><p className="text-white/50">Your content is live and monetizable</p></div></div></div>
-        </Container>
-      </PageSection>
+      {/* Process Flow */}
+      <section className="py-0 border-b border-white/[0.03]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.05]">
 
-      {/* Why Choose Publica.now */}
-      <PageSection background="white">
+          {/* Step 1: Amber */}
+          <div className="bg-[#080808] p-10 md:p-12 group hover:bg-amber-500/[0.02] transition-colors relative border-t-2 border-transparent hover:border-amber-500/50">
+            <span className="absolute top-10 right-10 font-mono text-xs text-amber-500/30 uppercase tracking-widest leading-none">Stage 01</span>
+            <div className="w-16 h-16 mb-12 bg-amber-500/5 border border-amber-500/20 flex items-center justify-center">
+              <PenTool className="w-6 h-6 text-amber-500/60 group-hover:text-amber-400 transition-colors" />
+            </div>
+            <h3 className="font-heading text-3xl text-[#FAFAFA] mb-6 tracking-tight group-hover:text-amber-400 transition-colors">Draft & Inject</h3>
+            <p className="text-white/50 text-base leading-relaxed mb-10">
+              Input source material into our distraction-free, Markdown-enabled command terminal. Attach raw media, configure tags, and define narrative vectors.
+            </p>
+            <ul className="text-white/30 font-mono text-xs uppercase tracking-widest space-y-4">
+              <li className="flex gap-4"><span className="text-amber-400/50 shrink-0">::</span> Write via Markdown</li>
+              <li className="flex gap-4"><span className="text-amber-400/50 shrink-0">::</span> Auto-Save Protocol</li>
+              <li className="flex gap-4"><span className="text-amber-400/50 shrink-0">::</span> Multi-Media Embedding</li>
+            </ul>
+          </div>
+
+          {/* Step 2: Emerald */}
+          <div className="bg-[#080808] p-10 md:p-12 group hover:bg-emerald-500/[0.02] transition-colors relative border-t-2 border-transparent hover:border-emerald-500/50">
+            <span className="absolute top-10 right-10 font-mono text-xs text-emerald-500/30 uppercase tracking-widest leading-none">Stage 02</span>
+            <div className="w-16 h-16 mb-12 bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-center">
+              <Repeat className="w-6 h-6 text-emerald-500/60 group-hover:text-emerald-400 transition-colors" />
+            </div>
+            <h3 className="font-heading text-3xl text-[#FAFAFA] mb-6 tracking-tight group-hover:text-emerald-400 transition-colors">Process & Encode</h3>
+            <p className="text-white/50 text-base leading-relaxed mb-10">
+              Execute compilation. The system ingests raw drafts and autonomously transpiles into high-fidelity EPUB and isolated audio streaming outputs.
+            </p>
+            <ul className="text-white/30 font-mono text-xs uppercase tracking-widest space-y-4">
+              <li className="flex gap-4"><span className="text-emerald-400/50 shrink-0">::</span> One-Click Compile</li>
+              <li className="flex gap-4"><span className="text-emerald-400/50 shrink-0">::</span> EPUB Rendering</li>
+              <li className="flex gap-4"><span className="text-emerald-400/50 shrink-0">::</span> Automated Pagination</li>
+            </ul>
+          </div>
+
+          {/* Step 3: Purple */}
+          <div className="bg-[#080808] p-10 md:p-12 group hover:bg-purple-500/[0.02] transition-colors relative border-t-2 border-transparent hover:border-purple-500/50">
+            <span className="absolute top-10 right-10 font-mono text-xs text-purple-500/30 uppercase tracking-widest leading-none">Stage 03</span>
+            <div className="w-16 h-16 mb-12 bg-purple-500/5 border border-purple-500/20 flex items-center justify-center">
+              <Share2 className="w-6 h-6 text-purple-500/60 group-hover:text-purple-400 transition-colors" />
+            </div>
+            <h3 className="font-heading text-3xl text-[#FAFAFA] mb-6 tracking-tight group-hover:text-purple-400 transition-colors">Broadcast Stream</h3>
+            <p className="text-white/50 text-base leading-relaxed mb-10">
+              Your customized domain is propelled worldwide across our CDN. Secure routing ensures high availability and aesthetic fidelity regardless of client device.
+            </p>
+            <ul className="text-white/30 font-mono text-xs uppercase tracking-widest space-y-4">
+              <li className="flex gap-4"><span className="text-purple-400/50 shrink-0">::</span> CDN Distribution</li>
+              <li className="flex gap-4"><span className="text-purple-400/50 shrink-0">::</span> Variable Tethers</li>
+              <li className="flex gap-4"><span className="text-purple-400/50 shrink-0">::</span> Responsive Nodes</li>
+            </ul>
+          </div>
+
+          {/* Step 4: Vermilion */}
+          <div className="bg-[#080808] p-10 md:p-12 group hover:bg-brand-500/[0.02] transition-colors relative border-t-2 border-transparent hover:border-brand-500/50">
+            <span className="absolute top-10 right-10 font-mono text-xs text-brand-500/30 uppercase tracking-widest leading-none">Stage 04</span>
+            <div className="w-16 h-16 mb-12 bg-brand-500/5 border border-brand-500/20 flex items-center justify-center">
+              <Disc3 className="w-6 h-6 text-brand-500/60 group-hover:text-brand-400 transition-colors" />
+            </div>
+            <h3 className="font-heading text-3xl text-[#FAFAFA] mb-6 tracking-tight group-hover:text-brand-400 transition-colors">Capture Revenue</h3>
+            <p className="text-white/50 text-base leading-relaxed mb-10">
+              Engage monetization arrays. Enforce subscription logic or single-use decryption keys. Keep 85% of all intercepted capital.
+            </p>
+            <ul className="text-white/30 font-mono text-xs uppercase tracking-widest space-y-4">
+              <li className="flex gap-4"><span className="text-brand-400/50 shrink-0">::</span> Secure Stripe Hooks</li>
+              <li className="flex gap-4"><span className="text-brand-400/50 shrink-0">::</span> 85% Value Capture</li>
+              <li className="flex gap-4"><span className="text-brand-400/50 shrink-0">::</span> Instant Liquidity</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Specifications */}
+      <section className="py-24 sm:py-32 border-b border-white/[0.03]">
         <Container>
-          <div className="text-center mb-16"><h2 className="font-heading text-4xl md:text-5xl font-bold text-[#FAFAFA] mb-6">Why Choose Publica.now?</h2><p className="text-xl text-white/50 max-w-2xl mx-auto">Built on enterprise-grade infrastructure, designed for independent creators</p></div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: '⚡', title: 'Lightning Fast', desc: 'From signup to publishing in under 20 minutes. No waiting, no approval processes.' },
-              { icon: '🔒', title: 'Secure & Reliable', desc: "Built on Publica.la's battle-tested infrastructure with enterprise-grade security." },
-              { icon: '🌍', title: 'Global Reach', desc: 'Reach readers worldwide with multi-currency support and global distribution.' },
-              { icon: '📊', title: 'Smart Analytics', desc: 'Track performance, understand your audience, and optimize for growth.' },
-              { icon: '🎨', title: 'Customizable', desc: 'Brand your storefront, customize themes, and make it uniquely yours.' },
-              { icon: '💎', title: 'Premium Quality', desc: 'Professional-grade tools without the enterprise complexity or cost.' },
-            ].map((f) => (
-              <div key={f.title} className="text-center p-6"><div className="w-16 h-16 bg-brand-500/15 rounded-2xl flex items-center justify-center mx-auto mb-4"><span className="text-2xl">{f.icon}</span></div><h3 className="font-heading text-xl font-bold text-[#FAFAFA] mb-3">{f.title}</h3><p className="text-white/50">{f.desc}</p></div>
-            ))}
+          <div className="mb-20">
+            <span className="font-mono text-xs text-white/30 uppercase tracking-widest block mb-4">Operations Telemetry</span>
+            <h2 className="font-heading text-4xl sm:text-5xl font-bold text-[#FAFAFA]">Time to Execution</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-px bg-white/[0.05] border border-white/[0.05]">
+            <div className="bg-[#080808] p-12 text-center group">
+              <div className="text-6xl sm:text-7xl font-heading text-white/20 mb-6 group-hover:text-white transition-colors">T+05</div>
+              <h3 className="font-mono text-sm tracking-widest uppercase text-white/40 mb-2 group-hover:text-brand-400 transition-colors">Minutes</h3>
+              <p className="text-white/50">Complete instance creation & logic mapping</p>
+            </div>
+            <div className="bg-[#080808] p-12 text-center group">
+              <div className="text-6xl sm:text-7xl font-heading text-white/20 mb-6 group-hover:text-white transition-colors">T+15</div>
+              <h3 className="font-mono text-sm tracking-widest uppercase text-white/40 mb-2 group-hover:text-brand-400 transition-colors">Minutes</h3>
+              <p className="text-white/50">First payload successfully deployed & encoded</p>
+            </div>
+            <div className="bg-[#080808] p-12 text-center group">
+              <div className="text-6xl sm:text-7xl font-heading text-brand-400 mb-6 drop-shadow-[0_0_15px_rgba(255,87,34,0.3)]">Now</div>
+              <h3 className="font-mono text-sm tracking-widest uppercase text-white/40 mb-2">Live Revenue</h3>
+              <p className="text-white/50">Instance active and processing inbound capital</p>
+            </div>
           </div>
         </Container>
-      </PageSection>
+      </section>
 
-      {/* CTA Section */}
-      <PageSection background="brand">
-        <Container className="text-center">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">Ready to Start Your Journey?</h2>
-          <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">Join thousands of creators who are already publishing and earning with publica.now</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="text-lg px-8 py-4 bg-white text-[#0a0a0a] hover:bg-white/90 hover:shadow-xl transition-all duration-300"><Link href="/dashboard/new" aria-label="Start publishing">Start Publishing</Link></Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-brand-600 transition-all duration-300"><Link href="/features">View Features</Link></Button>
-          </div>
+      {/* Final CTA */}
+      <section className="py-32 relative group">
+        <Container className="text-center relative z-10">
+          <span className="font-mono text-xs text-brand-400 uppercase tracking-widest block mb-6 px-3 py-1 border border-brand-500/20 bg-brand-500/5 w-max mx-auto">
+            Ready State Achieved
+          </span>
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-heading text-[#FAFAFA] mb-12 tracking-tight">
+            Commence <span className="italic text-white/40">Operation.</span>
+          </h2>
+          <Button
+            asChild
+            size="lg"
+            className="rounded-none bg-[#FAFAFA] text-[#080808] hover:bg-white/90 h-16 px-12 text-sm font-mono tracking-widest uppercase font-semibold mx-auto border-none"
+          >
+            <Link href="/auth/signup">
+              Access Terminal <ArrowRight className="ml-4 w-5 h-5" />
+            </Link>
+          </Button>
         </Container>
-      </PageSection>
+      </section>
     </div>
   )
 }

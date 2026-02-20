@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Search,
   Users,
@@ -15,14 +14,10 @@ import {
   Image as ImageIcon,
   Video,
   Star,
-  TrendingUp,
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from 'lucide-react'
 import { Container } from '@/components/ui/container'
-import { PageSection } from '@/components/ui/page-section'
-
-// Note: This is a client component, so we can't use export const metadata
-// SEO is handled in the parent layout
 
 interface Creator {
   id: string
@@ -126,11 +121,11 @@ export default function CreatorsPage() {
 
   const getCreatorDescription = (creator: Creator) => {
     if (!creator.branding) {
-      return 'Independent creator publishing on publica.now'
+      return 'Independent creator publishing on operations matrix.'
     }
 
     const branding = creator.branding && typeof creator.branding === 'object' ? creator.branding as any : {}
-    return branding.description || 'Independent creator publishing on publica.now'
+    return branding.description || 'Independent creator publishing on operations matrix.'
   }
 
   const getCreatorImage = (creator: Creator) => {
@@ -141,121 +136,95 @@ export default function CreatorsPage() {
   }
 
   const getCreatorColor = (creator: Creator) => {
-    if (!creator.branding) return '#3B82F6'
+    if (!creator.branding) return '#FF5722' // brand-400 fallback
 
     const branding = creator.branding && typeof creator.branding === 'object' ? creator.branding as any : {}
-    return branding.mainColor || '#3B82F6'
+    return branding.mainColor || '#FF5722'
   }
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a]">
-        <Container className="text-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-400 mx-auto"></div>
-          <p className="mt-4 text-white/50">Loading creators...</p>
-        </Container>
-      </div>
-    )
-  }
-
-  if (creators.length === 0) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0a]">
-        <Container className="text-center py-20">
-          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-white/30 mx-auto mb-4" />
-          <h2 className="text-xl sm:text-2xl font-semibold font-heading text-[#FAFAFA] mb-2">No Creators Found</h2>
-          <p className="text-white/50 mb-6 text-sm sm:text-base">It looks like there are no creators with published content yet.</p>
-          <Button onClick={fetchCreators} variant="outline">
-            Refresh
-          </Button>
-        </Container>
+      <div className="min-h-screen bg-[#080808] flex items-center justify-center">
+        <div className="text-center font-mono text-sm tracking-widest text-brand-400 uppercase">
+          Initializing Matrix...
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
-      <div className="bg-surface-0 py-12 sm:py-16">
+    <div className="min-h-screen bg-[#080808]">
+      {/* Header & Terminal Search */}
+      <section className="pt-40 pb-16 border-b border-white/[0.03]">
         <Container>
-          <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold font-heading text-[#FAFAFA] mb-4">
-              Discover Amazing Creators
+          <div className="text-center md:text-left">
+            <span className="inline-block font-mono text-xs uppercase tracking-[0.2em] text-white/40 mb-8 border border-white/10 px-3 py-1.5">
+              Creator Index
+            </span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold text-[#FAFAFA] mb-8 tracking-tight">
+              Network <span className="italic font-serif text-white/40">Nodes.</span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/50 mb-6 sm:mb-8 max-w-3xl mx-auto">
-              Explore independent creators, writers, podcasters, and content makers
-              who are building meaningful communities on publica.now
-            </p>
 
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30 w-5 h-5" />
-              <Input
+            {/* Brutalist Search Terminal */}
+            <div className="max-w-3xl mt-16 relative group">
+              <Search className="absolute left-0 top-1/2 -translate-y-1/2 text-white/20 w-8 h-8 group-focus-within:text-brand-400 transition-colors" />
+              <input
                 type="text"
-                placeholder="Search creators by name, handle, or description..."
+                placeholder="[ SEARCH CREATOR IDENTITIES ]"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 pr-4 py-3 text-base sm:text-lg"
+                className="w-full bg-transparent border-b-2 border-white/10 pl-12 pr-4 py-4 text-2xl font-heading text-[#FAFAFA] placeholder:font-mono placeholder:text-sm placeholder:tracking-widest placeholder:uppercase placeholder:text-white/20 focus:outline-none focus:border-brand-400 transition-colors"
               />
             </div>
           </div>
         </Container>
-      </div>
+      </section>
 
       {/* Filters and Stats */}
-      <div className="bg-surface-0 py-6 border-y border-white/[0.06]">
+      <div className="bg-white/[0.01] py-6 border-b border-white/[0.03]">
         <Container>
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <span className="text-sm text-white/50">
-                {filteredCreators.length} creator{filteredCreators.length !== 1 ? 's' : ''} found
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <span className="font-mono text-xs uppercase tracking-widest text-white/40">
+                Found [ {filteredCreators.length} ] Nodes
               </span>
 
               {/* Sort Options */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <Filter className="w-4 h-4 text-white/30" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as 'recent' | 'popular' | 'name')}
-                  className="text-sm border border-white/[0.08] rounded-md px-3 py-2 bg-surface-2 text-white/80"
+                  className="bg-transparent border border-white/10 font-mono text-xs uppercase tracking-widest text-[#FAFAFA] rounded-none px-4 py-2 focus:outline-none focus:border-white/30"
                 >
-                  <option value="recent">Recently Added</option>
-                  <option value="popular">Most Popular</option>
-                  <option value="name">Name A-Z</option>
+                  <option value="recent" className="bg-[#080808]">Recently Online</option>
+                  <option value="popular" className="bg-[#080808]">High Traffic</option>
+                  <option value="name" className="bg-[#080808]">Alpha Sequence</option>
                 </select>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-sm text-white/50">
-              <div className="flex items-center gap-2"><Users className="w-4 h-4" /><span>{creators.length} total creators</span></div>
-              <div className="flex items-center gap-2"><FileText className="w-4 h-4" /><span>{creators.reduce((sum, c) => sum + c.totalArticles, 0)} total posts</span></div>
-              <div className="flex items-center gap-2"><Sparkles className="w-4 h-4" /><span>{creators.filter(c => c.isNewCreator).length} new creators</span></div>
+            <div className="flex items-center gap-6 font-mono text-xs uppercase tracking-widest text-white/30">
+              <div className="flex items-center gap-2"><Users className="w-4 h-4" /><span>Total: {creators.length}</span></div>
+              <div className="flex items-center gap-2"><FileText className="w-4 h-4" /><span>Payloads: {creators.reduce((sum, c) => sum + c.totalArticles, 0)}</span></div>
             </div>
           </div>
         </Container>
       </div>
 
       {/* Creators Grid */}
-      <div className="bg-surface-0 py-12 sm:py-16">
+      <section className="py-24">
         <Container>
           {filteredCreators.length === 0 ? (
-            <div className="text-center py-8 sm:py-12">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-surface-2 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-6 h-6 sm:w-8 sm:h-8 text-white/30" />
-              </div>
-              <h3 className="text-lg font-medium text-[#FAFAFA] mb-2">No creators found</h3>
-              <p className="text-white/50 mb-6 text-sm sm:text-base">
-                Try adjusting your search terms or browse all creators
+            <div className="text-center py-24 border border-white/5 bg-white/[0.01]">
+              <Search className="w-12 h-12 text-white/10 mx-auto mb-6" />
+              <h3 className="text-2xl font-heading text-[#FAFAFA] mb-2">Null Result</h3>
+              <p className="text-white/40 font-mono text-xs uppercase tracking-widest">
+                No matching identities found in registry.
               </p>
-              <Button
-                onClick={() => setSearchTerm('')}
-                variant="outline"
-              >
-                Clear Search
-              </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.05] border border-white/[0.05]">
               {filteredCreators.map((creator) => {
                 const description = getCreatorDescription(creator)
                 const creatorImage = getCreatorImage(creator)
@@ -263,135 +232,116 @@ export default function CreatorsPage() {
                 const stats = getContentTypeStats(creator)
 
                 return (
-                  <Card key={creator.id} className="hover:border-white/[0.15] transition-colors cursor-pointer">
-                    <CardHeader className="pb-4">
-                      <div className="flex items-start gap-3 sm:gap-4">
-                        {/* Creator Avatar */}
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <div key={creator.id} className="bg-[#080808] p-8 md:p-10 group hover:bg-white/[0.02] transition-colors flex flex-col justify-between border-t-2 border-transparent" style={{ '--hover-color': creatorColor } as any} onMouseEnter={(e) => e.currentTarget.style.borderColor = creatorColor} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}>
+                    <div>
+                      <div className="flex items-start justify-between mb-8">
+                        {/* Creator Avatar - Brutalist Square */}
+                        <div className="w-16 h-16 border border-white/10 flex items-center justify-center bg-white/[0.02] overflow-hidden">
                           {creatorImage ? (
                             <img
                               src={creatorImage}
                               alt={creator.name}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                             />
                           ) : (
                             <div
-                              className="w-full h-full flex items-center justify-center"
-                              style={{ backgroundColor: creatorColor }}
+                              className="w-full h-full flex items-center justify-center border-b-2"
+                              style={{ borderBottomColor: creatorColor }}
                             >
-                              <span className="text-lg sm:text-xl font-bold text-white">
+                              <span className="text-2xl font-heading text-white">
                                 {creator.name.charAt(0).toUpperCase()}
                               </span>
                             </div>
                           )}
                         </div>
 
-                        {/* Creator Info */}
-                        <div className="flex-1 min-w-0">
-                          <CardTitle className="text-base sm:text-lg mb-1 truncate">
-                            {creator.name}
-                          </CardTitle>
-                          <CardDescription className="text-xs sm:text-sm mb-2">
-                            @{creator.slug}
-                          </CardDescription>
-                          <p className="text-xs sm:text-sm text-white/50 line-clamp-2">
-                            {description}
-                          </p>
-                          {creator.isNewCreator && (
-                            <p className="text-xs text-brand-400 mt-1">
-                              ✨ Just getting started - be the first to discover them!
-                            </p>
-                          )}
+                        <div className="text-right">
+                          <div className="font-mono text-[10px] text-white/20 uppercase tracking-[0.2em] mb-1">Status</div>
+                          <div className="flex items-center gap-1 justify-end" style={{ color: creatorColor }}>
+                            {creator.isNewCreator ? (
+                              <><Sparkles className="w-3 h-3" /><span className="text-xs font-mono uppercase tracking-widest">New</span></>
+                            ) : (
+                              <><Star className="w-3 h-3 fill-current" /><span className="text-xs font-mono uppercase tracking-widest">Active</span></>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </CardHeader>
 
-                    <CardContent className="pt-0">
-                      {/* Content Type Stats */}
-                      <div className="flex items-center gap-3 sm:gap-4 mb-4 text-xs text-white/40">
-                        {creator.isNewCreator ? (
-                          <div className="flex items-center gap-1 text-brand-400">
-                            <Sparkles className="w-3 h-3" />
-                            <span>New Creator</span>
-                          </div>
-                        ) : (
-                          <>
-                            {stats.text > 0 && (
-                              <div className="flex items-center gap-1">
-                                <FileText className="w-3 h-3" />
-                                <span>{stats.text}</span>
-                              </div>
-                            )}
-                            {stats.audio > 0 && (
-                              <div className="flex items-center gap-1">
-                                <Play className="w-3 h-3" />
-                                <span>{stats.audio}</span>
-                              </div>
-                            )}
-                            {stats.image > 0 && (
-                              <div className="flex items-center gap-1">
-                                <ImageIcon className="w-3 h-3" />
-                                <span>{stats.image}</span>
-                              </div>
-                            )}
-                            {stats.video > 0 && (
-                              <div className="flex items-center gap-1">
-                                <Video className="w-3 h-3" />
-                                <span>{stats.video}</span>
-                              </div>
-                            )}
-                          </>
-                        )}
+                      {/* Creator Info */}
+                      <div className="mb-8">
+                        <h3 className="text-2xl font-heading text-[#FAFAFA] mb-1 truncate transition-colors" style={{ color: 'var(--hover-color, #FAFAFA)' } as any}>
+                          {creator.name}
+                        </h3>
+                        <div className="font-mono text-xs text-white/30 uppercase tracking-widest mb-4">
+                          @{creator.slug}
+                        </div>
+                        <p className="text-white/50 text-sm leading-relaxed line-clamp-3">
+                          {description}
+                        </p>
                       </div>
+                    </div>
 
-                      {/* Total Posts */}
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs sm:text-sm text-white/50">
-                          {creator.isNewCreator ? 'No posts yet' : `${creator._count.articles} total posts`}
-                        </span>
-                        <div className="flex items-center gap-1 text-amber-400">
-                          <Star className="w-3 h-3 fill-current" />
-                          <span className="text-xs">
-                            {creator.isNewCreator ? 'New' : 'Active'}
-                          </span>
+                    <div>
+                      {/* Content Type Stats Grid */}
+                      <div className="grid grid-cols-4 gap-px bg-white/10 border border-white/10 mb-8 mt-4">
+                        <div className="bg-[#080808] p-3 text-center group-hover:bg-white/[0.02] transition-colors">
+                          <FileText className="w-4 h-4 mx-auto text-white/30 mb-2" />
+                          <span className="font-mono text-xs text-white/60">{stats.text}</span>
+                        </div>
+                        <div className="bg-[#080808] p-3 text-center group-hover:bg-white/[0.02] transition-colors">
+                          <Play className="w-4 h-4 mx-auto text-white/30 mb-2" />
+                          <span className="font-mono text-xs text-white/60">{stats.audio}</span>
+                        </div>
+                        <div className="bg-[#080808] p-3 text-center group-hover:bg-white/[0.02] transition-colors">
+                          <ImageIcon className="w-4 h-4 mx-auto text-white/30 mb-2" />
+                          <span className="font-mono text-xs text-white/60">{stats.image}</span>
+                        </div>
+                        <div className="bg-[#080808] p-3 text-center group-hover:bg-white/[0.02] transition-colors">
+                          <Video className="w-4 h-4 mx-auto text-white/30 mb-2" />
+                          <span className="font-mono text-xs text-white/60">{stats.video}</span>
                         </div>
                       </div>
 
                       {/* Action Button */}
                       <Button
                         asChild
-                        className="w-full h-12 sm:h-14 text-sm sm:text-base"
-                        style={{ backgroundColor: creatorColor }}
+                        className="w-full h-12 rounded-none bg-white/5 border border-white/10 text-[#FAFAFA] hover:bg-white/10 font-mono text-xs uppercase tracking-widest transition-all flex justify-between items-center px-4"
+                        style={{ borderBottomColor: creatorColor, borderBottomWidth: '2px' }}
                       >
                         <Link href={`/${creator.slug}`}>
-                          <Globe className="w-4 h-4 mr-2" />
-                          Visit Creator Page
+                          <span>Access Node</span>
+                          <ArrowRight className="w-4 h-4 opacity-50" />
                         </Link>
                       </Button>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 )
               })}
             </div>
           )}
         </Container>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <div className="bg-surface-0 py-12 sm:py-16 border-t border-white/[0.06]">
+      {/* Final CTA */}
+      <section className="py-32 relative border-t border-white/[0.05]">
         <Container className="text-center">
-          <h2 className="text-xl sm:text-2xl font-bold font-heading text-[#FAFAFA] mb-4">
-            Ready to Start Your Creator Journey?
+          <h2 className="text-4xl sm:text-5xl font-heading text-[#FAFAFA] mb-6">
+            Register your <span className="italic text-white/40">Identity.</span>
           </h2>
-          <p className="text-white/50 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base">
-            Join thousands of creators who are building their audience and monetizing their content on publica.now
+          <p className="text-white/40 mb-12 max-w-xl mx-auto text-base">
+            Establish a node on the matrix. Monetize raw capabilities.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 w-full sm:w-auto h-12 sm:h-14"><Link href="/auth/signup">Start Creating Today</Link></Button>
-            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto h-12 sm:h-14"><Link href="/how-it-works">Learn How It Works</Link></Button>
-          </div>
+          <Button
+            asChild
+            size="lg"
+            className="rounded-none bg-[#FAFAFA] text-[#080808] hover:bg-white/90 h-14 px-10 text-xs font-mono tracking-widest uppercase font-semibold mx-auto border-none"
+          >
+            <Link href="/auth/signup">
+              Deploy Instance <ArrowRight className="ml-3 w-4 h-4" />
+            </Link>
+          </Button>
         </Container>
-      </div>
+      </section>
     </div>
   )
 }
