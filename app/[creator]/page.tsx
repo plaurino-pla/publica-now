@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import Badge from '@/components/ui/badge'
 import Chip from '@/components/ui/chip'
 import { prisma } from '@/lib/prisma'
+import { Prisma } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import { formatDistanceToNow } from 'date-fns'
 import { Play, Image as ImageIcon, Video, Lock, Star, MoreHorizontal, Users } from 'lucide-react'
@@ -150,9 +151,9 @@ export default async function CreatorPage({ params, searchParams }: CreatorPageP
   let likesMap: Record<string, number> = {}
   if (articleIds.length > 0) {
     const likesCounts = await prisma.$queryRaw`
-      SELECT article_id, COUNT(*) as count
+      SELECT article_id, COUNT(*)::int as count
       FROM likes
-      WHERE article_id = ANY(${articleIds}::text[])
+      WHERE article_id IN (${Prisma.join(articleIds)})
       GROUP BY article_id
     `
     for (const row of likesCounts as any[]) {
