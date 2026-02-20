@@ -1,0 +1,144 @@
+// This is your Prisma schema file for SQLite
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  passwordHash String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  
+  // Relationships
+  memberships  Membership[]
+  accounts     Account[]
+  sessions     Session[]
+  
+  @@map("users")
+}
+
+model Creator {
+  id                       String   @id @default(cuid())
+  slug                     String   @unique
+  name                     String
+  storeDomain             String
+  encryptedPublicaApiToken String
+  branding                String? // JSON as string for SQLite
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  
+  // Relationships
+  memberships             Membership[]
+  articles                Article[]
+  
+  @@map("creators")
+}
+
+model Membership {
+  id         String   @id @default(cuid())
+  userId     String
+  creatorId  String
+  role       String   // "owner", "editor", "reader"
+  createdAt  DateTime @default(now())
+  
+  // Relationships
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  creator    Creator  @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, creatorId])
+  @@map("memberships")
+}
+
+model Article {
+  id                String   @id @default(cuid())
+  creatorId         String
+  title             String
+  slug              String
+  coverUrl          String?
+  tags              String? // Comma-separated tags for SQLite
+  bodyMarkdown      String
+  status            String   // draft | ready | publishing | published | failed
+  visibility        String   // free | preview | paid
+  pricing           String? // JSON as string for SQLite
+  currentArtifactId String? @unique
+  publishedAt       DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  creator           Creator  @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  currentArtifact   Artifact? @relation("CurrentArtifact", fields: [currentArtifactId], references: [id])
+  artifacts         Artifact[]
+
+  @@unique([creatorId, slug])
+  @@map("articles")
+}
+
+model Artifact {
+  id               String   @id @default(cuid())
+  articleId        String
+  version          Int
+  theme            String?
+  epubUrl          String?
+  pdfUrl           String?
+  storageProvider  String?  // local | s3 | r2
+  publicaIssueId   String?
+  publicaExternalId String?
+  buildLog         String? // JSON as string for SQLite
+  createdAt        DateTime @default(now())
+
+  article          Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  // back-reference for currentArtifact relation
+  articleAsCurrent  Article? @relation("CurrentArtifact")
+
+  @@unique([articleId, version])
+  @@map("artifacts")
+}
+
+// NextAuth.js required models
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id            String   @id @default(cuid())
+  sessionToken  String   @unique
+  userId        String
+  expires       DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}

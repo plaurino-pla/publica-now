@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    /* Brand */
+    --primary: 221.2 83.2% 53.3%; /* blue-600 */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 47.4% 11.2%;
+    --foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224 76% 48%;
+
+    --primary: 224 76% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Mobile-specific improvements */
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  /* Improve touch scrolling on mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Better mobile input handling */
+  input, textarea, select {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  /* Remove tap highlight on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Improve button touch targets */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  /* Better mobile scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .prose h1 { @apply text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 mt-6 sm:mt-8; }
+  .prose h2 { @apply text-xl sm:text-2xl font-semibold text-gray-800 mb-3 sm:mb-4 mt-5 sm:mt-6; }
+  .prose h3 { @apply text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-3 mt-4 sm:mt-5; }
+  .prose p { @apply text-gray-700 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base; }
+  .prose ul { @apply list-disc list-inside mb-3 sm:mb-4 space-y-1 sm:space-y-2; }
+  .prose ol { @apply list-decimal list-inside mb-3 sm:mb-4 space-y-1 sm:space-y-2; }
+  .prose li { @apply text-gray-700 text-sm sm:text-base; }
+  .prose blockquote { @apply border-l-4 border-gray-300 pl-3 sm:pl-4 italic text-gray-600 my-4 sm:my-6 text-sm sm:text-base; }
+  .prose code { @apply bg-gray-100 px-2 py-1 rounded text-xs sm:text-sm font-mono; }
+  .prose pre { @apply bg-gray-100 p-3 sm:p-4 rounded-lg overflow-x-auto mb-3 sm:mb-4; }
+  .prose img { @apply rounded-lg shadow-md my-4 sm:my-6 max-w-full h-auto; }
+  /* Mobile-specific utility classes */
+  .touch-manipulation { touch-action: manipulation; }
+  .safe-area-inset { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-bottom: env(safe-area-inset-bottom); }
+  .container-mobile { @apply px-4 sm:px-6 lg:px-8; }
+  .btn-mobile { @apply min-h-[44px] px-4 py-4 text-base font-medium rounded-lg transition-all duration-200; }
+  .btn-mobile:active { @apply transform scale-95; }
+  .card-mobile { @apply rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200; }
+  .input-mobile { @apply min-h-[44px] px-3 py-2 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent; }
+  .section-mobile { @apply py-8 sm:py-12 lg:py-16; }
+  .section-mobile-sm { @apply py-6 sm:py-8 lg:py-12; }
+  .grid-mobile { @apply grid gap-4 sm:gap-6 lg:gap-8; }
+  .text-mobile-h1 { @apply text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold; }
+  .text-mobile-h2 { @apply text-xl sm:text-2xl lg:text-3xl font-bold; }
+  .text-mobile-h3 { @apply text-lg sm:text-xl lg:text-2xl font-semibold; }
+  .text-mobile-body { @apply text-sm sm:text-base lg:text-lg; }
+  .text-mobile-small { @apply text-xs sm:text-sm; }
+}

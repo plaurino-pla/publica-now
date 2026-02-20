@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#gradient)"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Content container -->
+  <g transform="translate(100, 150)">
+    <!-- Logo placeholder -->
+    <circle cx="60" cy="60" r="50" fill="white" opacity="0.9"/>
+    <text x="60" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1e40af">PN</text>
+    
+    <!-- Main title -->
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white">publica.now</text>
+    <text x="150" y="90" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.9">Sell Your Content Your Way</text>
+    
+    <!-- Content type icons -->
+    <g transform="translate(150, 150)">
+      <!-- Text -->
+      <rect x="0" y="0" width="80" height="80" rx="12" fill="white" opacity="0.2"/>
+      <text x="40" y="45" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="white">T</text>
+      <text x="40" y="110" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">Text</text>
+      
+      <!-- Audio -->
+      <rect x="100" y="0" width="80" height="80" rx="12" fill="white" opacity="0.2"/>
+      <text x="140" y="45" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="white">A</text>
+      <text x="140" y="110" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">Audio</text>
+      
+      <!-- Image -->
+      <rect x="200" y="0" width="80" height="80" rx="12" fill="white" opacity="0.2"/>
+      <text x="240" y="45" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="white">I</text>
+      <text x="240" y="110" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">Image</text>
+      
+      <!-- Video -->
+      <rect x="300" y="0" width="80" height="80" rx="12" fill="white" opacity="0.2"/>
+      <text x="340" y="45" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="white">V</text>
+      <text x="340" y="110" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">Video</text>
+    </g>
+    
+    <!-- Tagline -->
+    <text x="150" y="320" font-family="Arial, sans-serif" font-size="20" fill="white" opacity="0.8">Zero upfront costs • 15% transaction fee • Start today</text>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Publica Lite API
+  version: 0.1.0
+servers:
+  - url: https://localhost:3000
+paths:
+  /api/creators/{slug}/catalog:
+    get:
+      summary: Get creator catalog (proxy to Publica v3)
+      parameters:
+        - in: path
+          name: slug
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: per_page
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Catalog
+  /api/checkout/single:
+    post:
+      summary: Create a single item checkout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                creatorSlug:
+                  type: string
+                postId:
+                  type: string
+                currency:
+                  type: string
+      responses:
+        '200':
+          description: Checkout created
+  /api/checkout/subscription:
+    post:
+      summary: Create a subscription checkout
+      responses:
+        '200':
+          description: Checkout created
+  /api/sso/reader:
+    post:
+      summary: Create External Auth Token SSO URL
+      responses:
+        '200':
+          description: SSO URL
+  /api/creator/content:
+    post:
+      summary: Create content in Publica (v1 issues) and persist
+      responses:
+        '200':
+          description: Created
+  /api/creator/plans:
+    post:
+      summary: Create plan in Publica and persist
+      responses:
+        '200':
+          description: Created
+  /api/webhooks/publica:
+    post:
+      summary: Receive and verify Publica webhook JWT
+      responses:
+        '200':
+          description: Accepted
