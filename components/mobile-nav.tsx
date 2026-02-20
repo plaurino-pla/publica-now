@@ -192,17 +192,7 @@ export function MobileNav({ session }: MobileNavProps) {
                     <nav className="space-y-3" role="navigation" aria-label="Browse">
                       <Link href="/creators" onClick={closeMenu}>
                         <Button variant="ghost" className="w-full justify-start h-14 text-base" size="lg">
-                          <Search className="mr-3 h-5 w-5" /> Discover Creators
-                        </Button>
-                      </Link>
-                      <Link href="/features" onClick={closeMenu}>
-                        <Button variant="ghost" className="w-full justify-start h-14 text-base" size="lg">
-                          <Globe className="mr-3 h-5 w-5" /> Features
-                        </Button>
-                      </Link>
-                      <Link href="/how-it-works" onClick={closeMenu}>
-                        <Button variant="ghost" className="w-full justify-start h-14 text-base" size="lg">
-                          <Play className="mr-3 h-5 w-5" /> How it works
+                          <Search className="mr-3 h-5 w-5" /> Discover
                         </Button>
                       </Link>
                       <Link href="/pricing" onClick={closeMenu}>
@@ -210,17 +200,11 @@ export function MobileNav({ session }: MobileNavProps) {
                           <FileText className="mr-3 h-5 w-5" /> Pricing
                         </Button>
                       </Link>
-                      <Link href="/product-vision" onClick={closeMenu}>
-                        <Button variant="ghost" className="w-full justify-start h-14 text-base" size="lg">
-                          <ImageIcon className="mr-3 h-5 w-5" /> Vision
-                        </Button>
-                      </Link>
                     </nav>
                   </div>
 
                   {/* Get Started Section */}
                   <div className="border-t pt-4 space-y-3">
-                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Get started</p>
                     <nav className="space-y-3" role="navigation" aria-label="Get started">
                       <Link href="/auth/signin" onClick={closeMenu}>
                         <Button variant="outline" className="w-full h-14 text-base" size="lg">
@@ -228,8 +212,8 @@ export function MobileNav({ session }: MobileNavProps) {
                         </Button>
                       </Link>
                       <Link href="/auth/signup" onClick={closeMenu}>
-                        <Button className="w-full bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 h-14 text-base" size="lg">
-                          Get started
+                        <Button variant="gradient" className="w-full h-14 text-base" size="lg">
+                          Start Creating &rarr;
                         </Button>
                       </Link>
                     </nav>

@@ -29,34 +29,20 @@ export async function SiteHeader() {
           </div>
         </Link>
         
-        {/* Desktop Navigation - Completely different for logged-in vs signed-out */}
+        {/* Desktop Navigation */}
         {session?.user ? (
-          // Logged-in user navigation
           <nav className="hidden lg:flex items-center gap-6 text-sm text-gray-600" aria-label="Primary">
             <Link href="/dashboard" className="hover:text-gray-900 transition-colors font-medium">
               Dashboard
             </Link>
-            <Link href="/dashboard/articles" className="hover:text-gray-900 transition-colors">
-              My Posts
-            </Link>
-            <Link href="/dashboard/analytics" className="hover:text-gray-900 transition-colors">
-              Analytics
-            </Link>
-            <Link href="/dashboard/earnings" className="hover:text-gray-900 transition-colors">
-              Earnings
-            </Link>
             <Link href="/creators" className="hover:text-gray-900 transition-colors">
-              Discover Creators
+              Discover
             </Link>
           </nav>
         ) : (
-          // Signed-out user navigation (marketing site)
           <nav className="hidden lg:flex items-center gap-8 text-sm text-gray-600" aria-label="Primary">
-            <Link href="/creators" className="hover:text-gray-900 transition-colors">Discover Creators</Link>
-            <Link href="/features" className="hover:text-gray-900 transition-colors">Features</Link>
-            <Link href="/how-it-works" className="hover:text-gray-900 transition-colors">How it works</Link>
+            <Link href="/creators" className="hover:text-gray-900 transition-colors">Discover</Link>
             <Link href="/pricing" className="hover:text-gray-900 transition-colors">Pricing</Link>
-            <Link href="/product-vision" className="hover:text-gray-900 transition-colors">Vision</Link>
           </nav>
         )}
         
@@ -71,21 +57,12 @@ export async function SiteHeader() {
           ) : (
             // Signed-out user actions (marketing site)
             <>
-              {/* Search Button */}
-              <Button asChild variant="ghost" size="sm" className="hidden md:flex items-center gap-2 text-gray-600 hover:text-gray-900">
-                <Link href="/creators">
-                  <Search className="w-4 h-4" />
-                  <span className="text-sm">Search creators</span>
-                </Link>
-              </Button>
-              
-              {/* Auth Buttons */}
               <div className="hidden md:flex items-center gap-2">
                 <Button asChild variant="ghost" size="sm">
                   <Link href="/auth/signin">Sign in</Link>
                 </Button>
-                <Button asChild size="sm" className="bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700">
-                  <Link href="/auth/signup">Get started</Link>
+                <Button asChild variant="gradient" size="pill">
+                  <Link href="/auth/signup">Start Creating &rarr;</Link>
                 </Button>
               </div>
             </>
