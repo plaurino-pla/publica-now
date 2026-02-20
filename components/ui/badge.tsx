@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 type BadgeProps = {
   children: React.ReactNode
@@ -16,7 +16,7 @@ export default function Badge({ children, variant = 'default', className }: Badg
     info: 'bg-brand-100 text-brand-800',
     outline: 'border border-gray-300 text-gray-800',
   }
-  return <span className={clsx(base, variants[variant], className)}>{children}</span>
+  return <span className={cn(base, variants[variant], className)}>{children}</span>
 }
 
 

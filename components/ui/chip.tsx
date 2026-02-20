@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 type ChipProps = {
   children: React.ReactNode
@@ -20,7 +20,7 @@ export default function Chip({ children, leadingIcon, variant = 'neutral', class
     outline: 'border border-gray-300 text-gray-800',
   }
   return (
-    <span className={clsx(base, sizes[size], variants[variant], className)}>
+    <span className={cn(base, sizes[size], variants[variant], className)}>
       {leadingIcon}
       {children}
     </span>

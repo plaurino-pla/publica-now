@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/lib/utils'
 
 type SkeletonProps = {
   className?: string
@@ -6,7 +6,7 @@ type SkeletonProps = {
 
 export default function Skeleton({ className }: SkeletonProps) {
   return (
-    <div className={clsx('animate-pulse rounded-md bg-gray-200', className)} />
+    <div className={cn('animate-pulse rounded-md bg-stone-200', className)} />
   )
 }
 
