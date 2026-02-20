@@ -1,414 +1,144 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { 
-  FileText, 
-  Mic, 
-  Image as ImageIcon, 
-  Video, 
-  Upload, 
-  Share2, 
+import { Container } from '@/components/ui/container'
+import { PageSection } from '@/components/ui/page-section'
+import {
+  FileText,
+  Mic,
+  Image as ImageIcon,
+  Video,
+  Upload,
+  Share2,
   DollarSign,
   CheckCircle,
-  Star,
-  Users,
-  Zap,
-  Shield,
-  BarChart3,
-  MessageCircle,
   ArrowRight,
-  Play
 } from 'lucide-react'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-purple-50">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Sell your content{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">
-                your way
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-              Create, publish and monetize with <strong>zero upfront cost</strong>. 
-              Keep <span className="text-green-600 font-semibold">85% of your earnings</span>.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-                asChild
-              >
-                <Link href="/auth/signup">
-                  Start publishing free
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-gray-300 px-8 py-4 text-lg font-semibold hover:border-brand-600 hover:text-brand-600 transition-all duration-200"
-                asChild
-              >
-                <Link href="#how-it-works">
-                  See how it works
-                  <Play className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
-            </div>
-            
-            {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <span>No monthly fees</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-brand-500" />
-                <span>Secure payments</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-yellow-500" />
-                <span>Publish instantly</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content Formats Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Publish any type of content
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Whether you write, record, shoot, or create, we've got you covered with 
-              beautiful, monetizable content pages.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Text */}
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 hover:from-brand-100 hover:to-brand-200 transition-all duration-300 group">
-              <div className="w-16 h-16 bg-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <FileText className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Text Articles</h3>
-              <p className="text-gray-600">Write and publish articles, newsletters, and long-form content.</p>
-            </div>
-
-            {/* Audio */}
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 transition-all duration-300 group">
-              <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Mic className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Audio Content</h3>
-              <p className="text-gray-600">Share podcasts, music, and audio experiences with your audience.</p>
-            </div>
-
-            {/* Images */}
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 transition-all duration-300 group">
-              <div className="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <ImageIcon className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Image Galleries</h3>
-              <p className="text-gray-600">Showcase photography, art, and visual content beautifully.</p>
-            </div>
-
-            {/* Video */}
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 hover:from-red-100 hover:to-red-200 transition-all duration-300 group">
-              <div className="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Video className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Video Content</h3>
-              <p className="text-gray-600">Upload and monetize videos, courses, and live content.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Start earning in 3 simple steps
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From idea to income in minutes, not months. No technical skills required.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Step 1 */}
-            <div className="text-center">
-              <div className="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-                1
-              </div>
-              <div className="w-16 h-16 bg-brand-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Upload className="w-8 h-8 text-brand-600" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Create your content</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Upload your text, audio, images, or video. Set your price and publish instantly. 
-                No coding or design skills needed.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="text-center">
-              <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-                2
-              </div>
-              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Share2 className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Share & promote</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Get a beautiful, shareable link for your content. Share on social media, 
-                email, or anywhere you connect with your audience.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="text-center">
-              <div className="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-                3
-              </div>
-              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Earn money</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Keep 85% of every sale. Payments are processed securely and automatically. 
-                Get paid directly to your bank account.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Simple, transparent pricing
-          </h2>
-          <p className="text-xl text-gray-600 mb-12">
-            Start publishing today. No hidden fees, no surprises.
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section
+        aria-label="Hero"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50/30 pt-20 pb-24"
+      >
+        <Container className="text-center">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight">
+            Sell what you{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-700">
+              create
+            </span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Publish text, audio, images & video. Set your price.
+            Keep <span className="text-brand-600 font-semibold">85%</span> of every sale.
           </p>
-          
-          <div className="bg-gradient-to-br from-brand-50 to-purple-50 rounded-3xl p-8 md:p-12 border border-brand-100">
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold text-gray-900 mb-2">Creator Plan</h3>
-              <div className="flex items-baseline justify-center gap-2">
-                <span className="text-6xl font-bold text-brand-600">$0</span>
-                <span className="text-2xl text-gray-600">/month</span>
-              </div>
-              <p className="text-gray-600 mt-2">15% transaction fee on sales</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Unlimited content publishing</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Beautiful content pages</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Built-in payments</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Analytics & insights</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Customer support</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Keep 85% of earnings</span>
-              </div>
-            </div>
-            
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-              asChild
+          <Button asChild variant="gradient" size="lg" className="px-10 py-5 text-lg font-semibold shadow-lg hover:shadow-xl transition-shadow">
+            <Link href="/auth/signup">
+              Start publishing free <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </Button>
+        </Container>
+      </section>
+
+      {/* Content Types — 2x2 grid */}
+      <PageSection background="white" aria-label="Content types">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
+          Publish any type of content
+        </h2>
+        <div className="grid grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {[
+            { icon: FileText, label: 'Text', desc: 'Articles & newsletters', color: 'bg-brand-500' },
+            { icon: Mic, label: 'Audio', desc: 'Podcasts & music', color: 'bg-green-500' },
+            { icon: ImageIcon, label: 'Images', desc: 'Photography & art', color: 'bg-purple-500' },
+            { icon: Video, label: 'Video', desc: 'Courses & clips', color: 'bg-orange-500' },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-colors"
             >
-              <Link href="/auth/signup">
-                Start publishing free
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              <div className={`w-14 h-14 ${item.color} rounded-xl flex items-center justify-center mb-4`}>
+                <item.icon className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">{item.label}</h3>
+              <p className="text-sm text-gray-500 mt-1">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </PageSection>
+
+      {/* How it works — 3 steps */}
+      <PageSection background="muted" aria-label="How it works">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-14 text-center">
+          How it works
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-4xl mx-auto relative">
+          {/* Connecting line (desktop only) */}
+          <div className="hidden md:block absolute top-10 left-[20%] right-[20%] h-0.5 bg-brand-200" aria-hidden="true" />
+
+          {[
+            { step: '1', icon: Upload, title: 'Create', desc: 'Upload your content and set your price. Done in minutes.' },
+            { step: '2', icon: Share2, title: 'Share', desc: 'Get a beautiful link. Share it anywhere your audience lives.' },
+            { step: '3', icon: DollarSign, title: 'Earn', desc: 'Get paid automatically. Keep 85% of every sale.' },
+          ].map((item) => (
+            <div key={item.step} className="text-center relative">
+              <div className="w-20 h-20 bg-brand-500 rounded-full flex items-center justify-center mx-auto mb-5 text-white text-2xl font-bold relative z-10">
+                {item.step}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
+              <p className="text-gray-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </PageSection>
+
+      {/* Pricing */}
+      <PageSection background="white" aria-label="Pricing">
+        <div className="max-w-xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Simple pricing
+          </h2>
+          <div className="bg-gradient-to-br from-brand-50 to-brand-100/50 rounded-3xl p-10 border border-brand-200 mt-8">
+            <div className="flex items-baseline justify-center gap-1 mb-2">
+              <span className="text-6xl font-bold text-brand-600">$0</span>
+              <span className="text-xl text-gray-500">/month</span>
+            </div>
+            <p className="text-gray-600 mb-8">15% fee only when you get paid</p>
+            <ul className="space-y-3 text-left max-w-xs mx-auto mb-8">
+              {['Unlimited publishing', 'Built-in payments', 'Analytics dashboard', 'Keep 85% of earnings'].map((f) => (
+                <li key={f} className="flex items-center gap-3 text-gray-700">
+                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <Button asChild variant="gradient" size="lg" className="px-10 text-lg font-semibold">
+              <Link href="/auth/signup">Start for free <ArrowRight className="ml-2 w-5 h-5" /></Link>
             </Button>
           </div>
         </div>
-      </section>
+      </PageSection>
 
-      {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Everything you need to succeed
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Powerful tools designed for creators, not corporations.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-brand-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-brand-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Instant Publishing</h3>
-              <p className="text-gray-600">
-                Go from idea to published content in minutes. No waiting, no approval process.
-              </p>
-            </div>
-            
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Secure Payments</h3>
-              <p className="text-gray-600">
-                Built-in Stripe integration with enterprise-grade security. Your customers' data is protected.
-              </p>
-            </div>
-            
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Analytics & Insights</h3>
-              <p className="text-gray-600">
-                Track your performance, understand your audience, and optimize for growth.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Join thousands of creators
-          </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            Independent creators are already building their businesses and growing their audiences with Publica.now
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-gray-50 rounded-2xl p-6 text-center">
-              <div className="flex justify-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">
-                "Publica.now made it incredibly easy to start selling my photography. 
-                The platform is intuitive and the payments work seamlessly."
-              </p>
-              <div className="font-semibold text-gray-900">Sarah Chen</div>
-              <div className="text-sm text-gray-600">Photographer</div>
-            </div>
-            
-            <div className="bg-gray-50 rounded-2xl p-6 text-center">
-              <div className="flex justify-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">
-                "I've tried many platforms, but Publica.now is the only one that 
-                puts creators first. The 85% revenue share is game-changing."
-              </p>
-              <div className="font-semibold text-gray-900">Marcus Rodriguez</div>
-              <div className="text-sm text-gray-600">Podcaster</div>
-            </div>
-            
-            <div className="bg-gray-50 rounded-2xl p-6 text-center">
-              <div className="flex justify-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">
-                "From writing to publishing to getting paid, everything just works. 
-                It's exactly what independent writers need."
-              </p>
-              <div className="font-semibold text-gray-900">Emma Thompson</div>
-              <div className="text-sm text-gray-600">Writer</div>
-            </div>
-          </div>
-          
-          <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-brand-500" />
-              <span>10,000+ creators</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <span>99.9% uptime</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MessageCircle className="w-5 h-5 text-purple-500" />
-              <span>24/7 support</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-brand-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
+      {/* Final CTA */}
+      <section aria-label="Call to action" className="py-20 bg-gradient-to-r from-brand-600 to-brand-700">
+        <Container className="text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Ready to start earning?
           </h2>
-          <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of creators who are already monetizing their content. 
-            Start publishing today - it's completely free.
+          <p className="text-lg text-brand-100 mb-8 max-w-xl mx-auto">
+            Create your first post today. No credit card needed.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              variant="secondary"
-              className="bg-white text-brand-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-              asChild
-            >
-              <Link href="/auth/signup">
-                Get started now
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-2 border-white text-white hover:bg-white hover:text-brand-600 px-8 py-4 text-lg font-semibold transition-all duration-200"
-              asChild
-            >
-              <Link href="/auth/signin">
-                Sign in
-              </Link>
-            </Button>
-          </div>
-        </div>
+          <Button
+            asChild
+            size="lg"
+            className="bg-white text-brand-600 hover:bg-brand-50 px-10 py-5 text-lg font-semibold shadow-lg"
+          >
+            <Link href="/auth/signup">
+              Get started now <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </Button>
+        </Container>
       </section>
-
-      {/* Global SiteFooter is rendered in app/layout.tsx */}
     </div>
   )
 }
